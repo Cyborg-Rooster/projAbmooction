@@ -43,7 +43,9 @@ class PlayerPhysicsManager
             Amplitude * Mathf.Sin(FloatSpeed * Time.time),
             Transform.position.z
         );*/
-        Transform.position = new Vector3(Transform.position.x, Amplitude * Mathf.Sin(FloatSpeed * Time.time), Transform.position.z);
+        Vector3 TempPos = Transform.position;
+        TempPos.y += Amplitude * Mathf.Sin(FloatSpeed * Time.time);
+        Transform.position = TempPos;
     }
 
     private void MovePosition(Vector3 position)

@@ -44,6 +44,7 @@ public class MovementController : MonoBehaviour
     {
         if (isMoving) Move(isRect);
         if (ReturnIfItIsInTargetPosition()) OnMovementFinish();
+        //SetSpeed(speed);
     }
 
     void Move(bool isRect)
@@ -71,6 +72,11 @@ public class MovementController : MonoBehaviour
         }
     }
 
+    public void SetSpeed(float speed)
+    {
+        Movement.Speed = speed;
+    }
+
     public bool ReturnIfItIsInTargetPosition()
     {
         return Movement.CheckIfItIsInTargetPosition(isRect);
@@ -83,18 +89,15 @@ public class MovementController : MonoBehaviour
         Movement.ChangeFinalPosition(finalPosition);
         isMoving = true;
     }
-
     public void SetIsMoving(bool moving)
     {
         isMoving = moving;
     }
-
     public void ReturntoStartPosition(bool isRect)
     {
         if (isRect) GetComponent<RectTransform>().anchoredPosition = Movement.InitialPos;
         else transform.position = Movement.InitialPos;
     }
-
     public IEnumerator WaitForComeToTargetPosition()
     {
         while (!ReturnIfItIsInTargetPosition())

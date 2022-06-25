@@ -10,11 +10,13 @@ class ButtonController : MonoBehaviour
     [SerializeField] Sprite clickedSprite;
     //[SerializeField] SoundController audioSource;
 
-    public bool clicked;
-    public bool multipleClicks;
+    public bool Clicked;
+    public bool MultipleClicks;
+    public bool StartInteractive;
 
     public void OnClick()
     {
+        if(!StartInteractive) UIManager.SetButtonState(gameObject, false);
         StartCoroutine(Click());
     }
 
@@ -22,16 +24,14 @@ class ButtonController : MonoBehaviour
     {
         if (active) UIManager.SetImage(gameObject, defaultSprite);
         else UIManager.SetImage(gameObject, clickedSprite);
-        UIManager.SetButtonState(gameObject, true);
+        UIManager.SetButtonState(gameObject, active);
     }
 
     IEnumerator Click()
     {
-        yield return new WaitForSeconds(0.1f);
         UIManager.SetImage(gameObject, clickedSprite);
-
         yield return new WaitForSeconds(0.1f);
-        if (multipleClicks) UIManager.SetImage(gameObject, defaultSprite);
+        if (MultipleClicks) UIManager.SetImage(gameObject, defaultSprite);
         else UIManager.SetButtonState(gameObject, false);
     }
 

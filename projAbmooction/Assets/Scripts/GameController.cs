@@ -5,16 +5,21 @@ using UnityEngine.Playables;
 
 public class GameController : MonoBehaviour
 {
-    public GamePhase Phase = GamePhase.OnMain;
-
     PlayableDirector PlayableDirector;
 
+    [Header("Objects")]
     [SerializeField] CowController CowController;
+    [SerializeField] ButtonController PauseButton;
+    [SerializeField] SpawnerController ObstacleSpawner;
+
+    [Header("Timelines")]
+    [SerializeField] PlayableAsset TimelineEndGame;
 
     private void Start()
     {
         PlayableDirector = GetComponent<PlayableDirector>();
     }
+
 
     #region "Buttons methods"
     public void OnButtonPlayClicked()
@@ -24,10 +29,26 @@ public class GameController : MonoBehaviour
     }
     #endregion
 
+    public void Finish()
+    {
+        StartCoroutine(FinishGame());
+    }
+
     IEnumerator StartGame()
     {
-        yield return new WaitForSeconds(4f);
-        Phase = GamePhase.OnGame;
+        yield return new WaitForSeconds(4.1f);
+        GameData.Phase = GamePhase.OnGame;
+        PauseButton.SetButtonState(true);
         CowController.StartPhase();
+        ObstacleSpawner.SpawnNextTemplate();
+    }
+
+    IEnumerator FinishGame()
+    {
+        GameData.Phase = GamePhase.OnFinish;
+        CowController.SetStarted(false);
+        PlayableDirector.playableAsset = TimelineEndGame;
+        PlayableDirector.Play();
+        yield return null;
     }
 }

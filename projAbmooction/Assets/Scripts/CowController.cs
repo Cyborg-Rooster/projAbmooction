@@ -13,6 +13,9 @@ public class CowController : MonoBehaviour
     [SerializeField] Transform MinimumXPossible;
     [SerializeField] Transform MaximumXPossible;
 
+    [Header("Controllers")]
+    [SerializeField] GameController GameController;
+
     Rigidbody2D Rigidbody;
     PlayerPhysicsManager Physics;
     Animator Animator;
@@ -45,15 +48,25 @@ public class CowController : MonoBehaviour
 
     void FixedUpdate()
     {
-        if (Started)
-        {
-            Physics.Move();
-        }
+        if (Started) Physics.Move();
+    }
+
+    public void SetStarted(bool started)
+    {
+        Started = started;
     }
 
     public void StartPhase()
     {
-        Started = true;
+        SetStarted(true);
         Animator.Play("floating");
+    }
+
+    private void OnTriggerEnter2D(Collider2D collision)
+    {
+        if (Started)
+        {
+            if (collision.tag == "Obstacle") GameController.Finish();
+        }
     }
 }
