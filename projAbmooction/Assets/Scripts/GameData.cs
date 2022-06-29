@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 class GameData
 {
-    public static int SpeedRange = 1;
-    public static float ObstacleSpeed = 200 * SpeedRange;
+    public static float SpeedRange = 0.5f;
+    public static float ObstacleSpeed = 1 * SpeedRange;
     public static GamePhase Phase = GamePhase.OnMain;
 }

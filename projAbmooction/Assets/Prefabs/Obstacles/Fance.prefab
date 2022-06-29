@@ -13,9 +13,10 @@ GameObject:
   - component: {fileID: 3428256833284873604}
   - component: {fileID: 5988987628476017689}
   - component: {fileID: 7955590645353988644}
+  - component: {fileID: 2617237118382923927}
   m_Layer: 0
   m_Name: Fance
-  m_TagString: Breakable Obstacle
+  m_TagString: BreakableObstacle
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -163,3 +164,15 @@ PolygonCollider2D:
       - {x: 0.13448893, y: -0.02603735}
       - {x: 0.13079023, y: 0.06843233}
       - {x: 0.04669325, y: 0.1565693}
+--- !u!114 &2617237118382923927
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5309560899789113503}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f37487a03af82304fa3991e633b4c81e, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 

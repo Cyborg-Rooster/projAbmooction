@@ -19,6 +19,7 @@ public class CowController : MonoBehaviour
     Rigidbody2D Rigidbody;
     PlayerPhysicsManager Physics;
     Animator Animator;
+    SpriteEffectController SpriteEffectController; 
 
     bool Started;
     // Start is called before the first frame update
@@ -26,6 +27,8 @@ public class CowController : MonoBehaviour
     {
         Rigidbody = GetComponent<Rigidbody2D>();
         Animator = GetComponent<Animator>();
+        SpriteEffectController = GetComponent<SpriteEffectController>();
+
         Physics = new PlayerPhysicsManager()
         {
             Speed = Speed,
@@ -51,22 +54,36 @@ public class CowController : MonoBehaviour
         if (Started) Physics.Move();
     }
 
-    public void SetStarted(bool started)
+    void SetStarted(bool started)
     {
         Started = started;
     }
 
     public void StartPhase()
     {
-        SetStarted(true);
         Animator.Play("floating");
+        SetStarted(true);
+    }
+
+    public void EndGame()
+    {
+        SetStarted(false);
+        Rigidbody.velocity = Vector2.zero;
+        SpriteEffectController.BlinkBlank(0.125f);
+        GameController.Finish();
     }
 
     private void OnTriggerEnter2D(Collider2D collision)
     {
         if (Started)
         {
-            if (collision.tag == "Obstacle") GameController.Finish();
+            if (collision.tag == "Obstacle") EndGame();
+            else if (collision.tag == "BreakableObstacle") GetConfused(collision.gameObject);
         }
+    }
+
+    private void GetConfused(GameObject obstacle)
+    {
+        obstacle.GetComponent<ObstacleController>().OnCollidingWithPlayer();
     }
 }

@@ -12,6 +12,7 @@ GameObject:
   - component: {fileID: 2990982040478644409}
   - component: {fileID: 2990982040478644411}
   - component: {fileID: 5502851360127966210}
+  - component: {fileID: -897123501619905404}
   m_Layer: 0
   m_Name: Tree
   m_TagString: Obstacle
@@ -159,3 +160,15 @@ PolygonCollider2D:
       - {x: -0.08895996, y: -0.15255308}
       - {x: -0.015119983, y: -0.025705017}
       - {x: 0.10982973, y: -0.070701875}
+--- !u!114 &-897123501619905404
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2990982040478644412}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f37487a03af82304fa3991e633b4c81e, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 

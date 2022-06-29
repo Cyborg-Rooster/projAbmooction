@@ -32,6 +32,7 @@ class ObstacleTemplateController : MonoBehaviour
 
     private void SpawnNextTemplate()
     {
+        Debug.Log(Spawned);
         MovementController.SetSpeed(GameData.ObstacleSpeed);
         Parent.SpawnNextTemplate();
         Spawned = true;

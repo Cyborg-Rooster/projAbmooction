@@ -11,6 +11,7 @@ public class GameController : MonoBehaviour
     [SerializeField] CowController CowController;
     [SerializeField] ButtonController PauseButton;
     [SerializeField] SpawnerController ObstacleSpawner;
+    [SerializeField] ShakeObjectController Camera;
 
     [Header("Timelines")]
     [SerializeField] PlayableAsset TimelineEndGame;
@@ -19,7 +20,6 @@ public class GameController : MonoBehaviour
     {
         PlayableDirector = GetComponent<PlayableDirector>();
     }
-
 
     #region "Buttons methods"
     public void OnButtonPlayClicked()
@@ -36,7 +36,7 @@ public class GameController : MonoBehaviour
 
     IEnumerator StartGame()
     {
-        yield return new WaitForSeconds(4.1f);
+        yield return new WaitForSeconds(4f);
         GameData.Phase = GamePhase.OnGame;
         PauseButton.SetButtonState(true);
         CowController.StartPhase();
@@ -46,7 +46,8 @@ public class GameController : MonoBehaviour
     IEnumerator FinishGame()
     {
         GameData.Phase = GamePhase.OnFinish;
-        CowController.SetStarted(false);
+        Camera.ShakeObject();
+        //Debug.Break();
         PlayableDirector.playableAsset = TimelineEndGame;
         PlayableDirector.Play();
         yield return null;

@@ -12,6 +12,7 @@ GameObject:
   - component: {fileID: 3531276174425123622}
   - component: {fileID: -3043442754430343822}
   - component: {fileID: 4828489630578611843}
+  - component: {fileID: -4597923803375161317}
   m_Layer: 0
   m_Name: Truck
   m_TagString: Obstacle
@@ -147,3 +148,15 @@ PolygonCollider2D:
       - {x: 0.227547, y: 0.0025160983}
       - {x: 0.30220628, y: -0.02724986}
       - {x: 0.3550987, y: 0.018531311}
+--- !u!114 &-4597923803375161317
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4625953558245342683}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f37487a03af82304fa3991e633b4c81e, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 

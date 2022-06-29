@@ -12,6 +12,7 @@ GameObject:
   - component: {fileID: 253394225615833937}
   - component: {fileID: 923537192594706322}
   - component: {fileID: 1142040533355965882}
+  - component: {fileID: 8068825509174342780}
   m_Layer: 0
   m_Name: Cooker
   m_TagString: Obstacle
@@ -138,3 +139,15 @@ PolygonCollider2D:
       - {x: 0.235, y: -0.003227368}
       - {x: 0.17418589, y: 0.053415254}
       - {x: 0.099677965, y: 0.12300062}
+--- !u!114 &8068825509174342780
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3443559838624439031}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f37487a03af82304fa3991e633b4c81e, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 

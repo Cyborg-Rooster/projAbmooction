@@ -13,9 +13,10 @@ GameObject:
   - component: {fileID: 3439351331490241606}
   - component: {fileID: 5995894436905332187}
   - component: {fileID: 5097927402856895499}
+  - component: {fileID: 4215970889540094360}
   m_Layer: 0
   m_Name: Hay
-  m_TagString: Breakable Obstacle
+  m_TagString: BreakableObstacle
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -160,3 +161,15 @@ PolygonCollider2D:
       - {x: -0.06849642, y: 0.0967294}
       - {x: -0.09601349, y: 0.08060585}
       - {x: -0.14134775, y: 0.05504418}
+--- !u!114 &4215970889540094360
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1006971242130943284}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f37487a03af82304fa3991e633b4c81e, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
