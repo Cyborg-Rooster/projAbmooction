@@ -20,20 +20,22 @@ class ObstacleTemplateController : MonoBehaviour
     {
         Parent = transform.parent.GetComponent<SpawnerController>();
         MovementController = GetComponent<MovementController>();
-        MovementController.SetSpeed(GameData.ObstacleSpeed);
     }
 
     private void Update()
     {
-        if (Started && !Spawned && transform.localPosition.y > YPositionToSpawnNextTemplate) SpawnNextTemplate();
-        if (transform.localPosition.y >  YPositionToDestroySelf) Destroy(gameObject);
-        if (Started && GameData.Phase == GamePhase.OnFinish) FinishRoutine();
+        MovementController.SetSpeed(GameData.ObstacleSpeed);
+
+        if (transform.localPosition.y > YPositionToDestroySelf) Destroy(gameObject);
+        if(Started)
+        {
+            if(!Spawned && transform.localPosition.y > YPositionToSpawnNextTemplate) SpawnNextTemplate();
+            if(GameData.Phase == GamePhase.OnFinish) FinishRoutine();
+        }
     }
 
     private void SpawnNextTemplate()
     {
-        Debug.Log(Spawned);
-        MovementController.SetSpeed(GameData.ObstacleSpeed);
         Parent.SpawnNextTemplate();
         Spawned = true;
     }

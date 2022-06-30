@@ -6,7 +6,13 @@ using System.Threading.Tasks;
 
 class GameData
 {
-    public static float SpeedRange = 0.5f;
-    public static float ObstacleSpeed = 1 * SpeedRange;
+    public static float LastRange;
+    public static float SpeedRange = 1;
+    public static float ObstacleSpeed { get => SpeedRange * 0.5f; }
+
+    public static float ConfusedTime = 5f;
+
     public static GamePhase Phase = GamePhase.OnMain;
+
+    public static bool OnPause;
 }

@@ -27,7 +27,7 @@ class Movement
         TargetPos = finalPos;
     }
 
-    public void ChangeSpeed(int speed)
+    public void ChangeSpeed(float speed)
     {
         Speed = speed;
     }

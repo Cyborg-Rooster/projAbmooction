@@ -12,11 +12,11 @@ class ButtonController : MonoBehaviour
 
     public bool Clicked;
     public bool MultipleClicks;
-    public bool StartInteractive;
+    //public bool StartInteractive;
 
     public void OnClick()
     {
-        if(!StartInteractive) UIManager.SetButtonState(gameObject, false);
+        if(!MultipleClicks) UIManager.SetButtonState(gameObject, false);
         StartCoroutine(Click());
     }
 

@@ -9,9 +9,12 @@ public class GameController : MonoBehaviour
 
     [Header("Objects")]
     [SerializeField] CowController CowController;
-    [SerializeField] ButtonController PauseButton;
     [SerializeField] SpawnerController ObstacleSpawner;
     [SerializeField] ShakeObjectController Camera;
+
+    [Header("UI")]
+    [SerializeField] ButtonController PlayButton;
+    [SerializeField] ButtonController PauseButton;
 
     [Header("Timelines")]
     [SerializeField] PlayableAsset TimelineEndGame;
@@ -24,10 +27,47 @@ public class GameController : MonoBehaviour
     #region "Buttons methods"
     public void OnButtonPlayClicked()
     {
-        PlayableDirector.Play();
-        StartCoroutine(StartGame());
+        if (GameData.Phase == GamePhase.OnMain)
+        {
+            PlayableDirector.Play();
+            StartCoroutine(StartGame());
+        }
+        else if (GameData.Phase == GamePhase.OnGame) OnButtonPlayPause();
+    }
+
+    public void OnButtonPlayPause()
+    {
+        StartCoroutine(Pause());
+    }
+
+    IEnumerator Pause()
+    {
+        yield return new WaitForSeconds(0.2f);
+        if (GameData.OnPause)
+        {
+            PauseButton.gameObject.SetActive(true);
+            PlayButton.gameObject.SetActive(false);
+
+            GameData.SpeedRange = GameData.LastRange;
+            CowController.SetPause(true);
+        }
+        else
+        {
+            GameData.LastRange = GameData.SpeedRange;
+            GameData.SpeedRange = 0f;
+
+            CowController.SetPause(false);
+            PauseButton.gameObject.SetActive(false);
+            PlayButton.gameObject.SetActive(true);
+        }
+        GameData.OnPause = !GameData.OnPause;
     }
     #endregion
+
+    public void ShakeCamera()
+    {
+        Camera.ShakeObject();
+    }
 
     public void Finish()
     {
@@ -41,12 +81,12 @@ public class GameController : MonoBehaviour
         PauseButton.SetButtonState(true);
         CowController.StartPhase();
         ObstacleSpawner.SpawnNextTemplate();
+        PlayButton.GetComponent<RectTransform>().anchoredPosition = Vector3.zero;
     }
 
     IEnumerator FinishGame()
     {
         GameData.Phase = GamePhase.OnFinish;
-        Camera.ShakeObject();
         //Debug.Break();
         PlayableDirector.playableAsset = TimelineEndGame;
         PlayableDirector.Play();

@@ -20,23 +20,23 @@ public class MovementController : MonoBehaviour
     {
         KeepCoordinade(isRect);
         if(isRect)
-            Movement = new Movement()
-            {
-                RectTransform = GetComponent<RectTransform>(),
-                IsParallax = isParallax,
-                Speed = speed,
-                TargetPos = finalPosition,
-                InitialPos = GetComponent<RectTransform>().anchoredPosition
-            };
+        Movement = new Movement()
+        {
+            RectTransform = GetComponent<RectTransform>(),
+            IsParallax = isParallax,
+            Speed = speed,
+            TargetPos = finalPosition,
+            InitialPos = GetComponent<RectTransform>().anchoredPosition
+        };
         else
-            Movement = new Movement()
-            {
-                Transform = transform,
-                IsParallax = isParallax,
-                Speed = speed,
-                TargetPos = finalPosition,
-                InitialPos = transform.position
-            };
+        Movement = new Movement()
+        {
+            Transform = transform,
+            IsParallax = isParallax,
+            Speed = speed,
+            TargetPos = finalPosition,
+            InitialPos = transform.position
+        };
     }
 
     // Update is called once per frame
@@ -74,7 +74,7 @@ public class MovementController : MonoBehaviour
 
     public void SetSpeed(float speed)
     {
-        Movement.Speed = speed;
+        Movement.ChangeSpeed(speed);
     }
 
     public bool ReturnIfItIsInTargetPosition()

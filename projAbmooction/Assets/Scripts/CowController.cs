@@ -16,12 +16,16 @@ public class CowController : MonoBehaviour
     [Header("Controllers")]
     [SerializeField] GameController GameController;
 
+    [Header("Itens Effect")]
+    [SerializeField] GameObject ConfuseEffect;
+
     Rigidbody2D Rigidbody;
     PlayerPhysicsManager Physics;
     Animator Animator;
-    SpriteEffectController SpriteEffectController; 
+    SpriteEffectController SpriteEffectController;
+    CowEffectsManager CowEffectsManager;
 
-    bool Started;
+    bool CanMove;
     // Start is called before the first frame update
     void Start()
     {
@@ -39,6 +43,12 @@ public class CowController : MonoBehaviour
             Rigidbody = Rigidbody,
             Transform = transform
         };
+
+        CowEffectsManager = new CowEffectsManager()
+        {
+            CowController = this,
+            ConfuseEffect = ConfuseEffect
+        };
     }
 
     // Update is called once per frame
@@ -51,39 +61,42 @@ public class CowController : MonoBehaviour
 
     void FixedUpdate()
     {
-        if (Started) Physics.Move();
+        if (CanMove) Physics.Move();
     }
 
-    void SetStarted(bool started)
+    private void SetCanMove(bool move)
     {
-        Started = started;
+        CanMove = move;
+    }
+
+    public void OnHit()
+    {
+        GameController.ShakeCamera();
+        SpriteEffectController.BlinkBlank(0.125f);
     }
 
     public void StartPhase()
     {
         Animator.Play("floating");
-        SetStarted(true);
+        SetCanMove(true);
     }
 
     public void EndGame()
     {
-        SetStarted(false);
+        SetCanMove(false);
+        OnHit();
         Rigidbody.velocity = Vector2.zero;
-        SpriteEffectController.BlinkBlank(0.125f);
         GameController.Finish();
+    }
+
+    public void SetPause(bool active)
+    {
+        SetCanMove(active);
+        Animator.enabled = active;
     }
 
     private void OnTriggerEnter2D(Collider2D collision)
     {
-        if (Started)
-        {
-            if (collision.tag == "Obstacle") EndGame();
-            else if (collision.tag == "BreakableObstacle") GetConfused(collision.gameObject);
-        }
-    }
-
-    private void GetConfused(GameObject obstacle)
-    {
-        obstacle.GetComponent<ObstacleController>().OnCollidingWithPlayer();
+        if (CanMove) CowEffectsManager.CheckCollision(collision);
     }
 }
