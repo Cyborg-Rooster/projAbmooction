@@ -15,7 +15,7 @@ class SpawnerController : MonoBehaviour
 
     private GameObject ReturnRandomObject()
     {
-        return Objects[UnityEngine.Random.Range(0, Objects.Length)];
+        return Objects[new System.Random().Next(0, Objects.Length)];
     }
 
     private void SpawnObject(GameObject obj)

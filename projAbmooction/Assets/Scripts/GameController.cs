@@ -19,6 +19,8 @@ public class GameController : MonoBehaviour
     [Header("Timelines")]
     [SerializeField] PlayableAsset TimelineEndGame;
 
+    public int Coins;
+
     private void Start()
     {
         PlayableDirector = GetComponent<PlayableDirector>();
@@ -72,6 +74,11 @@ public class GameController : MonoBehaviour
     public void Finish()
     {
         StartCoroutine(FinishGame());
+    }
+
+    public void AddCoins(int coins)
+    {
+        Coins += coins;
     }
 
     IEnumerator StartGame()

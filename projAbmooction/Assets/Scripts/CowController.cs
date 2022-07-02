@@ -18,6 +18,9 @@ public class CowController : MonoBehaviour
 
     [Header("Itens Effect")]
     [SerializeField] GameObject ConfuseEffect;
+    [SerializeField] GameObject ItemCaughtEffect;
+    [SerializeField] GameObject DoubledCoinEffect;
+    [SerializeField] GameObject MagneticEffect;
 
     Rigidbody2D Rigidbody;
     PlayerPhysicsManager Physics;
@@ -47,7 +50,12 @@ public class CowController : MonoBehaviour
         CowEffectsManager = new CowEffectsManager()
         {
             CowController = this,
-            ConfuseEffect = ConfuseEffect
+            ConfuseEffect = ConfuseEffect,
+            ItemCaughtEffect = ItemCaughtEffect,
+            DoubledCoinEffect = DoubledCoinEffect,
+            MagneticEffect = MagneticEffect,
+            MagneticCollider = GetComponent<CircleCollider2D>(),
+            DefaultCollider = GetComponent<CapsuleCollider2D>()
         };
     }
 
@@ -62,6 +70,11 @@ public class CowController : MonoBehaviour
     void FixedUpdate()
     {
         if (CanMove) Physics.Move();
+    }
+
+    private void OnTriggerEnter2D(Collider2D collision)
+    {
+        if (CanMove) CowEffectsManager.CheckCollision(collision);
     }
 
     private void SetCanMove(bool move)
@@ -95,8 +108,8 @@ public class CowController : MonoBehaviour
         Animator.enabled = active;
     }
 
-    private void OnTriggerEnter2D(Collider2D collision)
+    public void AddCoins(int coins)
     {
-        if (CanMove) CowEffectsManager.CheckCollision(collision);
+        GameController.AddCoins(coins);
     }
 }

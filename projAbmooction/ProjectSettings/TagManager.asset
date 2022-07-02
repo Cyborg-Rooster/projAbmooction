@@ -6,6 +6,12 @@ TagManager:
   tags:
   - Obstacle
   - BreakableObstacle
+  - Coin
+  - DoubleCoins
+  - Magnet
+  - Shield
+  - SlowMotion
+  - Item
   layers:
   - Default
   - TransparentFX
