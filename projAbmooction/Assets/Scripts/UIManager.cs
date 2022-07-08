@@ -7,6 +7,12 @@ using UnityEngine;
 using UnityEngine.UI;
 class UIManager
 {
+    public static void SetRandomScale(GameObject gameObject)
+    {
+        System.Random r = new System.Random();
+        if (r.Next(0, 2) == 1) gameObject.transform.localScale = new Vector3(-1, 1, 1);
+    }
+
     public static void SetText(GameObject output, string text)
     {
         SetText(output.GetComponent<Text>(), text);

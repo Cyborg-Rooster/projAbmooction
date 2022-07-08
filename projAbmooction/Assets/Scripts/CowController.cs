@@ -21,6 +21,8 @@ public class CowController : MonoBehaviour
     [SerializeField] GameObject ItemCaughtEffect;
     [SerializeField] GameObject DoubledCoinEffect;
     [SerializeField] GameObject MagneticEffect;
+    [SerializeField] GameObject ShieldEffect;
+    [SerializeField] GameObject SlowMotionEffect;
 
     Rigidbody2D Rigidbody;
     PlayerPhysicsManager Physics;
@@ -54,6 +56,8 @@ public class CowController : MonoBehaviour
             ItemCaughtEffect = ItemCaughtEffect,
             DoubledCoinEffect = DoubledCoinEffect,
             MagneticEffect = MagneticEffect,
+            ShieldEffect = ShieldEffect,
+            SlowMotionEffect = SlowMotionEffect,
             MagneticCollider = GetComponent<CircleCollider2D>(),
             DefaultCollider = GetComponent<CapsuleCollider2D>()
         };

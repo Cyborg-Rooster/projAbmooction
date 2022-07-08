@@ -18,6 +18,7 @@ class ButtonController : MonoBehaviour
     {
         if(!MultipleClicks) UIManager.SetButtonState(gameObject, false);
         StartCoroutine(Click());
+
     }
 
     public void SetButtonState(bool active)

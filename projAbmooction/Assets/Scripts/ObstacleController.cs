@@ -9,18 +9,12 @@ public class ObstacleController : MonoBehaviour
 
     void Start()
     {
-        SetRandomScale();
+        UIManager.SetRandomScale(gameObject);
         if (gameObject.tag == "BreakableObstacle") 
         {
             animator = GetComponent<Animator>();
             animator.speed = 0; 
         }
-    }
-
-    private void SetRandomScale()
-    {
-        System.Random r = new System.Random();
-        if (r.Next(0, 2) == 1) gameObject.transform.localScale = new Vector3(-1, 1, 1);
     }
 
     public void OnCollidingWithPlayer()

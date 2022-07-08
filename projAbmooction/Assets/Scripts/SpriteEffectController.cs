@@ -24,6 +24,12 @@ public class SpriteEffectController : MonoBehaviour
         StartCoroutine(BlinkTheOppacity(RepeatTimeInSeconds));
     }
 
+    public void ChangeAlphaNum(bool visible)
+    {
+        spriteRenderer = GetComponent<SpriteRenderer>();
+        StartCoroutine(ChangeAlphaNumber(visible));
+    }
+
     #region "Blink materials"
     private void ChangeToMaterial(Material material)
     {
@@ -85,6 +91,36 @@ public class SpriteEffectController : MonoBehaviour
         ));
 
         yield return new WaitForSeconds(0.25f);
+    }
+    #endregion
+
+    #region "Change Alpha"
+    IEnumerator ChangeAlphaNumber(bool visible)
+    {
+        Color C = spriteRenderer.color;
+        for (float alpha = AlphaNumber(visible); AlphaCondition(alpha, visible); alpha = CheckAlpha(alpha, visible))
+        {
+            C.a = alpha;
+            spriteRenderer.color = C;
+            yield return new WaitForSeconds(.2f);
+        }
+    }
+
+    private float AlphaNumber(bool visible)
+    {
+        if (visible) return 0;
+        else return .5f;
+    }
+
+    private bool AlphaCondition(float alpha, bool visible)
+    {
+        if (visible) return alpha <= .5f;
+        else return alpha >= 0;
+    }
+    private float CheckAlpha(float color, bool visible)
+    {
+        if (visible) return color += 0.1f;
+        else return color -= 0.1f;
     }
     #endregion
 }

@@ -5,25 +5,49 @@ using UnityEngine.Playables;
 
 public class GameController : MonoBehaviour
 {
-    PlayableDirector PlayableDirector;
-
     [Header("Objects")]
     [SerializeField] CowController CowController;
     [SerializeField] SpawnerController ObstacleSpawner;
     [SerializeField] ShakeObjectController Camera;
+    [SerializeField] MovementController Sky;
+    [SerializeField] GameObject Planet;
 
     [Header("UI")]
+    [SerializeField] Animator Fade;
     [SerializeField] ButtonController PlayButton;
     [SerializeField] ButtonController PauseButton;
+    [SerializeField] GameObject TxtCoins;
+    [SerializeField] GameObject TxtMeter;
 
     [Header("Timelines")]
     [SerializeField] PlayableAsset TimelineEndGame;
 
-    public int Coins;
+    [SerializeField] int Coins;
+    [SerializeField] float SpeedRate;
+    [SerializeField] float MaximumSpeedRange;
+    [SerializeField] float RepeatingTimeToIncreaseObstacleSpeed;
+
+    PlayableDirector PlayableDirector;
+
+    public float actualSpeedrange;
+
+    float NextRepeatingTime;
+    float NextMeterUpTime;
+    float Meters;
+    bool inEarth = true;
+
+    static bool restartMode = false;
 
     private void Start()
     {
+        GameData.RestartAttributes();
+
         PlayableDirector = GetComponent<PlayableDirector>();
+
+        Fade.speed = 0;
+        StartCoroutine(StartFade(false));
+
+        if (restartMode) OnButtonPlayClicked();
     }
 
     #region "Buttons methods"
@@ -34,14 +58,19 @@ public class GameController : MonoBehaviour
             PlayableDirector.Play();
             StartCoroutine(StartGame());
         }
-        else if (GameData.Phase == GamePhase.OnGame) OnButtonPlayPause();
+        else if (GameData.Phase == GamePhase.OnGame) OnButtonPlayPauseClicked();
     }
 
-    public void OnButtonPlayPause()
+    public void OnButtonPlayPauseClicked()
     {
         StartCoroutine(Pause());
     }
 
+    public void OnButtonRestartGameClicked(bool restart)
+    {
+        restartMode = restart;
+        StartCoroutine(RestartGame());
+    }
     IEnumerator Pause()
     {
         yield return new WaitForSeconds(0.2f);
@@ -50,12 +79,12 @@ public class GameController : MonoBehaviour
             PauseButton.gameObject.SetActive(true);
             PlayButton.gameObject.SetActive(false);
 
-            GameData.SpeedRange = GameData.LastRange;
+            GameData.SpeedRange = GameData.PauseLastRange;
             CowController.SetPause(true);
         }
         else
         {
-            GameData.LastRange = GameData.SpeedRange;
+            GameData.PauseLastRange = GameData.SpeedRange;
             GameData.SpeedRange = 0f;
 
             CowController.SetPause(false);
@@ -65,6 +94,28 @@ public class GameController : MonoBehaviour
         GameData.OnPause = !GameData.OnPause;
     }
     #endregion
+    private void Update()
+    {
+        if(Time.time > NextRepeatingTime)
+        {
+            NextRepeatingTime = Time.time + RepeatingTimeToIncreaseObstacleSpeed;
+            if(GameData.Phase == GamePhase.OnGame && !GameData.OnPause) AdjustSpeedRange();
+        }
+
+        if(Time.time > NextMeterUpTime)
+        {
+            NextMeterUpTime = Time.time + 1 - (GameData.SpeedRange / 10);
+            if (GameData.Phase == GamePhase.OnGame) AddMeters();
+        }
+
+        if (Meters > 100 && inEarth) StartCoroutine(GetOutOfEarth());
+    }
+
+    private void AdjustSpeedRange()
+    {
+        if(GameData.SpeedRange < MaximumSpeedRange) GameData.SpeedRange += SpeedRate;
+        actualSpeedrange = GameData.SpeedRange;
+    }
 
     public void ShakeCamera()
     {
@@ -79,6 +130,27 @@ public class GameController : MonoBehaviour
     public void AddCoins(int coins)
     {
         Coins += coins;
+        UIManager.SetText(TxtCoins, Coins);
+    }
+
+    private void AddMeters()
+    {
+        Meters++;
+        UIManager.SetText(TxtMeter, $"{Meters}m");
+    }
+
+    IEnumerator StartFade(bool fadeIn)
+    {
+        if (fadeIn) Fade.Play("fadeIn");
+        else
+        {
+            Fade.Play("fadeOut");
+            yield return new WaitForSeconds(1f);
+        }
+
+        Fade.speed = 1;
+        yield return new WaitForSeconds(.5f);
+        Fade.speed = 0;
     }
 
     IEnumerator StartGame()
@@ -98,5 +170,19 @@ public class GameController : MonoBehaviour
         PlayableDirector.playableAsset = TimelineEndGame;
         PlayableDirector.Play();
         yield return null;
+    }
+
+    IEnumerator RestartGame()
+    {
+        yield return StartFade(true);
+        SceneManager.RestartScene();
+    }
+
+    IEnumerator GetOutOfEarth()
+    {
+        inEarth = false;
+        Sky.SetIsMoving(true);
+        yield return Sky.WaitForComeToTargetPosition();
+        Planet.SetActive(true);
     }
 }
