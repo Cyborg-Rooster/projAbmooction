@@ -11,6 +11,7 @@ public class GameController : MonoBehaviour
     [SerializeField] ShakeObjectController Camera;
     [SerializeField] MovementController Sky;
     [SerializeField] GameObject Planet;
+    [SerializeField] GameObject Stars;
 
     [Header("UI")]
     [SerializeField] Animator Fade;
@@ -184,5 +185,6 @@ public class GameController : MonoBehaviour
         Sky.SetIsMoving(true);
         yield return Sky.WaitForComeToTargetPosition();
         Planet.SetActive(true);
+        Stars.SetActive(true);
     }
 }

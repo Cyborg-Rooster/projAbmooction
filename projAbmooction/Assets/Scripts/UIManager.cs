@@ -33,6 +33,19 @@ class UIManager
         output.GetComponent<Button>().interactable = active;
     }
 
+    public static float ChangeSlider(GameObject slider, bool decrease, float value)
+    {
+        Slider s = slider.GetComponent<Slider>();
+        if (decrease) s.value -= value;
+        else s.value += value;
+        return s.value;
+    }
+
+    public static void SetSliderValue(GameObject slider, float value)
+    {
+        slider.GetComponent<Slider>().value = value;
+    }
+
     static void SetText(Text output, string text)
     {
         output.text = text.ToString();

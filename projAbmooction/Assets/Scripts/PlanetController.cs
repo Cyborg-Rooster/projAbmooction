@@ -29,14 +29,14 @@ class PlanetController : MonoBehaviour
     private void ConfigureObject()
     {
         SpriteRenderer.sprite = Sprites[UnityEngine.Random.Range(0, Sprites.Length)];
+        UIManager.SetRandomScale(gameObject);
+        transform.position = StartPos;
         transform.position = new Vector3
         (
             PosX[UnityEngine.Random.Range(0, PosX.Length)],
             transform.position.y,
             transform.position.z
         );
-        UIManager.SetRandomScale(gameObject);
-        transform.position = StartPos;
     }
 
 }

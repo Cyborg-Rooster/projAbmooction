@@ -4,6 +4,9 @@ using UnityEngine;
 
 public class MovementController : MonoBehaviour
 {
+    [SerializeField] Vector3 CustomInitialPosition;
+    [SerializeField] bool UseCustomInitialPosition;
+
     public Vector3 finalPosition;
 
     public bool isParallax;
@@ -18,24 +21,16 @@ public class MovementController : MonoBehaviour
     // Start is called before the first frame update
     void Awake()
     {
+        TryGetComponent(out RectTransform rectTransform);
         KeepCoordinade(isRect);
-        if(isRect)
-        Movement = new Movement()
-        {
-            RectTransform = GetComponent<RectTransform>(),
-            IsParallax = isParallax,
-            Speed = speed,
-            TargetPos = finalPosition,
-            InitialPos = GetComponent<RectTransform>().anchoredPosition
-        };
-        else
         Movement = new Movement()
         {
             Transform = transform,
+            RectTransform = rectTransform,
             IsParallax = isParallax,
             Speed = speed,
             TargetPos = finalPosition,
-            InitialPos = transform.position
+            InitialPos = ReturnInitialPosition()
         };
     }
 
@@ -70,6 +65,13 @@ public class MovementController : MonoBehaviour
             if (keepX) finalPosition.x = transform.position.x;
             if (keepY) finalPosition.y = transform.position.y;
         }
+    }
+
+    private Vector3 ReturnInitialPosition()
+    {
+        if (UseCustomInitialPosition) return CustomInitialPosition;
+        else if (isRect) return GetComponent<RectTransform>().anchoredPosition;
+        else return transform.position;
     }
 
     public void SetSpeed(float speed)

@@ -15,6 +15,7 @@ public class CowController : MonoBehaviour
 
     [Header("Controllers")]
     [SerializeField] GameController GameController;
+    [SerializeField] VerticalGroupController VerticalGroupController;
 
     [Header("Itens Effect")]
     [SerializeField] GameObject ConfuseEffect;
@@ -115,5 +116,10 @@ public class CowController : MonoBehaviour
     public void AddCoins(int coins)
     {
         GameController.AddCoins(coins);
+    }
+
+    public void AddItemBox(string item)
+    {
+        VerticalGroupController.AddItemBox(item);
     }
 }

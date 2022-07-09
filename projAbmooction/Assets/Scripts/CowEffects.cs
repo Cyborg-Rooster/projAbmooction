@@ -42,7 +42,7 @@ class CowEffects
         CowController.OnHit();
         obstacle.GetComponent<ObstacleController>().OnCollidingWithPlayer();
         confused = true;
-        yield return SetEffect(ConfuseEffect, GameData.ConfusedTime);
+        yield return SetEffect(ConfuseEffect, GameData.ConfusedTime, null);
         Debug.Log("cabo a confusão");
         confused = false;
     }
@@ -50,7 +50,7 @@ class CowEffects
     public IEnumerator GetDoubleCoins()
     {
         doubled = true;
-        yield return SetEffect(DoubledCoinEffect, GameData.DoubledTime);
+        yield return SetEffect(DoubledCoinEffect, GameData.DoubledTime, Strings.itemDouble);
         doubled = false;
     }
 
@@ -59,7 +59,7 @@ class CowEffects
         magnetic = true;
 
         MagneticCollider.enabled = true;
-        yield return SetEffect(MagneticEffect, GameData.MagneticTime);
+        yield return SetEffect(MagneticEffect, GameData.MagneticTime, Strings.itemMagnetic);
         MagneticCollider.enabled = false;
 
         magnetic = false;
@@ -68,12 +68,13 @@ class CowEffects
     public IEnumerator GetShield()
     {
         shielded = true;
-        yield return SetEffect(ShieldEffect, GameData.ShieldTime);
+        yield return SetEffect(ShieldEffect, GameData.ShieldTime, Strings.itemShield);
         shielded = false;
     }
 
     public IEnumerator GetSlowDown()
     {
+        CowController.AddItemBox(Strings.itemSlowMotion);
         SpriteEffectController effectController = GameObject.Instantiate
         (
             SlowMotionEffect
@@ -109,8 +110,9 @@ class CowEffects
         slowDown = false;
     }
 
-    IEnumerator SetEffect(GameObject effect, float time)
+    IEnumerator SetEffect(GameObject effect, float time, string item)
     {
+        if(item != null) CowController.AddItemBox(item);
         SpriteEffectController effectController = GameObject.Instantiate
         (
             effect,
