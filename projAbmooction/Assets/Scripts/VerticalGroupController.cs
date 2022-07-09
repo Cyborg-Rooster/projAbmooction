@@ -26,8 +26,11 @@ public class VerticalGroupController : MonoBehaviour
         for(int i = 0; i < transform.childCount; i++)
         {
             ItemBoxController o = transform.GetChild(i).GetComponent<ItemBoxController>();
-            if (o.name == item) obj = o;
-            break;
+            if (o.name == item)
+            { 
+                obj = o;
+                break;
+            }
         }
         return obj;
     }

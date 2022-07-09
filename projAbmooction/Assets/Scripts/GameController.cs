@@ -36,6 +36,7 @@ public class GameController : MonoBehaviour
     float NextMeterUpTime;
     float Meters;
     bool inEarth = true;
+    bool waitingSky = false;
 
     static bool restartMode = false;
 
@@ -54,11 +55,7 @@ public class GameController : MonoBehaviour
     #region "Buttons methods"
     public void OnButtonPlayClicked()
     {
-        if (GameData.Phase == GamePhase.OnMain)
-        {
-            PlayableDirector.Play();
-            StartCoroutine(StartGame());
-        }
+        if (GameData.Phase == GamePhase.OnMain) StartCoroutine(StartGame());
         else if (GameData.Phase == GamePhase.OnGame) OnButtonPlayPauseClicked();
     }
 
@@ -74,6 +71,7 @@ public class GameController : MonoBehaviour
     }
     IEnumerator Pause()
     {
+        Time.timeScale = 1;
         yield return new WaitForSeconds(0.2f);
         if (GameData.OnPause)
         {
@@ -81,6 +79,13 @@ public class GameController : MonoBehaviour
             PlayButton.gameObject.SetActive(false);
 
             GameData.SpeedRange = GameData.PauseLastRange;
+
+            if(!inEarth)
+            {
+                Planet.GetComponent<MovementController>().SetIsMoving(true);
+                Stars.GetComponent<MovementController>().SetIsMoving(true);
+            }
+            if (waitingSky) Sky.SetIsMoving(true);
             CowController.SetPause(true);
         }
         else
@@ -88,9 +93,17 @@ public class GameController : MonoBehaviour
             GameData.PauseLastRange = GameData.SpeedRange;
             GameData.SpeedRange = 0f;
 
+            if (!inEarth)
+            {
+                Planet.GetComponent<MovementController>().SetIsMoving(false);
+                Stars.GetComponent<MovementController>().SetIsMoving(false);
+            }
+            if (waitingSky) Sky.SetIsMoving(false);
+
             CowController.SetPause(false);
             PauseButton.gameObject.SetActive(false);
             PlayButton.gameObject.SetActive(true);
+            Time.timeScale = 0;
         }
         GameData.OnPause = !GameData.OnPause;
     }
@@ -125,7 +138,16 @@ public class GameController : MonoBehaviour
 
     public void Finish()
     {
-        StartCoroutine(FinishGame());
+        GameData.Phase = GamePhase.OnFinish;
+        if (!inEarth)
+        {
+            Planet.GetComponent<MovementController>().SetIsMoving(false);
+            Stars.GetComponent<MovementController>().SetIsMoving(false);
+        }
+        if (waitingSky) Sky.SetIsMoving(false);
+
+        PlayableDirector.playableAsset = TimelineEndGame;
+        PlayableDirector.Play();
     }
 
     public void AddCoins(int coins)
@@ -156,21 +178,13 @@ public class GameController : MonoBehaviour
 
     IEnumerator StartGame()
     {
+        PlayableDirector.Play();
         yield return new WaitForSeconds(4f);
         GameData.Phase = GamePhase.OnGame;
         PauseButton.SetButtonState(true);
         CowController.StartPhase();
         ObstacleSpawner.SpawnNextTemplate();
         PlayButton.GetComponent<RectTransform>().anchoredPosition = Vector3.zero;
-    }
-
-    IEnumerator FinishGame()
-    {
-        GameData.Phase = GamePhase.OnFinish;
-        //Debug.Break();
-        PlayableDirector.playableAsset = TimelineEndGame;
-        PlayableDirector.Play();
-        yield return null;
     }
 
     IEnumerator RestartGame()
@@ -183,7 +197,9 @@ public class GameController : MonoBehaviour
     {
         inEarth = false;
         Sky.SetIsMoving(true);
+        waitingSky = true;
         yield return Sky.WaitForComeToTargetPosition();
+        waitingSky = false;
         Planet.SetActive(true);
         Stars.SetActive(true);
     }
