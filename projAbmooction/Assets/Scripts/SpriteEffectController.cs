@@ -30,6 +30,19 @@ public class SpriteEffectController : MonoBehaviour
         StartCoroutine(ChangeAlphaNumber(visible));
     }
 
+    public void StopEffects()
+    {
+        StopAllCoroutines();
+        spriteRenderer.material = SpriteDefault;
+        ChangeOppacity(new Color
+        (
+            spriteRenderer.color.r,
+            spriteRenderer.color.g,
+            spriteRenderer.color.b,
+            1f
+        ));
+    }
+
     #region "Blink materials"
     private void ChangeToMaterial(Material material)
     {

@@ -42,51 +42,57 @@ class CowEffects
         CowController.OnHit();
         obstacle.GetComponent<ObstacleController>().OnCollidingWithPlayer();
         confused = true;
-        yield return SetEffect(ConfuseEffect, GameData.ConfusedTime, null);
+        yield return SetEffect(ConfuseEffect, GameData.ConfusedTime, null, false);
         Debug.Log("cabo a confusão");
         confused = false;
     }
 
-    public IEnumerator GetDoubleCoins()
+    public IEnumerator GetDoubleCoins(bool restart)
     {
         doubled = true;
-        yield return SetEffect(DoubledCoinEffect, GameData.DoubledTime, Strings.itemDouble);
+        yield return SetEffect(DoubledCoinEffect, GameData.DoubledTime, Strings.itemDouble, restart);
         doubled = false;
     }
 
-    public IEnumerator GetMagnetic()
+    public IEnumerator GetMagnetic(bool restart)
     {
         magnetic = true;
 
         MagneticCollider.enabled = true;
-        yield return SetEffect(MagneticEffect, GameData.MagneticTime, Strings.itemMagnetic);
+        yield return SetEffect(MagneticEffect, GameData.MagneticTime, Strings.itemMagnetic, restart);
         MagneticCollider.enabled = false;
 
         magnetic = false;
     }
 
-    public IEnumerator GetShield()
+    public IEnumerator GetShield(bool restart)
     {
         shielded = true;
-        yield return SetEffect(ShieldEffect, GameData.ShieldTime, Strings.itemShield);
+        yield return SetEffect(ShieldEffect, GameData.ShieldTime, Strings.itemShield, restart);
         shielded = false;
     }
 
     public IEnumerator GetSlowDown()
     {
         CowController.AddItemBox(Strings.itemSlowMotion);
-        SpriteEffectController effectController = GameObject.Instantiate
+        SpriteEffectController sec = SlowMotionEffect.GetComponent<SpriteEffectController>();
+
+        /*SpriteEffectController effectController = GameObject.Instantiate
         (
             SlowMotionEffect
-        ).GetComponent<SpriteEffectController>();
+        ).GetComponent<SpriteEffectController>();*/
 
-        GameData.CanSpeedUp = false;
-
-        if (!slowDown) GameData.SlowMotionLastRange = GameData.SpeedRange;
+        if (!slowDown) 
+        {
+            GameData.CanSpeedUp = false;
+            SlowMotionEffect.SetActive(true);
+            GameData.SlowMotionLastRange = GameData.SpeedRange; 
+        }
+        else sec.StopEffects();
 
         slowDown = true;
 
-        effectController.ChangeAlphaNum(true);
+        sec.ChangeAlphaNum(true);
         for (float range = GameData.SpeedRange; range > 1; range -= .2f)
         {
             GameData.SpeedRange = range;
@@ -101,31 +107,39 @@ class CowEffects
             yield return 0.1f;
         }
 
-        effectController.ChangeAlphaNum(false);
+        sec.ChangeAlphaNum(false);
         yield return new WaitForSeconds(.5f);
 
-        GameObject.Destroy(effectController.gameObject);
+        //GameObject.Destroy(effectController.gameObject);
+
+        SlowMotionEffect.SetActive(false);
         GameData.CanSpeedUp = true;
 
         slowDown = false;
     }
 
-    IEnumerator SetEffect(GameObject effect, float time, string item)
+    IEnumerator SetEffect(GameObject effectController, float time, string item, bool effect)
     {
+        SpriteEffectController sec = effectController.GetComponent<SpriteEffectController>();
         if(item != null) CowController.AddItemBox(item);
-        SpriteEffectController effectController = GameObject.Instantiate
+        /*SpriteEffectController effectController = GameObject.Instantiate
         (
             effect,
             CowController.transform
-        ).GetComponent<SpriteEffectController>();
+        ).GetComponent<SpriteEffectController>();*/
+
+        if (!effect) effectController.SetActive(true);
+        else sec.StopEffects();
 
         yield return new WaitForSeconds(time / 2);
 
-        effectController.BlinkOppacity(time / 2);
+        sec.BlinkOppacity(time / 2);
 
         yield return new WaitForSeconds(time / 2);
 
-        GameObject.Destroy(effectController.gameObject);
+        effectController.SetActive(false);
+
+        //GameObject.Destroy(effectController.gameObject);
     }
 }
 

@@ -59,9 +59,9 @@ class CowEffectsManager : CowEffects
                 CowController.StartCoroutine(GetItem(collision.gameObject));*/
 
                 if (collision.name == "Coin(Clone)") GetCoin();
-                else if (collision.name == "DoubleCoins(Clone)") Doubled = Teste(Doubled, doubled, GetDoubleCoins());
-                else if (collision.name == "Magnet(Clone)") Magnetic = Teste(Magnetic, magnetic, GetMagnetic());
-                else if (collision.name == "Shield(Clone)") Shielded = Teste(Shielded, shielded, GetShield());
+                else if (collision.name == "DoubleCoins(Clone)") Doubled = Teste(Doubled, doubled, GetDoubleCoins(doubled));
+                else if (collision.name == "Magnet(Clone)") Magnetic = Teste(Magnetic, magnetic, GetMagnetic(magnetic));
+                else if (collision.name == "Shield(Clone)") Shielded = Teste(Shielded, shielded, GetShield(shielded));
                 else if (collision.name == "SlowMotion(Clone)") SlowDown = Teste(SlowDown, slowDown, GetSlowDown());
                 CowController.StartCoroutine(GetItem(collision.gameObject));
             }
