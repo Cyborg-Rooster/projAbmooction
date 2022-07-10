@@ -7,7 +7,6 @@ using UnityEngine;
 
 class CowEffectsManager : CowEffects
 {
-
     public void CheckCollision(Collider2D collision)
     {
         CheckObstacleCollision(collision);
@@ -51,13 +50,28 @@ class CowEffectsManager : CowEffects
             }
             if(collision.IsTouching(DefaultCollider))
             {
+                /*
                 if (collision.name == "Coin(Clone)") GetCoin();
                 else if (collision.name == "DoubleCoins(Clone)") Doubled = CowController.StartCoroutine(GetDoubleCoins());
                 else if (collision.name == "Magnet(Clone)") Magnetic = CowController.StartCoroutine(GetMagnetic());
                 else if (collision.name == "Shield(Clone)") Shielded = CowController.StartCoroutine(GetShield());
                 else if (collision.name == "SlowMotion(Clone)") SlowDown = CowController.StartCoroutine(GetSlowDown());
+                CowController.StartCoroutine(GetItem(collision.gameObject));*/
+
+                if (collision.name == "Coin(Clone)") GetCoin();
+                else if (collision.name == "DoubleCoins(Clone)") Doubled = Teste(Doubled, doubled, GetDoubleCoins());
+                else if (collision.name == "Magnet(Clone)") Magnetic = Teste(Magnetic, magnetic, GetMagnetic());
+                else if (collision.name == "Shield(Clone)") Shielded = Teste(Shielded, shielded, GetShield());
+                else if (collision.name == "SlowMotion(Clone)") SlowDown = Teste(SlowDown, slowDown, GetSlowDown());
                 CowController.StartCoroutine(GetItem(collision.gameObject));
             }
         }
+    }
+
+    private Coroutine Teste(Coroutine coroutine,bool boolean, IEnumerator enumerator)
+    {
+        if (boolean) CowController.StopCoroutine(coroutine);
+        coroutine = CowController.StartCoroutine(enumerator);
+        return coroutine;
     }
 }

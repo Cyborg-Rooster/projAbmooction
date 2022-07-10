@@ -63,7 +63,7 @@ RectTransform:
   m_GameObject: {fileID: 6399237591009205637}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 300, y: 300, z: 1}
+  m_LocalScale: {x: 400, y: 400, z: 1}
   m_Children:
   - {fileID: 6399237591889792148}
   - {fileID: 6399237591456291585}
@@ -143,6 +143,7 @@ MonoBehaviour:
   time: 0
   name: 
   itemSprite: {fileID: 0}
+  VerticalGroupController: {fileID: 0}
   ItemSpriteRenderer: {fileID: 6399237591456291646}
   TxtItemName: {fileID: 6399237591612189089}
   Slider: {fileID: 6399237591897713280}

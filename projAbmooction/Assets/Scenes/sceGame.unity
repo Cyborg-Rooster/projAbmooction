@@ -1140,9 +1140,9 @@ Camera:
     height: 1
   near clip plane: 0.3
   far clip plane: 1000
-  field of view: 91.47458
+  field of view: 106.80895
   orthographic: 1
-  orthographic size: 1.777211
+  orthographic size: 2.3325894
   m_Depth: -1
   m_CullingMask:
     serializedVersion: 2
@@ -1239,8 +1239,8 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
   m_AnchorMax: {x: 1, y: 1}
-  m_AnchoredPosition: {x: -227, y: -450.7}
-  m_SizeDelta: {x: -545.6, y: -984.3}
+  m_AnchoredPosition: {x: -208.1, y: -450.7}
+  m_SizeDelta: {x: -507.9, y: -984.3}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &523373555
 MonoBehaviour:
@@ -1272,7 +1272,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_Padding:
-    m_Left: 100
+    m_Left: 140
     m_Right: 0
     m_Top: 0
     m_Bottom: 0
@@ -1554,7 +1554,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   Amplitude: 0.01
   FloatSpeed: 2
-  Speed: 150
+  Speed: 250
   MinimumXPossible: {fileID: 988370370}
   MaximumXPossible: {fileID: 1618204053}
   GameController: {fileID: 1453660696}
