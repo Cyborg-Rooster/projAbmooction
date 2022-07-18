@@ -13,4 +13,9 @@ class SceneManager
             UnityEngine.SceneManagement.SceneManager.GetActiveScene().name
         );
     }
+
+    public static void LoadScene(string scene)
+    {
+        UnityEngine.SceneManagement.SceneManager.LoadScene(scene);
+    }
 }

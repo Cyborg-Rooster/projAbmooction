@@ -14,8 +14,9 @@ public class GameController : MonoBehaviour
     [SerializeField] GameObject Stars;
 
     [Header("UI")]
-    [SerializeField] Animator Fade;
+    [SerializeField] FadeController Fade;
     [SerializeField] ButtonController PlayButton;
+    [SerializeField] ButtonController ShopButton;
     [SerializeField] ButtonController PauseButton;
     [SerializeField] GameObject TxtCoins;
     [SerializeField] GameObject TxtMeter;
@@ -46,8 +47,8 @@ public class GameController : MonoBehaviour
 
         PlayableDirector = GetComponent<PlayableDirector>();
 
-        Fade.speed = 0;
-        StartCoroutine(StartFade(false));
+        //Fade.SetSpeed(0);
+        //Fade.StartCoroutine(Fade.StartFade(false));
 
         if (restartMode) OnButtonPlayClicked();
     }
@@ -68,6 +69,14 @@ public class GameController : MonoBehaviour
     {
         restartMode = restart;
         StartCoroutine(RestartGame());
+    }
+
+    public void OnButtonFormClicked(bool shop)
+    {
+        if (shop) FormsController.State = FormState.Store;
+        else FormsController.State = FormState.Options;
+
+        StartCoroutine(GoToForms());
     }
     IEnumerator Pause()
     {
@@ -107,7 +116,14 @@ public class GameController : MonoBehaviour
         }
         GameData.OnPause = !GameData.OnPause;
     }
+
+    IEnumerator GoToForms()
+    {
+        yield return Fade.StartFade(true);
+        SceneManager.LoadScene("sceForms");
+    }
     #endregion
+
     private void Update()
     {
         if(Time.time > NextRepeatingTime)
@@ -162,22 +178,11 @@ public class GameController : MonoBehaviour
         UIManager.SetText(TxtMeter, $"{Meters}m");
     }
 
-    IEnumerator StartFade(bool fadeIn)
-    {
-        if (fadeIn) Fade.Play("fadeIn");
-        else
-        {
-            Fade.Play("fadeOut");
-            yield return new WaitForSeconds(1f);
-        }
-
-        Fade.speed = 1;
-        yield return new WaitForSeconds(.5f);
-        Fade.speed = 0;
-    }
-
     IEnumerator StartGame()
     {
+        UIManager.SetButtonState(PlayButton.gameObject, false);
+        UIManager.SetButtonState(ShopButton.gameObject, false);
+
         PlayableDirector.Play();
         yield return new WaitForSeconds(4f);
         GameData.Phase = GamePhase.OnGame;
@@ -189,7 +194,7 @@ public class GameController : MonoBehaviour
 
     IEnumerator RestartGame()
     {
-        yield return StartFade(true);
+        yield return Fade.StartFade(true);
         SceneManager.RestartScene();
     }
 
