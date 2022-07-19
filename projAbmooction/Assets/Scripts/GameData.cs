@@ -17,6 +17,8 @@ class GameData
     public static float ShieldTime = 5f;
     public static float SlowMotionTime = 5f;
 
+    public static int Coins = 0;
+
     public static GamePhase Phase = GamePhase.OnMain;
 
     public static bool OnPause;

@@ -13,4 +13,64 @@ class Strings
 
     public static string lblStore = "Store";
     public static string lblOptions = "Options";
+    public static string lblSkins = "Skins";
+    public static string lblScenarios = "Scenarios";
+    public static string lblImprovements = "Improvements";
+    public static string lblSlots = "Special Boxes";
+    public static string lblCoins = "Get Coins";
+
+    public static string lblBought = "-Bought-";
+    public static string coins = "coins";
+
+    public static string[] Skins = new string[22]
+    {
+        "Default",
+        "Angus",
+        "Shabby",
+        "Punk",
+        "Diver",
+        "Modern",
+        "Cool",
+        "Cowboy",
+        "Nerd",
+        "Monk",
+        "Japanese",
+        "Soccer Player",
+        "Cow Aerodynamics",
+        "Alien",
+        "Medieval",
+        "Monster",
+        "Astronaut",
+        "Puppy",
+        "Cat",
+        "Turtle",
+        "Man",
+        "Women"
+    };
+
+    /*public static string[] skins = new string[22]
+    {
+        "Padrão",
+        "Angus",
+        "Malhada",
+        "Roqueira",
+        "Mergulhadora",
+        "Moderna",
+        "Descolada",
+        "Cowboy",
+        "Nerd",
+        "Monge",
+        "Japonesa",
+        "Jogadora de futebol",
+        "Aerodinâmica da Vaca",
+        "Alien",
+        "Medieval",
+        "Monstro",
+        "Astronauta",
+        "Cachorro",
+        "Gato",
+        "Tartaruga",
+        "Homem",
+        "Mulher"
+    };*/
 }

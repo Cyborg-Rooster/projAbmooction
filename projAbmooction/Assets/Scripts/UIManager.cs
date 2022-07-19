@@ -23,6 +23,7 @@ class UIManager
         SetText(output.GetComponent<Text>(), text.ToString());
     }
 
+
     public static void SetImage(GameObject output, Sprite sprite)
     {
         output.GetComponent<Image>().sprite = sprite;

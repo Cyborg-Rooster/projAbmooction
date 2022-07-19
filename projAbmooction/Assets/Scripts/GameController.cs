@@ -24,7 +24,6 @@ public class GameController : MonoBehaviour
     [Header("Timelines")]
     [SerializeField] PlayableAsset TimelineEndGame;
 
-    [SerializeField] int Coins;
     [SerializeField] float SpeedRate;
     [SerializeField] float MaximumSpeedRange;
     [SerializeField] float RepeatingTimeToIncreaseObstacleSpeed;
@@ -168,8 +167,8 @@ public class GameController : MonoBehaviour
 
     public void AddCoins(int coins)
     {
-        Coins += coins;
-        UIManager.SetText(TxtCoins, Coins);
+        GameData.Coins += coins;
+        UIManager.SetText(TxtCoins, GameData.Coins);
     }
 
     private void AddMeters()
