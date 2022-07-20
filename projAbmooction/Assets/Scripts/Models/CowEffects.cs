@@ -42,7 +42,7 @@ class CowEffects
         CowController.OnHit();
         obstacle.GetComponent<ObstacleController>().OnCollidingWithPlayer();
         confused = true;
-        yield return SetEffect(ConfuseEffect, GameData.ConfusedTime, null, false);
+        yield return SetEffect(ConfuseEffect, Mechanics.ConfusedTime, null, false);
         Debug.Log("cabo a confusão");
         confused = false;
     }
@@ -50,7 +50,7 @@ class CowEffects
     public IEnumerator GetDoubleCoins(bool restart)
     {
         doubled = true;
-        yield return SetEffect(DoubledCoinEffect, GameData.DoubledTime, Strings.itemDouble, restart);
+        yield return SetEffect(DoubledCoinEffect, Mechanics.DoubledTime, Strings.itemDouble, restart);
         doubled = false;
     }
 
@@ -59,7 +59,7 @@ class CowEffects
         magnetic = true;
 
         MagneticCollider.enabled = true;
-        yield return SetEffect(MagneticEffect, GameData.MagneticTime, Strings.itemMagnetic, restart);
+        yield return SetEffect(MagneticEffect, Mechanics.MagneticTime, Strings.itemMagnetic, restart);
         MagneticCollider.enabled = false;
 
         magnetic = false;
@@ -68,7 +68,7 @@ class CowEffects
     public IEnumerator GetShield(bool restart)
     {
         shielded = true;
-        yield return SetEffect(ShieldEffect, GameData.ShieldTime, Strings.itemShield, restart);
+        yield return SetEffect(ShieldEffect, Mechanics.ShieldTime, Strings.itemShield, restart);
         shielded = false;
     }
 
@@ -84,26 +84,26 @@ class CowEffects
 
         if (!slowDown) 
         {
-            GameData.CanSpeedUp = false;
+            Mechanics.CanSpeedUp = false;
             SlowMotionEffect.SetActive(true);
-            GameData.SlowMotionLastRange = GameData.SpeedRange; 
+            Mechanics.SlowMotionLastRange = Mechanics.SpeedRange; 
         }
         else sec.StopEffects();
 
         slowDown = true;
 
         sec.ChangeAlphaNum(true);
-        for (float range = GameData.SpeedRange; range > 1; range -= .2f)
+        for (float range = Mechanics.SpeedRange; range > 1; range -= .2f)
         {
-            GameData.SpeedRange = range;
+            Mechanics.SpeedRange = range;
             yield return 0.1f;
         }
 
-        yield return new WaitForSeconds(GameData.SlowMotionTime);
+        yield return new WaitForSeconds(Mechanics.SlowMotionTime);
 
-        for (float range = GameData.SpeedRange; range < GameData.SlowMotionLastRange; range += .2f)
+        for (float range = Mechanics.SpeedRange; range < Mechanics.SlowMotionLastRange; range += .2f)
         {
-            GameData.SpeedRange = range;
+            Mechanics.SpeedRange = range;
             yield return 0.1f;
         }
 
@@ -113,7 +113,7 @@ class CowEffects
         //GameObject.Destroy(effectController.gameObject);
 
         SlowMotionEffect.SetActive(false);
-        GameData.CanSpeedUp = true;
+        Mechanics.CanSpeedUp = true;
 
         slowDown = false;
     }

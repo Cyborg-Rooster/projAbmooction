@@ -24,13 +24,13 @@ class ObstacleTemplateController : MonoBehaviour
 
     private void Update()
     {
-        MovementController.SetSpeed(GameData.ObstacleSpeed);
+        MovementController.SetSpeed(Mechanics.ObstacleSpeed);
 
         if (transform.localPosition.y > YPositionToDestroySelf) Destroy(gameObject);
         if(Started)
         {
             if(!Spawned && transform.localPosition.y > YPositionToSpawnNextTemplate) SpawnNextTemplate();
-            if(GameData.Phase == GamePhase.OnFinish) FinishRoutine();
+            if(Mechanics.Phase == GamePhase.OnFinish) FinishRoutine();
         }
     }
 

@@ -16,14 +16,14 @@ public class MovementController : MonoBehaviour
 
     public float speed;
 
-    Movement Movement;
+    MovementManager Movement;
 
     // Start is called before the first frame update
     void Awake()
     {
         TryGetComponent(out RectTransform rectTransform);
         KeepCoordinade(isRect);
-        Movement = new Movement()
+        Movement = new MovementManager()
         {
             Transform = transform,
             RectTransform = rectTransform,

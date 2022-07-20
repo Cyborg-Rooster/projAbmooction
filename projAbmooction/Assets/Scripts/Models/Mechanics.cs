@@ -4,7 +4,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-class GameData
+class Mechanics
 {
     public static float SlowMotionLastRange = 1;
     public static float PauseLastRange = 1;
@@ -17,12 +17,11 @@ class GameData
     public static float ShieldTime = 5f;
     public static float SlowMotionTime = 5f;
 
-    public static int Coins = 0;
-
     public static GamePhase Phase = GamePhase.OnMain;
 
     public static bool OnPause;
     public static bool CanSpeedUp = true;
+
 
     public static void RestartAttributes()
     {

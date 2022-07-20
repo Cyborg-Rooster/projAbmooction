@@ -5,7 +5,7 @@ using System.Text;
 using System.Threading.Tasks;
 using UnityEngine;
 
-class Movement
+class MovementManager
 {
     public Transform Transform;
     public RectTransform RectTransform;

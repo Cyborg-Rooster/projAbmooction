@@ -42,7 +42,10 @@ public class GameController : MonoBehaviour
 
     private void Start()
     {
-        GameData.RestartAttributes();
+        SQLiteManager.SetDatabase();
+        GameData.Load();
+        Mechanics.RestartAttributes();
+        UIManager.SetText(TxtCoins, GameData.Coins);
 
         PlayableDirector = GetComponent<PlayableDirector>();
 
@@ -55,8 +58,8 @@ public class GameController : MonoBehaviour
     #region "Buttons methods"
     public void OnButtonPlayClicked()
     {
-        if (GameData.Phase == GamePhase.OnMain) StartCoroutine(StartGame());
-        else if (GameData.Phase == GamePhase.OnGame) OnButtonPlayPauseClicked();
+        if (Mechanics.Phase == GamePhase.OnMain) StartCoroutine(StartGame());
+        else if (Mechanics.Phase == GamePhase.OnGame) OnButtonPlayPauseClicked();
     }
 
     public void OnButtonPlayPauseClicked()
@@ -81,12 +84,12 @@ public class GameController : MonoBehaviour
     {
         Time.timeScale = 1;
         yield return new WaitForSeconds(0.2f);
-        if (GameData.OnPause)
+        if (Mechanics.OnPause)
         {
             PauseButton.gameObject.SetActive(true);
             PlayButton.gameObject.SetActive(false);
 
-            GameData.SpeedRange = GameData.PauseLastRange;
+            Mechanics.SpeedRange = Mechanics.PauseLastRange;
 
             if(!inEarth)
             {
@@ -98,8 +101,8 @@ public class GameController : MonoBehaviour
         }
         else
         {
-            GameData.PauseLastRange = GameData.SpeedRange;
-            GameData.SpeedRange = 0f;
+            Mechanics.PauseLastRange = Mechanics.SpeedRange;
+            Mechanics.SpeedRange = 0f;
 
             if (!inEarth)
             {
@@ -113,7 +116,7 @@ public class GameController : MonoBehaviour
             PlayButton.gameObject.SetActive(true);
             Time.timeScale = 0;
         }
-        GameData.OnPause = !GameData.OnPause;
+        Mechanics.OnPause = !Mechanics.OnPause;
     }
 
     IEnumerator GoToForms()
@@ -128,13 +131,13 @@ public class GameController : MonoBehaviour
         if(Time.time > NextRepeatingTime)
         {
             NextRepeatingTime = Time.time + RepeatingTimeToIncreaseObstacleSpeed;
-            if(GameData.Phase == GamePhase.OnGame && !GameData.OnPause) AdjustSpeedRange();
+            if(Mechanics.Phase == GamePhase.OnGame && !Mechanics.OnPause) AdjustSpeedRange();
         }
 
         if(Time.time > NextMeterUpTime)
         {
-            NextMeterUpTime = Time.time + 1 - (GameData.SpeedRange / 10);
-            if (GameData.Phase == GamePhase.OnGame) AddMeters();
+            NextMeterUpTime = Time.time + 1 - (Mechanics.SpeedRange / 10);
+            if (Mechanics.Phase == GamePhase.OnGame) AddMeters();
         }
 
         if (Meters > 100 && inEarth) StartCoroutine(GetOutOfEarth());
@@ -142,8 +145,8 @@ public class GameController : MonoBehaviour
 
     private void AdjustSpeedRange()
     {
-        if(GameData.SpeedRange < MaximumSpeedRange) GameData.SpeedRange += SpeedRate;
-        actualSpeedrange = GameData.SpeedRange;
+        if(Mechanics.SpeedRange < MaximumSpeedRange) Mechanics.SpeedRange += SpeedRate;
+        actualSpeedrange = Mechanics.SpeedRange;
     }
 
     public void ShakeCamera()
@@ -153,7 +156,8 @@ public class GameController : MonoBehaviour
 
     public void Finish()
     {
-        GameData.Phase = GamePhase.OnFinish;
+        GameData.Save();
+        Mechanics.Phase = GamePhase.OnFinish;
         if (!inEarth)
         {
             Planet.GetComponent<MovementController>().SetIsMoving(false);
@@ -184,7 +188,7 @@ public class GameController : MonoBehaviour
 
         PlayableDirector.Play();
         yield return new WaitForSeconds(4f);
-        GameData.Phase = GamePhase.OnGame;
+        Mechanics.Phase = GamePhase.OnGame;
         PauseButton.SetButtonState(true);
         CowController.StartPhase();
         ObstacleSpawner.SpawnNextTemplate();

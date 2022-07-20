@@ -1,7 +1,7 @@
 ﻿using UnityEngine;
 
 [ExecuteInEditMode]
-public class HorizontalCamera : MonoBehaviour
+public class HorizontalCameraController : MonoBehaviour
 {
     private Camera Camera;
     private float LastAspect;

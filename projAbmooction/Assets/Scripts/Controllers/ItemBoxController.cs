@@ -5,7 +5,7 @@ using UnityEngine;
 public class ItemBoxController : MonoBehaviour
 {
     public float time;
-    public string name;
+    public string itemBoxName;
     public Sprite itemSprite;
     public VerticalGroupController VerticalGroupController;
 
@@ -19,7 +19,7 @@ public class ItemBoxController : MonoBehaviour
     void Start()
     {
         ItemSpriteRenderer.sprite = itemSprite;
-        UIManager.SetText(TxtItemName, name);
+        UIManager.SetText(TxtItemName, itemBoxName);
 
         count = 1 / time;
         InvokeRepeating("DecreaseSlider", 1f, 1f);
