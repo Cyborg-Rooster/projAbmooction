@@ -27,6 +27,7 @@ class SQLiteManager
     }*/
     public static bool SetDatabase()
     {
+        Directory.CreateDirectory($@"{Application.persistentDataPath}\Database\");
         Database = new SqliteConnection(new SqliteConnection("URI=file:" + Connection));
         SetDatabaseActive(true);
 

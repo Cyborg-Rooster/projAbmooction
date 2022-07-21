@@ -22,7 +22,7 @@ class Strings
     public static string lblBought = "-Bought-";
     public static string coins = "coins";
 
-    public static string[] Skins = new string[22]
+    public static string[] skins = new string[22]
     {
         "Default",
         "Angus",
@@ -47,6 +47,20 @@ class Strings
         "Man",
         "Women"
     };
+
+    public static string yes = "Yes";
+    public static string no = "No";
+    public static string ok = "Ok";
+
+    public static string skin = "skin";
+    public static string titleError = "Error";
+
+    public static string ContentBuySkin(string content, int price)
+    {
+        return $"Do you want to buy this {content} for {price} {coins}?";
+    }
+
+    public static string contentError = "This operation could not be continued. :(";
 
     /*public static string[] skins = new string[22]
     {
