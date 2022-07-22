@@ -1,73 +1,73 @@
 fileFormatVersion: 2
-guid: da8bf3acd8bedb0409507d094bb32731
+guid: 5168ae120444be445b473af902afbc12
 TextureImporter:
   internalIDToNameTable:
   - first:
-      213: 536342789873785599
-    second: sheetCow_0
+      213: 1718823086291534699
+    second: sheetCowAyrshire_0
   - first:
-      213: -3922326543418238562
-    second: sheetCow_1
+      213: 5308935111061911268
+    second: sheetCowAyrshire_1
   - first:
-      213: 1038403335707757006
-    second: sheetCow_2
+      213: -852853927149144366
+    second: sheetCowAyrshire_2
   - first:
-      213: 4374466831507296165
-    second: sheetCow_3
+      213: -5995267595302389666
+    second: sheetCowAyrshire_3
   - first:
-      213: 3715053868706817930
-    second: sheetCow_4
+      213: -8042270527692897559
+    second: sheetCowAyrshire_4
   - first:
-      213: 4790827894344161108
-    second: sheetCow_5
+      213: 9073221513552259453
+    second: sheetCowAyrshire_5
   - first:
-      213: 7494284989576037246
-    second: sheetCow_6
+      213: -6142946168470025741
+    second: sheetCowAyrshire_6
   - first:
-      213: -5727315183935942191
-    second: sheetCow_7
+      213: 4310690218867965117
+    second: sheetCowAyrshire_7
   - first:
-      213: -5525993939700638851
-    second: sheetCow_8
+      213: -3790523775733467613
+    second: sheetCowAyrshire_8
   - first:
-      213: -1407740722083875210
-    second: sheetCow_9
+      213: -3605278195374568871
+    second: sheetCowAyrshire_9
   - first:
-      213: 8402553983840491267
-    second: sheetCow_10
+      213: -2544265800396896748
+    second: sheetCowAyrshire_10
   - first:
-      213: 4659125940662668941
-    second: sheetCow_11
+      213: 1248390979138482161
+    second: sheetCowAyrshire_11
   - first:
-      213: -7947007805741480073
-    second: sheetCow_12
+      213: 4967742011082523585
+    second: sheetCowAyrshire_12
   - first:
-      213: 3134064411443639782
-    second: sheetCow_13
+      213: 5429994192723760257
+    second: sheetCowAyrshire_13
   - first:
-      213: 4144735469774208274
-    second: sheetCow_14
+      213: 4298035122949936360
+    second: sheetCowAyrshire_14
   - first:
-      213: -3776993588012452880
-    second: sheetCow_15
+      213: 5261634217315703052
+    second: sheetCowAyrshire_15
   - first:
-      213: 600280895610664522
-    second: sheetCow_16
+      213: 6326867131223435071
+    second: sheetCowAyrshire_16
   - first:
-      213: 3376765877228652299
-    second: sheetCow_17
+      213: -9199959485067028759
+    second: sheetCowAyrshire_17
   - first:
-      213: -1711980758237475115
-    second: sheetCow_18
+      213: -7857271259399209431
+    second: sheetCowAyrshire_18
   - first:
-      213: -7048161292249526295
-    second: sheetCow_19
+      213: 3713166355627943345
+    second: sheetCowAyrshire_19
   - first:
-      213: -7443407921333298097
-    second: sheetCow_20
+      213: -4211832791830664999
+    second: sheetCowAyrshire_20
   - first:
-      213: -4183633474997950827
-    second: sheetCow_21
+      213: -4166693209889898455
+    second: sheetCowAyrshire_21
   externalObjects: {}
   serializedVersion: 11
   mipmaps:
@@ -99,8 +99,8 @@ TextureImporter:
   textureSettings:
     serializedVersion: 2
     filterMode: 0
-    aniso: -1
-    mipBias: -100
+    aniso: 1
+    mipBias: 0
     wrapU: 1
     wrapV: 1
     wrapW: 1
@@ -121,6 +121,8 @@ TextureImporter:
   textureType: 8
   textureShape: 1
   singleChannelComponent: 0
+  flipbookRows: 1
+  flipbookColumns: 1
   maxTextureSizeSet: 0
   compressionQualitySet: 0
   textureFormatSet: 0
@@ -152,6 +154,18 @@ TextureImporter:
     androidETC2FallbackOverride: 0
     forceMaximumCompressionQuality_BC6H_BC7: 0
   - serializedVersion: 3
+    buildTarget: iPhone
+    maxTextureSize: 2048
+    resizeAlgorithm: 0
+    textureFormat: -1
+    textureCompression: 0
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+    androidETC2FallbackOverride: 0
+    forceMaximumCompressionQuality_BC6H_BC7: 0
+  - serializedVersion: 3
     buildTarget: Android
     maxTextureSize: 2048
     resizeAlgorithm: 0
@@ -167,7 +181,7 @@ TextureImporter:
     serializedVersion: 2
     sprites:
     - serializedVersion: 2
-      name: sheetCow_0
+      name: sheetCowAyrshire_0
       rect:
         serializedVersion: 2
         x: 0
@@ -181,14 +195,14 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: ffad44cfce8717700800000000000000
-      internalID: 536342789873785599
+      spriteID: b63c5228d7c7ad710800000000000000
+      internalID: 1718823086291534699
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: sheetCow_1
+      name: sheetCowAyrshire_1
       rect:
         serializedVersion: 2
         x: 64
@@ -202,14 +216,14 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: e9958764ac81199c0800000000000000
-      internalID: -3922326543418238562
+      spriteID: 4e6b1760b502da940800000000000000
+      internalID: 5308935111061911268
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: sheetCow_2
+      name: sheetCowAyrshire_2
       rect:
         serializedVersion: 2
         x: 128
@@ -223,14 +237,14 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: ec901760556296e00800000000000000
-      internalID: 1038403335707757006
+      spriteID: 2d67af23fdd0a24f0800000000000000
+      internalID: -852853927149144366
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: sheetCow_3
+      name: sheetCowAyrshire_3
       rect:
         serializedVersion: 2
         x: 0
@@ -244,14 +258,14 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 5af88b5086a35bc30800000000000000
-      internalID: 4374466831507296165
+      spriteID: e583798e2e78ccca0800000000000000
+      internalID: -5995267595302389666
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: sheetCow_4
+      name: sheetCowAyrshire_4
       rect:
         serializedVersion: 2
         x: 64
@@ -265,14 +279,14 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: a87e5b57fc58e8330800000000000000
-      internalID: 3715053868706817930
+      spriteID: 9e28549909d146090800000000000000
+      internalID: -8042270527692897559
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: sheetCow_5
+      name: sheetCowAyrshire_5
       rect:
         serializedVersion: 2
         x: 128
@@ -286,14 +300,14 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 4579a6646907c7240800000000000000
-      internalID: 4790827894344161108
+      spriteID: d79e6b305ee8aed70800000000000000
+      internalID: 9073221513552259453
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: sheetCow_6
+      name: sheetCowAyrshire_6
       rect:
         serializedVersion: 2
         x: 0
@@ -307,14 +321,14 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: e73c839dd7c010860800000000000000
-      internalID: 7494284989576037246
+      spriteID: 3f94ff9a10fdfbaa0800000000000000
+      internalID: -6142946168470025741
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: sheetCow_7
+      name: sheetCowAyrshire_7
       rect:
         serializedVersion: 2
         x: 64
@@ -328,14 +342,14 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 1d11cc05f2d7480b0800000000000000
-      internalID: -5727315183935942191
+      spriteID: dbc30604ae5a2db30800000000000000
+      internalID: 4310690218867965117
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: sheetCow_8
+      name: sheetCowAyrshire_8
       rect:
         serializedVersion: 2
         x: 0
@@ -349,14 +363,14 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: d7b9e213ac9bf43b0800000000000000
-      internalID: -5525993939700638851
+      spriteID: 326fbb285ba556bc0800000000000000
+      internalID: -3790523775733467613
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: sheetCow_9
+      name: sheetCowAyrshire_9
       rect:
         serializedVersion: 2
         x: 64
@@ -370,14 +384,14 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 676b6549543b67ce0800000000000000
-      internalID: -1407740722083875210
+      spriteID: 95acc38359a77fdc0800000000000000
+      internalID: -3605278195374568871
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: sheetCow_10
+      name: sheetCowAyrshire_10
       rect:
         serializedVersion: 2
         x: 128
@@ -391,14 +405,14 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 3071bd4645edb9470800000000000000
-      internalID: 8402553983840491267
+      spriteID: 4160b211cb3f0bcd0800000000000000
+      internalID: -2544265800396896748
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: sheetCow_11
+      name: sheetCowAyrshire_11
       rect:
         serializedVersion: 2
         x: 0
@@ -412,14 +426,14 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: d8e8101ab5a88a040800000000000000
-      internalID: 4659125940662668941
+      spriteID: 1ffe9543bfc235110800000000000000
+      internalID: 1248390979138482161
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: sheetCow_12
+      name: sheetCowAyrshire_12
       rect:
         serializedVersion: 2
         x: 64
@@ -433,14 +447,14 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 777c587718e86b190800000000000000
-      internalID: -7947007805741480073
+      spriteID: 1c3cb52f907f0f440800000000000000
+      internalID: 4967742011082523585
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: sheetCow_13
+      name: sheetCowAyrshire_13
       rect:
         serializedVersion: 2
         x: 128
@@ -454,14 +468,14 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 6e5ba4b2afe6e7b20800000000000000
-      internalID: 3134064411443639782
+      spriteID: 184dbbde2f63b5b40800000000000000
+      internalID: 5429994192723760257
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: sheetCow_14
+      name: sheetCowAyrshire_14
       rect:
         serializedVersion: 2
         x: 0
@@ -475,14 +489,14 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 21d7ad333fe058930800000000000000
-      internalID: 4144735469774208274
+      spriteID: 8e4559f1c20b5ab30800000000000000
+      internalID: 4298035122949936360
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: sheetCow_15
+      name: sheetCowAyrshire_15
       rect:
         serializedVersion: 2
         x: 64
@@ -496,14 +510,14 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 0f3f693d75c659bc0800000000000000
-      internalID: -3776993588012452880
+      spriteID: c09942d7174150940800000000000000
+      internalID: 5261634217315703052
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: sheetCow_16
+      name: sheetCowAyrshire_16
       rect:
         serializedVersion: 2
         x: 0
@@ -517,14 +531,14 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: a46b35c4b40a45800800000000000000
-      internalID: 600280895610664522
+      spriteID: f37eaa9722c8dc750800000000000000
+      internalID: 6326867131223435071
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: sheetCow_17
+      name: sheetCowAyrshire_17
       rect:
         serializedVersion: 2
         x: 64
@@ -538,14 +552,14 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: b07cfd9acaeacde20800000000000000
-      internalID: 3376765877228652299
+      spriteID: 9e61890879d235080800000000000000
+      internalID: -9199959485067028759
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: sheetCow_18
+      name: sheetCowAyrshire_18
       rect:
         serializedVersion: 2
         x: 128
@@ -559,14 +573,14 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 5de83f22292dd38e0800000000000000
-      internalID: -1711980758237475115
+      spriteID: 92ebf9f4b6d55f290800000000000000
+      internalID: -7857271259399209431
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: sheetCow_19
+      name: sheetCowAyrshire_19
       rect:
         serializedVersion: 2
         x: 0
@@ -580,14 +594,14 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 9ef0fcfb5a6ef2e90800000000000000
-      internalID: -7048161292249526295
+      spriteID: 1b5a2239021d78330800000000000000
+      internalID: 3713166355627943345
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: sheetCow_20
+      name: sheetCowAyrshire_20
       rect:
         serializedVersion: 2
         x: 64
@@ -601,14 +615,14 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: f4c9992bee3b3b890800000000000000
-      internalID: -7443407921333298097
+      spriteID: 9d8679d14609c85c0800000000000000
+      internalID: -4211832791830664999
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: sheetCow_21
+      name: sheetCowAyrshire_21
       rect:
         serializedVersion: 2
         x: 128
@@ -622,8 +636,8 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 5966054358fb0f5c0800000000000000
-      internalID: -4183633474997950827
+      spriteID: 9200b780a9eec26c0800000000000000
+      internalID: -4166693209889898455
       vertices: []
       indices: 
       edges: []

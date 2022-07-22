@@ -26,7 +26,7 @@ class Strings
     {
         "Default",
         "Angus",
-        "Shabby",
+        "Ayrshire",
         "Punk",
         "Diver",
         "Modern",

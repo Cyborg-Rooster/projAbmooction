@@ -40,10 +40,14 @@ public class GameController : MonoBehaviour
 
     static bool restartMode = false;
 
-    private void Start()
+    private void Awake()
     {
         SQLiteManager.SetDatabase();
         GameData.Load();
+    }
+
+    private void Start()
+    {
         Mechanics.RestartAttributes();
         UIManager.SetText(TxtCoins, GameData.Coins);
 
@@ -80,6 +84,7 @@ public class GameController : MonoBehaviour
 
         StartCoroutine(GoToForms());
     }
+
     IEnumerator Pause()
     {
         Time.timeScale = 1;
@@ -166,6 +171,7 @@ public class GameController : MonoBehaviour
         if (waitingSky) Sky.SetIsMoving(false);
 
         PlayableDirector.playableAsset = TimelineEndGame;
+        //TimelineBindingController.SetGenericBinding(PlayableDirector, CowController.GetComponent<Animator>());
         PlayableDirector.Play();
     }
 
@@ -186,7 +192,10 @@ public class GameController : MonoBehaviour
         UIManager.SetButtonState(PlayButton.gameObject, false);
         UIManager.SetButtonState(ShopButton.gameObject, false);
 
+        //PlayableDirector.enabled = true;
+        //TimelineBindingController.SetGenericBinding(PlayableDirector, CowController.GetComponent<Animator>());
         PlayableDirector.Play();
+
         yield return new WaitForSeconds(4f);
         Mechanics.Phase = GamePhase.OnGame;
         PauseButton.SetButtonState(true);

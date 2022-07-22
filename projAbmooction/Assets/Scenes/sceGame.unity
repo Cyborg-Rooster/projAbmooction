@@ -1202,9 +1202,9 @@ Camera:
     height: 1
   near clip plane: 0.3
   far clip plane: 1000
-  field of view: 106.88844
+  field of view: 106.80895
   orthographic: 1
-  orthographic size: 2.3359728
+  orthographic size: 2.3325894
   m_Depth: -1
   m_CullingMask:
     serializedVersion: 2
@@ -1301,7 +1301,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
   m_AnchorMax: {x: 1, y: 1}
-  m_AnchoredPosition: {x: -208.09995, y: -450.7}
+  m_AnchoredPosition: {x: -208.09998, y: -450.7}
   m_SizeDelta: {x: -507.9, y: -984.3}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &523373555
@@ -1576,7 +1576,7 @@ Animator:
   m_GameObject: {fileID: 856918072}
   m_Enabled: 1
   m_Avatar: {fileID: 0}
-  m_Controller: {fileID: 9100000, guid: 0de445bbd8106fb4db210952e782c7bc, type: 2}
+  m_Controller: {fileID: 9100000, guid: 30dada334b032d14a8245044319de8e3, type: 2}
   m_CullingMode: 0
   m_UpdateMode: 0
   m_ApplyRootMotion: 0
@@ -2033,7 +2033,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0.5}
   m_AnchorMax: {x: 0, y: 0.5}
-  m_AnchoredPosition: {x: -90.00002, y: 0}
+  m_AnchoredPosition: {x: -90.00003, y: 0}
   m_SizeDelta: {x: 100, y: 100}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!4 &1006940513 stripped
@@ -3100,7 +3100,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 1, y: 0}
   m_AnchorMax: {x: 1, y: 0}
-  m_AnchoredPosition: {x: 99.00002, y: 101}
+  m_AnchoredPosition: {x: 99.00003, y: 101}
   m_SizeDelta: {x: 100, y: 101}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!95 &1379804159
@@ -3143,6 +3143,7 @@ GameObject:
   - component: {fileID: 1453660695}
   - component: {fileID: 1453660694}
   - component: {fileID: 1453660696}
+  - component: {fileID: 1453660697}
   m_Layer: 0
   m_Name: GameController
   m_TagString: Untagged
@@ -3233,6 +3234,10 @@ PlayableDirector:
     value: {fileID: 1358215026}
   - key: {fileID: 9008135612085301941, guid: 1b100ebbd40ba6c4e9bd2f6dc248aea8, type: 2}
     value: {fileID: 1358215028}
+  - key: {fileID: -3980411157209466064, guid: 1b100ebbd40ba6c4e9bd2f6dc248aea8, type: 2}
+    value: {fileID: 856918075}
+  - key: {fileID: -5041026101206616156, guid: 4717eafebec116a438e9484e694a8f4b, type: 2}
+    value: {fileID: 856918075}
   m_ExposedReferences:
     m_References:
     - d23cc9c9c6e016f4191cad5a0ce92408: {fileID: 1453660693}
@@ -3279,6 +3284,23 @@ MonoBehaviour:
   MaximumSpeedRange: 6
   RepeatingTimeToIncreaseObstacleSpeed: 5
   actualSpeedrange: 0
+--- !u!114 &1453660697
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1453660693}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 16c7e17bf5feecc46ba1931583291f36, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  AnimatorController:
+  - {fileID: 9100000, guid: 0de445bbd8106fb4db210952e782c7bc, type: 2}
+  - {fileID: 9100000, guid: 30dada334b032d14a8245044319de8e3, type: 2}
+  - {fileID: 9100000, guid: f1a5f5cedd4a1584f98cd6ab042e56a9, type: 2}
+  Cow: {fileID: 856918075}
 --- !u!1 &1457012695
 GameObject:
   m_ObjectHideFlags: 0
@@ -3748,7 +3770,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 1, y: 0.5}
   m_AnchorMax: {x: 1, y: 0.5}
-  m_AnchoredPosition: {x: 90.00002, y: 0}
+  m_AnchoredPosition: {x: 90.00003, y: 0}
   m_SizeDelta: {x: 100, y: 100}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!1 &1622718037
