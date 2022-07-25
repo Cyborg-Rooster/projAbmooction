@@ -202,6 +202,7 @@ public class GameController : MonoBehaviour
         CowController.StartPhase();
         ObstacleSpawner.SpawnNextTemplate();
         PlayButton.GetComponent<RectTransform>().anchoredPosition = Vector3.zero;
+        UIManager.SetButtonState(PlayButton.gameObject, true);
     }
 
     IEnumerator RestartGame()

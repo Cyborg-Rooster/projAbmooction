@@ -10,19 +10,32 @@ public class StoreController : MonoBehaviour
     [Header("Labels")]
     [SerializeField] GameObject SkinConteinerLabel;
     [SerializeField] GameObject MoneysLabel;
+    [SerializeField] GameObject ScenarioConteinerLabel;
+
+    [Header("Contents")]
     [SerializeField] List<SkinController> Skins;
-    [SerializeField] HighlightController HighlightController;
+    [SerializeField] List<ScenarioController> Scenarios;
+
+    [Header("Controllers")]
+    [SerializeField] HighlightController SkinHighlightController;
+    [SerializeField] HighlightController ScenarioHighlightController;
+    [SerializeField] ShakeObjectController Camera;
 
     List<int> SkinsBought = new List<int>();
+    List<int> ScenariosBought = new List<int>();
 
     void Start()
     {
-        GetSkinBoughtList();
+        GetBoughtList();
         UIManager.SetText(SkinConteinerLabel, Strings.lblSkins);
+        UIManager.SetText(ScenarioConteinerLabel, Strings.lblScenarios);
 
         for (int i = 0; i < Skins.Count; i++) Skins[i].SetNameAndPrice(Strings.skins[i], SkinsBought.Contains(i), i);
+        for (int i = 0; i < Scenarios.Count; i++)
+            Scenarios[i].SetNameAndMaterial(Strings.scenarios[i], ScenariosBought.Contains(i), i, this);
 
-        HighlightController.SetHighlight(Skins[GameData.Skin].transform);
+        SkinHighlightController.SetHighlight(Skins[GameData.Skin].transform);
+        ScenarioHighlightController.SetHighlight(Scenarios[GameData.Scenario].transform);
     }
 
     void Update()
@@ -30,10 +43,20 @@ public class StoreController : MonoBehaviour
         UIManager.SetText(MoneysLabel, GameData.Coins);
     }
 
-    public void GetSkinBoughtList()
+    void GetBoughtList()
     {
-        string[] s = SQLiteManager.ReturnValueAsString(CommonQuery.Select("SKIN_ID", "SKINS")).Split(' ');
-        for (int i = 0; i < s.Length; i++) Debug.Log(s[i]);
-        SkinsBought = s.Select(int.Parse).ToList();
+        string[] skins = SQLiteManager.ReturnValueAsString(CommonQuery.Select("SKIN_ID", "SKINS")).Split(' ');
+        string[] scenarios = SQLiteManager.ReturnValueAsString(CommonQuery.Select("SKIN_ID", "SKINS")).Split(' ');
+
+        //for (int i = 0; i < skins.Length; i++) Debug.Log(skins[i]);
+        SkinsBought = skins.Select(int.Parse).ToList();
+        ScenariosBought = scenarios.Select(int.Parse).ToList();
+    }
+
+    public void ShakeCamera()
+    {
+
+        Debug.Log("teste");
+        Camera.ShakeObject();
     }
 }

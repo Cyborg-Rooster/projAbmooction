@@ -48,6 +48,16 @@ class Strings
         "Women"
     };
 
+    public static string[] scenarios = new string[6]
+    {
+        "Farm",
+        "City",
+        "Mountain",
+        "Western",
+        "Medieval",
+        "Alien"
+    };
+
     public static string yes = "Yes";
     public static string no = "No";
     public static string ok = "Ok";

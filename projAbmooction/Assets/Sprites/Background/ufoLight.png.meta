@@ -163,10 +163,10 @@ TextureImporter:
       name: ufoLight_2
       rect:
         serializedVersion: 2
-        x: 214
-        y: 220
-        width: 107
-        height: 110
+        x: 206
+        y: 200
+        width: 103
+        height: 100
       alignment: 2
       pivot: {x: 0.5, y: 1}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -184,10 +184,10 @@ TextureImporter:
       name: ufoLight_5
       rect:
         serializedVersion: 2
-        x: 214
-        y: 110
-        width: 107
-        height: 110
+        x: 206
+        y: 100
+        width: 103
+        height: 100
       alignment: 2
       pivot: {x: 0.5, y: 1}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -206,18 +206,18 @@ TextureImporter:
       rect:
         serializedVersion: 2
         x: 0
-        y: 220
-        width: 107
-        height: 110
-      alignment: 9
+        y: 200
+        width: 103
+        height: 100
+      alignment: 2
       pivot: {x: 0.5, y: 1}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 3686c72ab825f0140800000000000000
-      internalID: 4688056496795969635
+      spriteID: 6e8df34b21bea5b20800000000000000
+      internalID: 3124067757100882150
       vertices: []
       indices: 
       edges: []
@@ -226,19 +226,19 @@ TextureImporter:
       name: ufoLight_1
       rect:
         serializedVersion: 2
-        x: 107
-        y: 220
-        width: 107
-        height: 110
-      alignment: 9
+        x: 103
+        y: 200
+        width: 103
+        height: 100
+      alignment: 2
       pivot: {x: 0.5, y: 1}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: fe8f6328ee6edf0f0800000000000000
-      internalID: -1081454423437805329
+      spriteID: 4ae20dbbc4f353d10800000000000000
+      internalID: 2104657999666622116
       vertices: []
       indices: 
       edges: []
@@ -248,9 +248,9 @@ TextureImporter:
       rect:
         serializedVersion: 2
         x: 0
-        y: 110
-        width: 107
-        height: 110
+        y: 100
+        width: 103
+        height: 100
       alignment: 2
       pivot: {x: 0.5, y: 1}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -258,8 +258,8 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: cf7ff1f7150331770800000000000000
-      internalID: 8580254841654212604
+      spriteID: 6b9c0ac9689e4a2d0800000000000000
+      internalID: -3268230665201464906
       vertices: []
       indices: 
       edges: []
@@ -268,10 +268,10 @@ TextureImporter:
       name: ufoLight_4
       rect:
         serializedVersion: 2
-        x: 107
-        y: 110
-        width: 107
-        height: 110
+        x: 103
+        y: 100
+        width: 103
+        height: 100
       alignment: 2
       pivot: {x: 0.5, y: 1}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -279,8 +279,8 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 2e5a1f5af13fe4db0800000000000000
-      internalID: -4805636435104127518
+      spriteID: de964f064b7b2ff90800000000000000
+      internalID: -6921267691966404115
       vertices: []
       indices: 
       edges: []
@@ -291,8 +291,8 @@ TextureImporter:
         serializedVersion: 2
         x: 0
         y: 0
-        width: 107
-        height: 110
+        width: 103
+        height: 100
       alignment: 2
       pivot: {x: 0.5, y: 1}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -300,8 +300,8 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: e430958d9e3a26780800000000000000
-      internalID: -8691204106119216306
+      spriteID: 6a2d0153d57f39890800000000000000
+      internalID: -7452340978673724762
       vertices: []
       indices: 
       edges: []
@@ -310,10 +310,10 @@ TextureImporter:
       name: ufoLight_7
       rect:
         serializedVersion: 2
-        x: 107
+        x: 103
         y: 0
-        width: 107
-        height: 110
+        width: 103
+        height: 100
       alignment: 2
       pivot: {x: 0.5, y: 1}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -321,8 +321,8 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 438ad6d248c9930d0800000000000000
-      internalID: -3442548348636256204
+      spriteID: adf73a252873e0e10800000000000000
+      internalID: 2165729503683510234
       vertices: []
       indices: 
       edges: []

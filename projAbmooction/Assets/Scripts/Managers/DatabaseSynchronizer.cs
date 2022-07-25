@@ -13,7 +13,9 @@ class DatabaseSynchronizer
         SQLiteManager.RunQuery(CommonQuery.Create("GAME_DATA", "COINS INTEGER, SKIN INTEGER, SCENARIO INTEGER"));
         SQLiteManager.RunQuery(CommonQuery.Create("STATISTIC", "BEST_SCORE INTEGER, DEATHS INTEGER"));
         SQLiteManager.RunQuery(CommonQuery.Create("OPTIONS", "SOUND INTEGER, LANGUAGE INTEGER"));
+
         SQLiteManager.RunQuery(CommonQuery.Create("SKINS", "SKIN_ID VARCHAR(55)"));
+        SQLiteManager.RunQuery(CommonQuery.Create("SCENARIOS", "SCENARIO_ID VARCHAR(55)"));
 
         SQLiteManager.RunQuery(CommonQuery.Add("VERSION", "DATABASE_VERSION", Version.ToString()));
         SQLiteManager.RunQuery
@@ -31,6 +33,7 @@ class DatabaseSynchronizer
             CommonQuery.Add("OPTIONS", "SOUND, LANGUAGE", 
             $"{GameData.GetSound()}, {(int)GameData.Language}"
         ));
-        SQLiteManager.RunQuery(CommonQuery.Add("SKINS", "SKIN_ID", "'0 1'"));
+        SQLiteManager.RunQuery(CommonQuery.Add("SKINS", "SKIN_ID", "'0'"));
+        SQLiteManager.RunQuery(CommonQuery.Add("SKINS", "SKIN_ID", "'0'"));
     }
 }
