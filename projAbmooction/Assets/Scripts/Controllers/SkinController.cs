@@ -39,7 +39,7 @@ public class SkinController : MonoBehaviour
 
     IEnumerator BuySkin()
     {
-        yield return Builder.Show
+        yield return Builder.ShowTyped
         (
             Strings.lblSkins,
             Strings.ContentBuySkin(Strings.skin, (int)Price),
@@ -70,7 +70,7 @@ public class SkinController : MonoBehaviour
 
     private IEnumerator BuyFailed()
     {
-        yield return Builder.Show
+        yield return Builder.ShowTyped
         (
             Strings.titleError,
             Strings.contentError,

@@ -44,6 +44,8 @@ public class GameController : MonoBehaviour
     {
         SQLiteManager.SetDatabase();
         GameData.Load();
+
+        Screen.sleepTimeout = SleepTimeout.NeverSleep;
     }
 
     private void Start()
@@ -146,6 +148,11 @@ public class GameController : MonoBehaviour
         }
 
         if (Meters > 100 && inEarth) StartCoroutine(GetOutOfEarth());
+    }
+
+    private void OnApplicationQuit()
+    {
+        SQLiteManager.SetDatabaseActive(false);
     }
 
     private void AdjustSpeedRange()

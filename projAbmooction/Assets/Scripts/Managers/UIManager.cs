@@ -29,6 +29,11 @@ class UIManager
         output.GetComponent<Image>().sprite = sprite;
     }
 
+    public static Sprite GetImage(GameObject output)
+    {
+        return output.GetComponent<Image>().sprite;
+    }
+
     public static void SetRandomScale(GameObject gameObject)
     {
         System.Random r = new System.Random();
@@ -45,7 +50,6 @@ class UIManager
     }
 
     #endregion
-
 
     #region "General UI Components"
     public static void SetButtonState(GameObject output, bool active)

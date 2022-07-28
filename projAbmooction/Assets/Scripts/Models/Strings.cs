@@ -6,10 +6,17 @@ using System.Threading.Tasks;
 
 class Strings
 {
-    public static string itemDouble = "2x Coins";
+    /*public static string itemDouble = "2x Coins";
     public static string itemShield = "Shield";
     public static string itemMagnetic = "Magnet";
-    public static string itemSlowMotion = "Slow Motion";
+    public static string itemSlowMotion = "Slow Motion";*/
+    public static string[] items = new string[4]
+    {
+        "2x Coins",
+        "Magnet",
+        "Shield",
+        "Slow Motion"
+    };
 
     public static string lblStore = "Store";
     public static string lblOptions = "Options";
@@ -61,6 +68,8 @@ class Strings
     public static string yes = "Yes";
     public static string no = "No";
     public static string ok = "Ok";
+    public static string confirm = "Confirm";
+    public static string cancel = "Cancel";
 
     public static string skin = "skin";
     public static string titleError = "Error";
@@ -71,6 +80,27 @@ class Strings
     }
 
     public static string contentError = "This operation could not be continued. :(";
+
+    public static string selectScenarioError = "You don't have all the cards to use this scenario.";
+    //public static string selectScenarioError = "Você ainda não possui todos os cartões para usar esse cenário.";
+
+    public static string SelectScenario(string scenario)
+    {
+        return $"Do you want to select the {scenario} scenario?";
+        //Deseja selecionar o cenário ***?
+    }
+
+    public static string AddChanges(string item, float time, int coins)
+    {
+        return $"The {item} item lasts for {time} seconds. Would you like to add 2 seconds per {coins} coins?";
+        //O item *** dura por *** segundos. Gostaria de acrescentar 2 segundos por *** moedas?
+    }
+    public static string ChangesFinish(string item, float time)
+    {
+        return $"You have already upgraded item {item} by 100%, lasting for {time} seconds.";
+        //Você já atualizou o item {} em 100%, com duração de {} segundos.
+    }
+
 
     /*public static string[] skins = new string[22]
     {

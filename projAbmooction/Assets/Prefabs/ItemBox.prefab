@@ -141,7 +141,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   time: 0
-  name: 
+  itemBoxName: 
   itemSprite: {fileID: 0}
   VerticalGroupController: {fileID: 0}
   ItemSpriteRenderer: {fileID: 6399237591456291646}

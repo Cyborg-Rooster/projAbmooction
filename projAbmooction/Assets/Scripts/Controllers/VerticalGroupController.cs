@@ -43,25 +43,25 @@ public class VerticalGroupController : MonoBehaviour
         i.itemBoxName = item;
         i.VerticalGroupController = this;
 
-        if (item == Strings.itemDouble) 
+        if (item == GameData.Doubled.Name) 
         { 
             i.itemSprite = SprDouble;
-            i.time = Mechanics.DoubledTime;
+            i.time = GameData.Doubled.Time;
         }
-        else if (item == Strings.itemMagnetic) 
+        else if (item == GameData.Magnetic.Name) 
         { 
             i.itemSprite = SprMagnet;
-            i.time = Mechanics.MagneticTime;
+            i.time = GameData.Magnetic.Time;
         }
-        else if (item == Strings.itemShield) 
+        else if (item == GameData.Shield.Name) 
         { 
             i.itemSprite = SprShield;
-            i.time = Mechanics.ShieldTime;
+            i.time = GameData.Shield.Time;
         }
         else
         { 
             i.itemSprite = SprSlowMotion;
-            i.time = Mechanics.SlowMotionTime;
+            i.time = GameData.SlowMotion.Time;
         }
 
         Instantiate

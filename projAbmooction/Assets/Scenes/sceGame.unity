@@ -220,6 +220,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: a850a95e86a5e4d49842eb50d0a78686, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+--- !u!212 &85402823 stripped
+SpriteRenderer:
+  m_CorrespondingSourceObject: {fileID: 3120453365222001183, guid: b76cf8e223867d5478de29767cb41e1e, type: 3}
+  m_PrefabInstance: {fileID: 168468962}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1 &116554538
 GameObject:
   m_ObjectHideFlags: 0
@@ -1305,7 +1310,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
   m_AnchorMax: {x: 1, y: 1}
-  m_AnchoredPosition: {x: -208.09995, y: -450.7}
+  m_AnchoredPosition: {x: -208.09991, y: -450.7}
   m_SizeDelta: {x: -507.9, y: -984.3}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &523373555
@@ -2037,7 +2042,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0.5}
   m_AnchorMax: {x: 0, y: 0.5}
-  m_AnchoredPosition: {x: -90.00003, y: 0}
+  m_AnchoredPosition: {x: -90, y: 0}
   m_SizeDelta: {x: 100, y: 100}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!4 &1006940513 stripped
@@ -2468,6 +2473,11 @@ PrefabInstance:
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: eff8d0dfbff3be34c8f18ee8ceaec179, type: 3}
+--- !u!212 &1238533735 stripped
+SpriteRenderer:
+  m_CorrespondingSourceObject: {fileID: 3120453365222001183, guid: b76cf8e223867d5478de29767cb41e1e, type: 3}
+  m_PrefabInstance: {fileID: 5483452867913652478}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1 &1334541195
 GameObject:
   m_ObjectHideFlags: 0
@@ -2740,7 +2750,7 @@ SpriteRenderer:
   m_LightmapParameters: {fileID: 0}
   m_SortingLayerID: -1469944773
   m_SortingLayer: 2
-  m_SortingOrder: 3
+  m_SortingOrder: 5
   m_Sprite: {fileID: 7470529273128267343, guid: c27795820dd3b4b4c936655e01e6ddfa, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
@@ -3104,7 +3114,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 1, y: 0}
   m_AnchorMax: {x: 1, y: 0}
-  m_AnchoredPosition: {x: 99.00003, y: 101}
+  m_AnchoredPosition: {x: 99, y: 101}
   m_SizeDelta: {x: 100, y: 101}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!95 &1379804159
@@ -3148,6 +3158,7 @@ GameObject:
   - component: {fileID: 1453660694}
   - component: {fileID: 1453660696}
   - component: {fileID: 1453660697}
+  - component: {fileID: 1453660698}
   m_Layer: 0
   m_Name: GameController
   m_TagString: Untagged
@@ -3305,6 +3316,30 @@ MonoBehaviour:
   - {fileID: 9100000, guid: 30dada334b032d14a8245044319de8e3, type: 2}
   - {fileID: 9100000, guid: f1a5f5cedd4a1584f98cd6ab042e56a9, type: 2}
   Cow: {fileID: 856918075}
+--- !u!114 &1453660698
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1453660693}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 59fd0e0f3bae61c4eaebfbc1b1677af4, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  Background: {fileID: 2004429474}
+  Foreground: {fileID: 1070862529}
+  Cloud1: {fileID: 1238533735}
+  Cloud2: {fileID: 85402823}
+  farmBackground: {fileID: 21300000, guid: 2e88a8fb813330d4e9bfa3dc803953bd, type: 3}
+  farmForeground: {fileID: 21300000, guid: 89ab7c75c441168468313d835f563123, type: 3}
+  farmCloud: {fileID: 21300000, guid: 3607aebdabd52ce41a579225bc14f7e0, type: 3}
+  farmIsForeground: 1
+  cityBackground: {fileID: 21300000, guid: e616dee89390cf941ad137049dd7cafc, type: 3}
+  cityForeground: {fileID: 21300000, guid: f12fb186dd687f043b557f60d8cf61f2, type: 3}
+  cityCloud: {fileID: 21300000, guid: 3607aebdabd52ce41a579225bc14f7e0, type: 3}
+  cityIsForeground: 0
 --- !u!1 &1457012695
 GameObject:
   m_ObjectHideFlags: 0
@@ -3774,7 +3809,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 1, y: 0.5}
   m_AnchorMax: {x: 1, y: 0.5}
-  m_AnchoredPosition: {x: 90.00003, y: 0}
+  m_AnchoredPosition: {x: 90, y: 0}
   m_SizeDelta: {x: 100, y: 100}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!1 &1622718037

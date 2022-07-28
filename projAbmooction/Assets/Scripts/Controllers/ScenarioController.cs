@@ -1,41 +1,69 @@
 ﻿using System;
-using System.Collections.Generic;
+using System.Collections;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using UnityEngine;
 class ScenarioController : MonoBehaviour
 {
+    [SerializeField] ScenarioCards CardsNeeded;
     [SerializeField] GameObject NameLabel;
     [SerializeField] GameObject ImageBackground;
     [SerializeField] HighlightController HighlightController;
-    [SerializeField] Material BlackMaterial;
+    [SerializeField] Sprite BackgroundImage;
 
     [SerializeField] bool Bought;
     [SerializeField] int ID;
 
-    Material startMaterial;
-    StoreController controller;
+    [SerializeField] DialogBoxBuilderController Builder;
 
-    public void SetNameAndMaterial(string name, bool bought, int id, StoreController storeController)
+    int actualCards;
+
+    public void SetNameAndMaterial(string name, bool bought, int id)
     {
-        startMaterial = UIManager.ReturnImageMaterial(ImageBackground);
-        controller = storeController;
         Bought = bought;
         ID = id;
+
         UIManager.SetText(NameLabel, name);
+        actualCards = SQLiteManager.ReturnValueAsInt(CommonQuery.Select("QUANTITY", "SCENARIOS", $"SCENARIO_ID = {ID}"));
+
+        if (actualCards >= (int)CardsNeeded) Bought = true;
 
         //if (!Bought) UIManager.SetMaterialOnImage(ImageBackground, BlackMaterial);
     }
 
     public void SetScenario()
     {
-        if (Bought)
+        if (Bought) StartCoroutine(PurchasedScenarioSelector());
+        else StartCoroutine(NotPurchasedScenarioSelector());
+    }
+
+    IEnumerator PurchasedScenarioSelector()
+    {
+        yield return Builder.ShowImage
+        (
+            Strings.lblScenarios,
+            Strings.SelectScenario(Strings.scenarios[ID]),
+            Strings.confirm, Strings.cancel,
+            BackgroundImage
+        );
+
+        if (Builder.LastButtonState == ButtonPressed.Yes)
         {
             GameData.Scenario = ID;
             HighlightController.SetHighlight(transform);
-            SQLiteManager.RunQuery(CommonQuery.Update("GAME_DATA", $"SCENARIO = {GameData.Skin}", "SCENARIO = SCENARIO"));
+            SQLiteManager.RunQuery(CommonQuery.Update("GAME_DATA", $"SCENARIO = {GameData.Scenario}", "SCENARIO = SCENARIO"));
         }
-        else controller.ShakeCamera();
+    }
+
+    IEnumerator NotPurchasedScenarioSelector()
+    {
+        yield return Builder.ShowImage
+        (
+            Strings.lblScenarios,
+            Strings.selectScenarioError,
+            $"{actualCards}/{(int)CardsNeeded}", Strings.cancel,
+            BackgroundImage
+        );
     }
 }

@@ -12,10 +12,10 @@ class Mechanics
     public static float ObstacleSpeed { get => SpeedRange * 0.5f; }
 
     public static float ConfusedTime = 5f;
-    public static float DoubledTime = 5f;
+    /*public static float DoubledTime = 5f;
     public static float MagneticTime = 5f;
     public static float ShieldTime = 5f;
-    public static float SlowMotionTime = 5f;
+    public static float SlowMotionTime = 5f;*/
 
     public static GamePhase Phase = GamePhase.OnMain;
 

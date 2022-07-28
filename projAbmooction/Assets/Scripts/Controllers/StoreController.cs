@@ -15,11 +15,11 @@ public class StoreController : MonoBehaviour
     [Header("Contents")]
     [SerializeField] List<SkinController> Skins;
     [SerializeField] List<ScenarioController> Scenarios;
+    [SerializeField] List<ImprovementsController> Improvements;
 
     [Header("Controllers")]
     [SerializeField] HighlightController SkinHighlightController;
     [SerializeField] HighlightController ScenarioHighlightController;
-    [SerializeField] ShakeObjectController Camera;
 
     List<int> SkinsBought = new List<int>();
     List<int> ScenariosBought = new List<int>();
@@ -32,10 +32,23 @@ public class StoreController : MonoBehaviour
 
         for (int i = 0; i < Skins.Count; i++) Skins[i].SetNameAndPrice(Strings.skins[i], SkinsBought.Contains(i), i);
         for (int i = 0; i < Scenarios.Count; i++)
-            Scenarios[i].SetNameAndMaterial(Strings.scenarios[i], ScenariosBought.Contains(i), i, this);
+            Scenarios[i].SetNameAndMaterial(Strings.scenarios[i], ScenariosBought.Contains(i), i);
+        UpdateItens();
 
         SkinHighlightController.SetHighlight(Skins[GameData.Skin].transform);
         ScenarioHighlightController.SetHighlight(Scenarios[GameData.Scenario].transform);
+    }
+
+    public void UpdateItens()
+    {
+        GameData.SetItems();
+        foreach (var i in Improvements) 
+        {
+            if (i.ItemType == ImprovementsItem.Doubled) i.SetAttributes(GameData.Doubled, this);
+            else if (i.ItemType == ImprovementsItem.Magnetic) i.SetAttributes(GameData.Magnetic, this);
+            else if (i.ItemType == ImprovementsItem.Shield) i.SetAttributes(GameData.Shield, this);
+            else i.SetAttributes(GameData.SlowMotion, this);
+        }
     }
 
     void Update()
@@ -53,10 +66,8 @@ public class StoreController : MonoBehaviour
         ScenariosBought = scenarios.Select(int.Parse).ToList();
     }
 
-    public void ShakeCamera()
+    private void OnApplicationQuit()
     {
-
-        Debug.Log("teste");
-        Camera.ShakeObject();
+        SQLiteManager.SetDatabaseActive(false); 
     }
 }

@@ -50,7 +50,7 @@ class CowEffects
     public IEnumerator GetDoubleCoins(bool restart)
     {
         doubled = true;
-        yield return SetEffect(DoubledCoinEffect, Mechanics.DoubledTime, Strings.itemDouble, restart);
+        yield return SetEffect(DoubledCoinEffect, GameData.Doubled.Time, GameData.Doubled.Name, restart);
         doubled = false;
     }
 
@@ -59,7 +59,7 @@ class CowEffects
         magnetic = true;
 
         MagneticCollider.enabled = true;
-        yield return SetEffect(MagneticEffect, Mechanics.MagneticTime, Strings.itemMagnetic, restart);
+        yield return SetEffect(MagneticEffect, GameData.Magnetic.Time, GameData.Magnetic.Name, restart);
         MagneticCollider.enabled = false;
 
         magnetic = false;
@@ -68,13 +68,13 @@ class CowEffects
     public IEnumerator GetShield(bool restart)
     {
         shielded = true;
-        yield return SetEffect(ShieldEffect, Mechanics.ShieldTime, Strings.itemShield, restart);
+        yield return SetEffect(ShieldEffect, GameData.Shield.Time, GameData.Shield.Name, restart);
         shielded = false;
     }
 
     public IEnumerator GetSlowDown()
     {
-        CowController.AddItemBox(Strings.itemSlowMotion);
+        CowController.AddItemBox(GameData.SlowMotion.Name);
         SpriteEffectController sec = SlowMotionEffect.GetComponent<SpriteEffectController>();
 
         /*SpriteEffectController effectController = GameObject.Instantiate
@@ -99,7 +99,7 @@ class CowEffects
             yield return 0.1f;
         }
 
-        yield return new WaitForSeconds(Mechanics.SlowMotionTime);
+        yield return new WaitForSeconds(GameData.SlowMotion.Time);
 
         for (float range = Mechanics.SpeedRange; range < Mechanics.SlowMotionLastRange; range += .2f)
         {

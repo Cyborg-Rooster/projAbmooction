@@ -1,37 +1,44 @@
-using System.Collections;
+﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class DialogBoxController : MonoBehaviour
+public class DialogBoxSliderController : MonoBehaviour
 {
-    [Header("Text")]
+    [Header("Label")]
     [SerializeField] GameObject Content;
     [SerializeField] GameObject Label;
     [SerializeField] GameObject TextYesButton;
     [SerializeField] GameObject TextNoButton;
     [SerializeField] GameObject TextOkButton;
 
-    [Header("Types")]
-    [SerializeField] GameObject YesNo;
-    [SerializeField] GameObject Ok;
+    [Header("Components")]
+    [SerializeField] GameObject Image;
+    [SerializeField] GameObject Slider;
+    [SerializeField] GameObject YesNoButton;
+    [SerializeField] GameObject OkButton;
+
+
+
 
     public ButtonPressed button;
 
-    public void SetType(string label, string content, bool type)
+    public void SetDialogBox(string label, string content, Sprite image, bool yesNo, float percent)
     {
         UIManager.SetText(Label, label);
         UIManager.SetText(Content, content);
+        UIManager.SetImage(Image, image);
+        UIManager.SetSliderValue(Slider, percent);
 
-        if (type)
+        if (yesNo)
         {
+            YesNoButton.SetActive(true);
             UIManager.SetText(TextYesButton, Strings.yes);
             UIManager.SetText(TextNoButton, Strings.no);
-            YesNo.SetActive(true);
         }
         else
         {
-            UIManager.SetText(TextOkButton, Strings.ok);
-            Ok.SetActive(true);
+            OkButton.SetActive(true);
+            UIManager.SetText(TextNoButton, Strings.ok);
         }
     }
 

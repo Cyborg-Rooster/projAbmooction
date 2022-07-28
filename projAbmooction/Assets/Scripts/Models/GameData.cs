@@ -14,6 +14,11 @@ class GameData
     public static int BestScore = 0;
     public static int Deaths = 0;
 
+    public static Item Doubled;
+    public static Item Magnetic;
+    public static Item Shield;
+    public static Item SlowMotion;
+
     public static Languages Language = Languages.Portuguese;
     private static bool Sound = true;
 
@@ -43,6 +48,16 @@ class GameData
         else Language = Languages.Español;
 
         SetSound(SQLiteManager.ReturnValueAsInt(CommonQuery.Select("SOUND", "OPTIONS")));
+
+        Doubled = new Item
+        (
+            0,
+            SQLiteManager.ReturnValueAsInt(CommonQuery.Select("LEVEL", "ITEMS", "ITEM_ID = 0")),
+            SQLiteManager.ReturnValueAsInt(CommonQuery.Select("PRICE", "ITEMS", "ITEM_ID = 0")),
+            SQLiteManager.ReturnValueAsInt(CommonQuery.Select("TIME", "ITEMS", "ITEM_ID = 0"))
+        );
+
+        SetItems();
     }
 
     public static void Save()
@@ -56,5 +71,40 @@ class GameData
 
         SQLiteManager.RunQuery(CommonQuery.Update("OPTIONS", $"SOUND = {GetSound()}", "SOUND = SOUND"));
         SQLiteManager.RunQuery(CommonQuery.Update("OPTIONS", $"LANGUAGE = {(int)Language}", "LANGUAGE = LANGUAGE"));
+    }
+
+    public static void SetItems()
+    {
+        Doubled = new Item
+        (
+            0,
+            SQLiteManager.ReturnValueAsInt(CommonQuery.Select("LEVEL", "ITEMS", "ITEM_ID = 0")),
+            SQLiteManager.ReturnValueAsInt(CommonQuery.Select("PRICE", "ITEMS", "ITEM_ID = 0")),
+            SQLiteManager.ReturnValueAsInt(CommonQuery.Select("TIME", "ITEMS", "ITEM_ID = 0"))
+        );
+
+        Magnetic = new Item
+        (
+            1,
+            SQLiteManager.ReturnValueAsInt(CommonQuery.Select("LEVEL", "ITEMS", "ITEM_ID = 1")),
+            SQLiteManager.ReturnValueAsInt(CommonQuery.Select("PRICE", "ITEMS", "ITEM_ID = 1")),
+            SQLiteManager.ReturnValueAsInt(CommonQuery.Select("TIME", "ITEMS", "ITEM_ID = 1"))
+        );
+
+        Shield = new Item
+        (
+            2,
+            SQLiteManager.ReturnValueAsInt(CommonQuery.Select("LEVEL", "ITEMS", "ITEM_ID = 2")),
+            SQLiteManager.ReturnValueAsInt(CommonQuery.Select("PRICE", "ITEMS", "ITEM_ID = 2")),
+            SQLiteManager.ReturnValueAsInt(CommonQuery.Select("TIME", "ITEMS", "ITEM_ID = 2"))
+        );
+
+        SlowMotion = new Item
+        (
+            3,
+            SQLiteManager.ReturnValueAsInt(CommonQuery.Select("LEVEL", "ITEMS", "ITEM_ID = 3")),
+            SQLiteManager.ReturnValueAsInt(CommonQuery.Select("PRICE", "ITEMS", "ITEM_ID = 3")),
+            SQLiteManager.ReturnValueAsInt(CommonQuery.Select("TIME", "ITEMS", "ITEM_ID = 3"))
+        );
     }
 }
