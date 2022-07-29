@@ -30,12 +30,16 @@ class PlanetController : MonoBehaviour
     {
         SpriteRenderer.sprite = Sprites[UnityEngine.Random.Range(0, Sprites.Length)];
         UIManager.SetRandomScale(gameObject);
-        transform.position = StartPos;
+        //transform.position = StartPos;
         transform.position = new Vector3
         (
             PosX[UnityEngine.Random.Range(0, PosX.Length)],
-            transform.position.y,
+            StartPos.y,
             transform.position.z
+        );
+        MovementController.ChangeTargetPositionAndMove
+        (
+            new Vector3(0, MovementController.finalPosition.y, 0)
         );
     }
 

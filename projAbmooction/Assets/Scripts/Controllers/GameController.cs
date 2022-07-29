@@ -11,7 +11,7 @@ public class GameController : MonoBehaviour
     [SerializeField] ShakeObjectController Camera;
     [SerializeField] MovementController Sky;
     [SerializeField] GameObject Planet;
-    [SerializeField] GameObject Stars;
+    [SerializeField] VerticalParallaxController VerticalParallax;
 
     [Header("UI")]
     [SerializeField] FadeController Fade;
@@ -42,10 +42,6 @@ public class GameController : MonoBehaviour
 
     private void Awake()
     {
-        SQLiteManager.SetDatabase();
-        GameData.Load();
-
-        Screen.sleepTimeout = SleepTimeout.NeverSleep;
     }
 
     private void Start()
@@ -101,7 +97,7 @@ public class GameController : MonoBehaviour
             if(!inEarth)
             {
                 Planet.GetComponent<MovementController>().SetIsMoving(true);
-                Stars.GetComponent<MovementController>().SetIsMoving(true);
+                VerticalParallax.GetComponent<MovementController>().SetIsMoving(true);
             }
             if (waitingSky) Sky.SetIsMoving(true);
             CowController.SetPause(true);
@@ -114,7 +110,7 @@ public class GameController : MonoBehaviour
             if (!inEarth)
             {
                 Planet.GetComponent<MovementController>().SetIsMoving(false);
-                Stars.GetComponent<MovementController>().SetIsMoving(false);
+                VerticalParallax.GetComponent<MovementController>().SetIsMoving(false);
             }
             if (waitingSky) Sky.SetIsMoving(false);
 
@@ -173,7 +169,7 @@ public class GameController : MonoBehaviour
         if (!inEarth)
         {
             Planet.GetComponent<MovementController>().SetIsMoving(false);
-            Stars.GetComponent<MovementController>().SetIsMoving(false);
+            VerticalParallax.GetComponent<MovementController>().SetIsMoving(false);
         }
         if (waitingSky) Sky.SetIsMoving(false);
 
@@ -210,6 +206,7 @@ public class GameController : MonoBehaviour
         ObstacleSpawner.SpawnNextTemplate();
         PlayButton.GetComponent<RectTransform>().anchoredPosition = Vector3.zero;
         UIManager.SetButtonState(PlayButton.gameObject, true);
+        VerticalParallax.gameObject.SetActive(true);
     }
 
     IEnumerator RestartGame()
@@ -221,11 +218,16 @@ public class GameController : MonoBehaviour
     IEnumerator GetOutOfEarth()
     {
         inEarth = false;
+
+        yield return VerticalParallax.WaitForComeToTargetLocation();
+
         Sky.SetIsMoving(true);
         waitingSky = true;
         yield return Sky.WaitForComeToTargetPosition();
         waitingSky = false;
+
         Planet.SetActive(true);
-        Stars.SetActive(true);
+        VerticalParallax.TurnStars();
+        //VerticalParallax.SetActive(true);
     }
 }
