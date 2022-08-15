@@ -11,6 +11,7 @@ public class StoreController : MonoBehaviour
     [SerializeField] GameObject SkinConteinerLabel;
     [SerializeField] GameObject MoneysLabel;
     [SerializeField] GameObject ScenarioConteinerLabel;
+    [SerializeField] GameObject ImprovementsConteinerLabel;
 
     [Header("Contents")]
     [SerializeField] List<SkinController> Skins;
@@ -29,6 +30,7 @@ public class StoreController : MonoBehaviour
         GetBoughtList();
         UIManager.SetText(SkinConteinerLabel, Strings.lblSkins);
         UIManager.SetText(ScenarioConteinerLabel, Strings.lblScenarios);
+        UIManager.SetText(ImprovementsConteinerLabel, Strings.lblImprovements);
 
         for (int i = 0; i < Skins.Count; i++) Skins[i].SetNameAndPrice(Strings.skins[i], SkinsBought.Contains(i), i);
         for (int i = 0; i < Scenarios.Count; i++)

@@ -92,7 +92,7 @@ class Strings
 
     public static string AddChanges(string item, float time, int coins)
     {
-        return $"The {item} item lasts for {time} seconds. Would you like to add 2 seconds per {coins} coins?";
+        return $"The {item} item lasts for {time} seconds. Would you like to add 2 seconds for {coins} coins?";
         //O item *** dura por *** segundos. Gostaria de acrescentar 2 segundos por *** moedas?
     }
     public static string ChangesFinish(string item, float time)
@@ -100,6 +100,13 @@ class Strings
         return $"You have already upgraded item {item} by 100%, lasting for {time} seconds.";
         //Você já atualizou o item {} em 100%, com duração de {} segundos.
     }
+
+    public static string Empty = "Empty";
+    public static string Open = "Open";
+    public static string GetReward = "Get Reward";
+
+    public static string BuyRegularBox = "Would you like to buy a regular box for 5000 coins?";
+    public static string OpenBox = "Do you want to open the box?";
 
 
     /*public static string[] skins = new string[22]

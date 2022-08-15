@@ -94,11 +94,9 @@ public class GameController : MonoBehaviour
 
             Mechanics.SpeedRange = Mechanics.PauseLastRange;
 
-            if(!inEarth)
-            {
-                Planet.GetComponent<MovementController>().SetIsMoving(true);
-                VerticalParallax.GetComponent<MovementController>().SetIsMoving(true);
-            }
+            Planet.GetComponent<MovementController>().SetIsMoving(true);
+            VerticalParallax.GetComponent<MovementController>().SetIsMoving(true);
+
             if (waitingSky) Sky.SetIsMoving(true);
             CowController.SetPause(true);
         }
@@ -107,11 +105,9 @@ public class GameController : MonoBehaviour
             Mechanics.PauseLastRange = Mechanics.SpeedRange;
             Mechanics.SpeedRange = 0f;
 
-            if (!inEarth)
-            {
-                Planet.GetComponent<MovementController>().SetIsMoving(false);
-                VerticalParallax.GetComponent<MovementController>().SetIsMoving(false);
-            }
+            Planet.GetComponent<MovementController>().SetIsMoving(false);
+            VerticalParallax.GetComponent<MovementController>().SetIsMoving(false);
+
             if (waitingSky) Sky.SetIsMoving(false);
 
             CowController.SetPause(false);
@@ -166,11 +162,10 @@ public class GameController : MonoBehaviour
     {
         GameData.Save();
         Mechanics.Phase = GamePhase.OnFinish;
-        if (!inEarth)
-        {
-            Planet.GetComponent<MovementController>().SetIsMoving(false);
-            VerticalParallax.GetComponent<MovementController>().SetIsMoving(false);
-        }
+
+        Planet.GetComponent<MovementController>().SetIsMoving(false);
+        VerticalParallax.GetComponent<MovementController>().SetIsMoving(false);
+
         if (waitingSky) Sky.SetIsMoving(false);
 
         PlayableDirector.playableAsset = TimelineEndGame;
