@@ -22,6 +22,9 @@ class GameData
     public static Languages Language = Languages.Portuguese;
     private static bool Sound = true;
 
+    public static bool IsOnline = false;
+    public static DateTime DateTimeNow;
+
     public static int GetSound()
     {
         return Sound ? 1 : 0;

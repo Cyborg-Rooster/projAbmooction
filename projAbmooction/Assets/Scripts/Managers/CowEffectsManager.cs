@@ -50,25 +50,17 @@ class CowEffectsManager : CowEffects
             }
             if(collision.IsTouching(DefaultCollider))
             {
-                /*
                 if (collision.name == "Coin(Clone)") GetCoin();
-                else if (collision.name == "DoubleCoins(Clone)") Doubled = CowController.StartCoroutine(GetDoubleCoins());
-                else if (collision.name == "Magnet(Clone)") Magnetic = CowController.StartCoroutine(GetMagnetic());
-                else if (collision.name == "Shield(Clone)") Shielded = CowController.StartCoroutine(GetShield());
-                else if (collision.name == "SlowMotion(Clone)") SlowDown = CowController.StartCoroutine(GetSlowDown());
-                CowController.StartCoroutine(GetItem(collision.gameObject));*/
-
-                if (collision.name == "Coin(Clone)") GetCoin();
-                else if (collision.name == "DoubleCoins(Clone)") Doubled = Teste(Doubled, doubled, GetDoubleCoins(doubled));
-                else if (collision.name == "Magnet(Clone)") Magnetic = Teste(Magnetic, magnetic, GetMagnetic(magnetic));
-                else if (collision.name == "Shield(Clone)") Shielded = Teste(Shielded, shielded, GetShield(shielded));
-                else if (collision.name == "SlowMotion(Clone)") SlowDown = Teste(SlowDown, slowDown, GetSlowDown());
+                else if (collision.name == "DoubleCoins(Clone)") Doubled = SetEffect(Doubled, doubled, GetDoubleCoins(doubled));
+                else if (collision.name == "Magnet(Clone)") Magnetic = SetEffect(Magnetic, magnetic, GetMagnetic(magnetic));
+                else if (collision.name == "Shield(Clone)") Shielded = SetEffect(Shielded, shielded, GetShield(shielded));
+                else if (collision.name == "SlowMotion(Clone)") SlowDown = SetEffect(SlowDown, slowDown, GetSlowDown());
                 CowController.StartCoroutine(GetItem(collision.gameObject));
             }
         }
     }
 
-    private Coroutine Teste(Coroutine coroutine,bool boolean, IEnumerator enumerator)
+    private Coroutine SetEffect(Coroutine coroutine,bool boolean, IEnumerator enumerator)
     {
         if (boolean) CowController.StopCoroutine(coroutine);
         coroutine = CowController.StartCoroutine(enumerator);

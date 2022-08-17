@@ -94,7 +94,10 @@ MonoBehaviour:
   - {fileID: 5001821811654905925, guid: c3fae1bef98c0184fa31810b03aa4ccc, type: 3}
   - {fileID: 2830832626148256319, guid: ad2af089cc4fee74dbfe8c5fc03d9f4e, type: 3}
   - {fileID: 1708827755290481394, guid: cd4ccb840ca64864491c98ddb17cec90, type: 3}
-  - {fileID: 6914053731602108096, guid: ff0775af7cb2c9048be57b4c8095bb5f, type: 3}
+  - {fileID: 2830832626148256319, guid: ad2af089cc4fee74dbfe8c5fc03d9f4e, type: 3}
+  - {fileID: 952181579725240900, guid: 1efbf63fab5b37642b1af3acda78b51a, type: 3}
+  - {fileID: 4557851541146600875, guid: 11024604d7f37af40a2f1732fe08f095, type: 3}
+  - {fileID: 6724665720073171961, guid: 51e2de71545901f4691f7ae682cb38db, type: 3}
 --- !u!1 &824253403455684842
 GameObject:
   m_ObjectHideFlags: 0
@@ -458,6 +461,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 4bc1aa2351fa2ac4eb2ce590501bd80a, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  CustomInitialPosition: {x: 0, y: 0, z: 0}
+  UseCustomInitialPosition: 0
   finalPosition: {x: 0, y: 5.34, z: 0}
   isParallax: 0
   isMoving: 1

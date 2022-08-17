@@ -12,6 +12,7 @@ TagManager:
   - Shield
   - SlowMotion
   - Item
+  - Box
   layers:
   - Default
   - TransparentFX

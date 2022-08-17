@@ -21,7 +21,5 @@ class Item
         Time = time;
         Price = price;
         Level = level;
-
-        Debug.Log($"id = {id}, name = {Name}, level = {level}, price = {price}, time = {time}");
     }
 }
