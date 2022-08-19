@@ -163,6 +163,12 @@ public class GameController : MonoBehaviour
         GameData.Save();
         Mechanics.Phase = GamePhase.OnFinish;
 
+        if(Mechanics.BoxCatched != null)
+        {
+            GameData.Boxes[Mechanics.BoxCatched.ID] = Mechanics.BoxCatched;
+            FirebaseManager.SaveBox(Mechanics.BoxCatched);
+        }
+
         Planet.GetComponent<MovementController>().SetIsMoving(false);
         VerticalParallax.GetComponent<MovementController>().SetIsMoving(false);
 

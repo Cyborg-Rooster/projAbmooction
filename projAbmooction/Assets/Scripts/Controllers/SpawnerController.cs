@@ -15,7 +15,14 @@ class SpawnerController : MonoBehaviour
 
     private GameObject ReturnRandomObject()
     {
-        return Objects[UnityEngine.Random.Range(0, Objects.Length)];
+        GameObject obj = Objects[UnityEngine.Random.Range(0, Objects.Length)];
+        if (!Mechanics.CanSpawnBox() && obj.CompareTag("Box"))
+        {
+            Debug.Log("Teste");
+            do obj = Objects[UnityEngine.Random.Range(0, Objects.Length)];
+            while (obj.CompareTag("Box"));
+        }
+        return obj;
     }
 
     private void SpawnObject(GameObject obj)

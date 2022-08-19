@@ -7,6 +7,8 @@ using UnityEngine;
 
 class GameData
 {
+    public static string Guid;
+
     public static int Coins = 0;
     public static int Skin = 0;
     public static int Scenario = 0;
@@ -22,8 +24,10 @@ class GameData
     public static Languages Language = Languages.Portuguese;
     private static bool Sound = true;
 
-    public static bool IsOnline = false;
+    public static bool IsOnline = true;
     public static DateTime DateTimeNow;
+
+    public static Box[] Boxes = new Box[5];
 
     public static int GetSound()
     {
@@ -37,6 +41,7 @@ class GameData
 
     public static void Load()
     {
+        Guid = SQLiteManager.ReturnValueAsString(CommonQuery.Select("GUID", "DATABASE"));
         int language = SQLiteManager.ReturnValueAsInt(CommonQuery.Select("LANGUAGE", "OPTIONS"));
 
         Coins = SQLiteManager.ReturnValueAsInt(CommonQuery.Select("COINS", "GAME_DATA"));
@@ -109,5 +114,12 @@ class GameData
             SQLiteManager.ReturnValueAsInt(CommonQuery.Select("PRICE", "ITEMS", "ITEM_ID = 3")),
             SQLiteManager.ReturnValueAsInt(CommonQuery.Select("TIME", "ITEMS", "ITEM_ID = 3"))
         );
+    }
+
+    public static int GetFirstBoxesEmptySpace()
+    {
+        int space = -1;
+        for (int i = 0; i < 5; i++) if (Boxes[i] == null) return i;
+        return space;
     }
 }

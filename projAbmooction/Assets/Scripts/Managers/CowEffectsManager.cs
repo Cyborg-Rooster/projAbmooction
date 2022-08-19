@@ -11,6 +11,7 @@ class CowEffectsManager : CowEffects
     {
         CheckObstacleCollision(collision);
         CheckItemCollision(collision);
+        CheckBoxCollision(collision);
     }
 
     IEnumerator GetItem(GameObject item)
@@ -57,6 +58,41 @@ class CowEffectsManager : CowEffects
                 else if (collision.name == "SlowMotion(Clone)") SlowDown = SetEffect(SlowDown, slowDown, GetSlowDown());
                 CowController.StartCoroutine(GetItem(collision.gameObject));
             }
+        }
+    }
+
+    private void CheckBoxCollision(Collider2D collision)
+    {
+        if(collision.CompareTag("Box"))
+        {
+            if (collision.IsTouching(MagneticCollider))
+            {
+                collision.transform.parent = CowController.transform.parent;
+                collision.GetComponent<ItemController>().GetMagnetic(CowController.transform);
+            }
+            if (collision.name == "BoxType1(Clone)")
+                Mechanics.BoxCatched = new Box
+                {
+                    ID = GameData.GetFirstBoxesEmptySpace(),
+                    Type = 1,
+                    EndTime = new Firebase.Firestore.Timestamp()
+                };
+            else if (collision.name == "BoxType2(Clone)")
+
+                Mechanics.BoxCatched = new Box
+                {
+                    ID = GameData.GetFirstBoxesEmptySpace(),
+                    Type = 2,
+                    EndTime = new Firebase.Firestore.Timestamp()
+                };
+            else
+                Mechanics.BoxCatched = new Box
+                {
+                    ID = GameData.GetFirstBoxesEmptySpace(),
+                    Type = 3,
+                    EndTime = new Firebase.Firestore.Timestamp()
+                };
+            CowController.StartCoroutine(GetItem(collision.gameObject));
         }
     }
 

@@ -12,16 +12,19 @@ class Mechanics
     public static float ObstacleSpeed { get => SpeedRange * 0.5f; }
 
     public static float ConfusedTime = 5f;
-    /*public static float DoubledTime = 5f;
-    public static float MagneticTime = 5f;
-    public static float ShieldTime = 5f;
-    public static float SlowMotionTime = 5f;*/
 
     public static GamePhase Phase = GamePhase.OnMain;
 
     public static bool OnPause;
     public static bool CanSpeedUp = true;
 
+    public static Box BoxCatched;
+
+    public static bool CanSpawnBox()
+    {
+        if (BoxCatched != null || !GameData.IsOnline || GameData.GetFirstBoxesEmptySpace() == -1) return false;
+        else return true;
+    }
 
     public static void RestartAttributes()
     {
@@ -29,5 +32,6 @@ class Mechanics
         SlowMotionLastRange = 1;
         PauseLastRange = 1;
         SpeedRange = 1;
+        BoxCatched = null;
     }
 }

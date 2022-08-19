@@ -281,6 +281,9 @@ TextureImporter:
   - first:
       213: -4895702683482835718
     second: itens_48
+  - first:
+      213: 7853198681279739190
+    second: itens_49
   externalObjects: {}
   serializedVersion: 11
   mipmaps:
@@ -1406,6 +1409,27 @@ TextureImporter:
       bones: []
       spriteID: af434111958fe0cb0800000000000000
       internalID: -4895702683482835718
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: itens_49
+      rect:
+        serializedVersion: 2
+        x: 16
+        y: 0
+        width: 16
+        height: 16
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 635be34b79a2cfc60800000000000000
+      internalID: 7853198681279739190
       vertices: []
       indices: 
       edges: []
