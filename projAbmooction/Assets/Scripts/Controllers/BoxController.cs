@@ -17,20 +17,49 @@ class BoxController : MonoBehaviour
     public void SetBox(Box box, int id)
     {
         ID = id;
-        if (box == null) UpdateBox(BoxSprites[3], Strings.Empty, null);
+        if (box == null) ClearBox();
+        else SetTypedBox(box);
     }
 
 
-    private void UpdateBox(Sprite sprite, string label, Box box)
+    private void ClearBox()
     {
-        UIManager.SetImage(BoxImage, sprite);
-        UIManager.SetText(BoxLabel, label);
-        Box = box;
+        UIManager.SetImage(BoxImage, BoxSprites[3]);
+        UIManager.SetText(BoxLabel, Strings.Empty);
+        Box = null;
     }
 
     private void SetTypedBox(Box box)
     {
-        string label;
-        //if (box.A) { }
+        Box = box;
+        if (!box.Active) UIManager.SetText(BoxLabel, Strings.Open);
+        else
+        {
+            CalculateTime();
+            InvokeRepeating(nameof(DecreaseTime), 1f, 1f);
+        }
+        UIManager.SetImage(BoxImage, BoxSprites[box.Type - 1]);
+    }
+
+    private void CalculateTime()
+    {
+        TimeSpan actualTime = Box.EndTime.ToDateTime() - (GameData.DateTimeNow - new TimeSpan(3, 0, 0));
+        TimeSpan decreaseMilliseconds = new TimeSpan(0, 0, 0, 0, actualTime.Milliseconds);
+        Box.ActualTime = actualTime - decreaseMilliseconds;
+    }
+
+    private void DecreaseTime()
+    {
+        if(Box.ActualTime.TotalSeconds > 1)
+        {
+            Box.ActualTime.Subtract(new TimeSpan(0, 0, 1));
+            UIManager.SetText(BoxLabel, Box.ActualTime.ToString());
+        }
+        else
+        {
+            CancelInvoke();
+            Box.Active = true;
+            UIManager.SetText(BoxLabel, Strings.GetReward);
+        }
     }
 }
