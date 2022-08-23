@@ -46,14 +46,20 @@ class FirebaseManager
             {
                 Dictionary<string, object> box = documentSnapshot.ToDictionary();
 
-                Debug.Log($"ID:{documentSnapshot.Id} Type:{box["Type"]}");
-                GameData.Boxes[int.Parse(documentSnapshot.Id)] = new Box()
+                Debug.Log($"ID:{documentSnapshot.Id} Type:{box["Type"]} Active:{box["Active"]} EndTime:{box["EndTime"]}");
+                try
                 {
-                    ID = int.Parse(documentSnapshot.Id),
-                    Type = (int)box["Type"],
-                    Active = (bool)box["Active"],
-                    EndTime = (Timestamp)box["EndTime"]
-                };
+                    GameData.Boxes[int.Parse(documentSnapshot.Id)] = new Box()
+                    {
+                        ID = int.Parse(documentSnapshot.Id),
+                        Type = Convert.ToInt32(box["Type"]),
+                        Active = (bool)box["Active"],
+                        EndTime = (Timestamp)box["EndTime"]
+                    };
+                }catch(Exception e)
+                {
+                    Debug.LogError(e);
+                }
             }
         });
     }

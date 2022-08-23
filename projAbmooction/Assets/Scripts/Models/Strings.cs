@@ -107,6 +107,7 @@ class Strings
 
     public static string BuyRegularBox = "Would you like to buy a regular box for 5000 coins?";
     public static string OpenBox = "Do you want to open the box?";
+    public static string SeeAnADAndDecreaseTime = "Do you want to see an ad and decrease 1 hour?";
 
 
     /*public static string[] skins = new string[22]

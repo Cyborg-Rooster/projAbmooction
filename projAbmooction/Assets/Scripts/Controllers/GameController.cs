@@ -40,10 +40,6 @@ public class GameController : MonoBehaviour
 
     static bool restartMode = false;
 
-    private void Awake()
-    {
-    }
-
     private void Start()
     {
         Mechanics.RestartAttributes();
@@ -55,6 +51,8 @@ public class GameController : MonoBehaviour
         //Fade.StartCoroutine(Fade.StartFade(false));
 
         if (restartMode) OnButtonPlayClicked();
+
+        //InvokeRepeating("ShowTime", 1f, 1f);
     }
 
     #region "Buttons methods"
@@ -141,6 +139,11 @@ public class GameController : MonoBehaviour
 
         if (Meters > 100 && inEarth) StartCoroutine(GetOutOfEarth());
     }
+
+    /*void ShowTime()
+    {
+        Debug.Log(GameData.DateTimeNow);
+    }*/
 
     private void OnApplicationQuit()
     {

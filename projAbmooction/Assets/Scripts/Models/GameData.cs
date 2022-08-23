@@ -25,7 +25,13 @@ class GameData
     private static bool Sound = true;
 
     public static bool IsOnline = true;
-    public static DateTime DateTimeNow;
+    private static DateTime _dateTimeNow;
+
+    public static DateTime DateTimeNow
+    { 
+        get => _dateTimeNow + TimeSpan.FromSeconds(Mathf.Round(Time.unscaledTime)); 
+        set => _dateTimeNow = value; 
+    }
 
     public static Box[] Boxes = new Box[5];
 

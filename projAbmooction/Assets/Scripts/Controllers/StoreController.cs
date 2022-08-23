@@ -22,13 +22,37 @@ public class StoreController : MonoBehaviour
     [Header("Controllers")]
     [SerializeField] HighlightController SkinHighlightController;
     [SerializeField] HighlightController ScenarioHighlightController;
+    [SerializeField] FadeController FadeAnimator;
 
     List<int> SkinsBought = new List<int>();
     List<int> ScenariosBought = new List<int>();
 
     void Start()
     {
-        StartCoroutine(StartStore());
+
+        GetBoughtList();
+        UIManager.SetText(SkinConteinerLabel, Strings.lblSkins);
+        UIManager.SetText(ScenarioConteinerLabel, Strings.lblScenarios);
+        UIManager.SetText(ImprovementsConteinerLabel, Strings.lblImprovements);
+
+        //instance boxes
+        for (int i = 0; i < Boxes.Count; i++)
+            Boxes[i].SetBox(GameData.Boxes[i], i);
+
+        FadeAnimator.StartCoroutine(FadeAnimator.StartFade(false));
+
+        //instance skins
+        for (int i = 0; i < Skins.Count; i++) Skins[i].SetNameAndPrice(Strings.skins[i], SkinsBought.Contains(i), i);
+
+        //instance scenarios
+        for (int i = 0; i < Scenarios.Count; i++)
+            Scenarios[i].SetNameAndMaterial(Strings.scenarios[i], ScenariosBought.Contains(i), i);
+
+        //instance itens improvements
+        UpdateItens();
+
+        SkinHighlightController.SetHighlight(Skins[GameData.Skin].transform);
+        ScenarioHighlightController.SetHighlight(Scenarios[GameData.Scenario].transform);
     }
 
     public void UpdateItens()
@@ -61,32 +85,5 @@ public class StoreController : MonoBehaviour
     private void OnApplicationQuit()
     {
         SQLiteManager.SetDatabaseActive(false); 
-    }
-
-    private IEnumerator StartStore()
-    {
-        GetBoughtList();
-        UIManager.SetText(SkinConteinerLabel, Strings.lblSkins);
-        UIManager.SetText(ScenarioConteinerLabel, Strings.lblScenarios);
-        UIManager.SetText(ImprovementsConteinerLabel, Strings.lblImprovements);
-
-        //instance skins
-        for (int i = 0; i < Skins.Count; i++) Skins[i].SetNameAndPrice(Strings.skins[i], SkinsBought.Contains(i), i);
-
-        //instance scenarios
-        for (int i = 0; i < Scenarios.Count; i++)
-            Scenarios[i].SetNameAndMaterial(Strings.scenarios[i], ScenariosBought.Contains(i), i);
-
-        //instance itens improvements
-        UpdateItens();
-
-        //instance boxes
-        yield return ApiManager.GetCurrentTime("https://timeapi.io/api/Time/current/zone?timeZone=America/Sao_Paulo");
-        for (int i = 0; i < Boxes.Count; i++)
-            Boxes[i].SetBox(GameData.Boxes[i], i);
-
-
-        SkinHighlightController.SetHighlight(Skins[GameData.Skin].transform);
-        ScenarioHighlightController.SetHighlight(Scenarios[GameData.Scenario].transform);
     }
 }

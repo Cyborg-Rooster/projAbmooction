@@ -27,6 +27,7 @@ public class StartController : MonoBehaviour
         StartCoroutine(StartSplashscreen());
         FirebaseManager.Init();
         FirebaseManager.LoadBox();
+        yield return ApiManager.GetCurrentTime("https://timeapi.io/api/Time/current/zone?timeZone=America/Sao_Paulo");
         loaded = true;
         
         yield return new WaitUntil(() => splashscreenEnded);
