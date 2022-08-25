@@ -42,7 +42,7 @@ class BoxController : MonoBehaviour
 
     private IEnumerator OnBoxIsNull()
     {
-        yield return Builder.ShowImage(Strings.lblSlots, Strings.BuyRegularBox, Strings.yes, Strings.no, BoxSprites[0]);
+        yield return Builder.ShowImage(Strings.lblSlots, Strings.BuyRegularBox, Strings.yes, Strings.no, BoxSprites[0], new Vector3(0.05f, 0.05f, 1));
         if(Builder.LastButtonState == ButtonPressed.Yes)
         {
             if(GameData.Coins >= 5000)
@@ -66,7 +66,7 @@ class BoxController : MonoBehaviour
     {
         yield return Builder.ShowImage
         (
-            Strings.lblSlots, Strings.SeeAnADAndDecreaseTime, Strings.yes, Strings.no, BoxSprites[Box.Type - 1]
+            Strings.lblSlots, Strings.SeeAnADAndDecreaseTime, Strings.yes, Strings.no, BoxSprites[Box.Type - 1], new Vector3(0.05f, 0.05f, 1)
         );
         if (Builder.LastButtonState == ButtonPressed.Yes)
         {
@@ -78,7 +78,7 @@ class BoxController : MonoBehaviour
     {
         yield return Builder.ShowImage
         (
-            Strings.lblSlots, Strings.OpenBox, Strings.yes, Strings.no, BoxSprites[Box.Type - 1]
+            Strings.lblSlots, Strings.OpenBox, Strings.yes, Strings.no, BoxSprites[Box.Type - 1], new Vector3(0.05f, 0.05f, 1)
         );
 
         if(Builder.LastButtonState == ButtonPressed.Yes)

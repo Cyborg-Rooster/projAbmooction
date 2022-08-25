@@ -45,7 +45,8 @@ class ScenarioController : MonoBehaviour
             Strings.lblScenarios,
             Strings.SelectScenario(Strings.scenarios[ID]),
             Strings.confirm, Strings.cancel,
-            BackgroundImage
+            BackgroundImage,
+            new Vector3(0.005f, 0.005f, 1)
         );
 
         if (Builder.LastButtonState == ButtonPressed.Yes)
@@ -63,7 +64,8 @@ class ScenarioController : MonoBehaviour
             Strings.lblScenarios,
             Strings.selectScenarioError,
             $"{actualCards}/{(int)CardsNeeded}", Strings.cancel,
-            BackgroundImage
+            BackgroundImage,
+            new Vector3(0.005f, 0.005f, 1)
         );
     }
 }

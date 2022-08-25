@@ -70,29 +70,32 @@ class CowEffectsManager : CowEffects
                 collision.transform.parent = CowController.transform.parent;
                 collision.GetComponent<ItemController>().GetMagnetic(CowController.transform);
             }
-            if (collision.name == "BoxType1(Clone)")
-                Mechanics.BoxCatched = new Box
-                {
-                    ID = GameData.GetFirstBoxesEmptySpace(),
-                    Type = 1,
-                    EndTime = new Firebase.Firestore.Timestamp()
-                };
-            else if (collision.name == "BoxType2(Clone)")
+            if (collision.IsTouching(DefaultCollider))
+            {
+                if (collision.name == "BoxType1(Clone)")
+                    Mechanics.BoxCatched = new Box
+                    {
+                        ID = GameData.GetFirstBoxesEmptySpace(),
+                        Type = 1,
+                        EndTime = new Firebase.Firestore.Timestamp()
+                    };
+                else if (collision.name == "BoxType2(Clone)")
 
-                Mechanics.BoxCatched = new Box
-                {
-                    ID = GameData.GetFirstBoxesEmptySpace(),
-                    Type = 2,
-                    EndTime = new Firebase.Firestore.Timestamp()
-                };
-            else
-                Mechanics.BoxCatched = new Box
-                {
-                    ID = GameData.GetFirstBoxesEmptySpace(),
-                    Type = 3,
-                    EndTime = new Firebase.Firestore.Timestamp()
-                };
-            CowController.StartCoroutine(GetItem(collision.gameObject));
+                    Mechanics.BoxCatched = new Box
+                    {
+                        ID = GameData.GetFirstBoxesEmptySpace(),
+                        Type = 2,
+                        EndTime = new Firebase.Firestore.Timestamp()
+                    };
+                else
+                    Mechanics.BoxCatched = new Box
+                    {
+                        ID = GameData.GetFirstBoxesEmptySpace(),
+                        Type = 3,
+                        EndTime = new Firebase.Firestore.Timestamp()
+                    };
+                CowController.StartCoroutine(GetItem(collision.gameObject));
+            }
         }
     }
 

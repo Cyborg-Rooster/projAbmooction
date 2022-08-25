@@ -14,13 +14,15 @@ public class DialogBoxImageController : MonoBehaviour
 
     public ButtonPressed button;
 
-    public void SetDialogBox(string label, string content, Sprite image, string yes, string no)
+    public void SetDialogBox(string label, string content, Sprite image, string yes, string no, Vector3 scale)
     {
         UIManager.SetText(Label, label);
         UIManager.SetText(Content, content);
         UIManager.SetImage(Image, image);
+        UIManager.SetScale(Image, scale);
         UIManager.SetText(TextYesButton, yes);
         UIManager.SetText(TextNoButton, no);
+        UIManager.SetNativeScale(Image);
     }
 
     public void SetButton(bool yes)

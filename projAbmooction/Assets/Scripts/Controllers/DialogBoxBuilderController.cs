@@ -21,11 +21,11 @@ public class DialogBoxBuilderController : MonoBehaviour
         Destroy(d);
     }
 
-    public IEnumerator ShowImage(string label, string content, string yes, string no, Sprite image)
+    public IEnumerator ShowImage(string label, string content, string yes, string no, Sprite image, Vector3 scaleImage)
     {
         GameObject d = Instantiate(DialogBoxImage, transform);
         DialogBoxImageController c = d.GetComponent<DialogBoxImageController>();
-        c.SetDialogBox(label, content, image, yes, no);
+        c.SetDialogBox(label, content, image, yes, no, scaleImage);
 
         yield return new WaitUntil(() => c.button != ButtonPressed.Null);
         LastButtonState = c.button;

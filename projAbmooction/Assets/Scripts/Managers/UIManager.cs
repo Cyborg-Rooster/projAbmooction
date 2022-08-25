@@ -34,6 +34,16 @@ class UIManager
         return output.GetComponent<Image>().sprite;
     }
 
+    public static void SetScale(GameObject output, Vector3 scale)
+    {
+        output.transform.localScale = scale;
+    }
+
+    public static void SetNativeScale(GameObject output)
+    {
+        output.GetComponent<Image>().SetNativeSize();
+    }
+
     public static void SetRandomScale(GameObject gameObject)
     {
         System.Random r = new System.Random();
@@ -44,6 +54,7 @@ class UIManager
     {
         output.GetComponent<Image>().material = material;
     }
+
     public static Material ReturnImageMaterial(GameObject output)
     {
         return output.GetComponent<Image>().material;

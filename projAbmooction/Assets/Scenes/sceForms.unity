@@ -4030,7 +4030,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0}
   m_AnchorMax: {x: 0.5204293, y: 1}
-  m_AnchoredPosition: {x: -7, y: -10.985352}
+  m_AnchoredPosition: {x: -7, y: -8.902039}
   m_SizeDelta: {x: 671.29, y: 0}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &487078203
@@ -4272,9 +4272,9 @@ Camera:
     height: 1
   near clip plane: 0.3
   far clip plane: 1000
-  field of view: 106.68631
+  field of view: 106.80895
   orthographic: 1
-  orthographic size: 11.636905
+  orthographic size: 11.662947
   m_Depth: -1
   m_CullingMask:
     serializedVersion: 2
@@ -13582,6 +13582,7 @@ MonoBehaviour:
   MoneysLabel: {fileID: 1667296075}
   ScenarioConteinerLabel: {fileID: 1404061578}
   ImprovementsConteinerLabel: {fileID: 437650672}
+  BoxConteinerLabel: {fileID: 1983740753}
   Skins:
   - {fileID: 279747950}
   - {fileID: 2061305157}
