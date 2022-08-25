@@ -3,6 +3,7 @@ using System.Collections;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using Firebase.Firestore;
 using UnityEngine;
 
 class BoxController : MonoBehaviour
@@ -65,7 +66,7 @@ class BoxController : MonoBehaviour
     {
         yield return Builder.ShowImage
         (
-            Strings.lblSlots, Strings.SeeAnADAndDecreaseTime, Strings.yes, Strings.no, BoxSprites[0]
+            Strings.lblSlots, Strings.SeeAnADAndDecreaseTime, Strings.yes, Strings.no, BoxSprites[Box.Type - 1]
         );
         if (Builder.LastButtonState == ButtonPressed.Yes)
         {
@@ -77,12 +78,14 @@ class BoxController : MonoBehaviour
     {
         yield return Builder.ShowImage
         (
-            Strings.lblSlots, Strings.OpenBox, Strings.yes, Strings.no, BoxSprites[ID]
+            Strings.lblSlots, Strings.OpenBox, Strings.yes, Strings.no, BoxSprites[Box.Type - 1]
         );
 
         if(Builder.LastButtonState == ButtonPressed.Yes)
         {
             Box.Active = true;
+            Box.EndTime = Timestamp.FromDateTime(GameData.DateTimeNow + TimeSpan.FromHours(Box.Type));
+            FirebaseManager.SaveBox(Box);
             SetBox(Box, ID);
         }
     }
@@ -101,24 +104,30 @@ class BoxController : MonoBehaviour
         else
         {
             CalculateTime();
-            InvokeRepeating(nameof(DecreaseTime), 1f, 1f);
+            InvokeRepeating("DecreaseTime", 0f, 1f);
         }
         UIManager.SetImage(BoxImage, BoxSprites[box.Type - 1]);
     }
 
     private void CalculateTime()
     {
-        TimeSpan actualTime = Box.EndTime.ToDateTime() - (GameData.DateTimeNow - new TimeSpan(3, 0, 0));
+        TimeSpan actualTime = (Box.EndTime.ToDateTime() - new TimeSpan(3, 0, 0)) - GameData.DateTimeNow;
         TimeSpan decreaseMilliseconds = TimeSpan.FromMilliseconds(actualTime.Milliseconds);
         Box.ActualTime = actualTime - decreaseMilliseconds;
     }
 
     private void DecreaseTime()
     {
-        if(Box.ActualTime.TotalSeconds > 1)
+        if(Box.ActualTime.TotalSeconds >= 1)
         {
-            Box.ActualTime.Subtract(new TimeSpan(0, 0, 1));
-            UIManager.SetText(BoxLabel, Box.ActualTime.ToString());
+            Box.ActualTime = Box.ActualTime.Subtract(TimeSpan.FromSeconds(1));
+
+            UIManager.SetText
+            (
+                BoxLabel, 
+                $"{Box.ActualTime.Hours:00}:{Box.ActualTime.Minutes:00}:{Box.ActualTime.Seconds:00}"
+            );
+            Debug.Log(Box.ActualTime);
         }
         else
         {
