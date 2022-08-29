@@ -7,9 +7,9 @@ using System.Threading.Tasks;
 public enum ScenarioCards
 {
     Farm = 0,
-    City = 100,
-    Mountain = 200,
-    Western = 300,
-    Medieval = 400,
-    Alien = 500
+    City = 200,
+    Mountain = 400,
+    Western = 600,
+    Medieval = 800,
+    Alien = 1000
 }

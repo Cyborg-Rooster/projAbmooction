@@ -63,4 +63,11 @@ class FirebaseManager
             }
         });
     }
+
+    public static void RemoveBox(Box box)
+    {
+        DocumentReference docRef = Database.Collection("Users_Boxes").Document(GameData.Guid).
+            Collection("Boxes").Document(box.ID.ToString());
+        docRef.DeleteAsync();
+    }
 }

@@ -6,12 +6,13 @@ using System.Threading.Tasks;
 using Firebase.Firestore;
 using UnityEngine;
 
-class BoxController : MonoBehaviour
+public class BoxController : MonoBehaviour
 {
     [SerializeField] GameObject BoxImage;
     [SerializeField] GameObject BoxLabel;
     [SerializeField] Sprite[] BoxSprites;
     [SerializeField] DialogBoxBuilderController Builder;
+    [SerializeField] BoxRewardController RewardController;
 
     Box Box;
     int ID;
@@ -31,10 +32,7 @@ class BoxController : MonoBehaviour
             if (Box.Active)
             {
                 if (Box.ActualTime.TotalSeconds > 1) StartCoroutine(OnBoxAreActive());
-                else
-                {
-                    //open the box
-                }
+                else RewardController.GetReward(Box, this);
             }
             else StartCoroutine(OnBoxAreDisactive());
         }
@@ -127,7 +125,6 @@ class BoxController : MonoBehaviour
                 BoxLabel, 
                 $"{Box.ActualTime.Hours:00}:{Box.ActualTime.Minutes:00}:{Box.ActualTime.Seconds:00}"
             );
-            Debug.Log(Box.ActualTime);
         }
         else
         {

@@ -105,6 +105,19 @@ class Strings
     public static string Open = "Open";
     public static string GetReward = "Get Reward";
 
+    public static string Congratulations = "Congratulations!";
+    public static string YouAcquired = "You acquired:";
+    public static string Collect = "Collect";
+
+    public static string CollectCards(int quantity, int scenarioId)
+    {
+        return $"{quantity}x {scenarios[scenarioId]} cards!";
+    }
+    public static string CollectCoins(int quantity)
+    {
+        return $"{quantity}x coins!";
+    }
+
     public static string BuyRegularBox = "Would you like to buy a regular box for 5000 coins?";
     public static string OpenBox = "Do you want to open the box?";
     public static string SeeAnADAndDecreaseTime = "Do you want to see an ad and decrease 1 hour?";

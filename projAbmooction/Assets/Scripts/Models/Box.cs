@@ -5,7 +5,7 @@ using System.Text;
 using System.Threading.Tasks;
 using Firebase.Firestore;
 
-class Box
+public class Box
 {
     public int ID;
     public int Type;
