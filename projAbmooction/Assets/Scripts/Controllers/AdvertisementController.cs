@@ -83,10 +83,10 @@ class AdvertisementController : MonoBehaviour, IUnityAdsLoadListener, IUnityAdsS
     public void OnUnityAdsShowComplete(string placementId, UnityAdsShowCompletionState showCompletionState)
     {
         if (placementId == AndroidRewardedAdUnitId || placementId == IosRewardedAdUnitId)
-        { 
-            if(showCompletionState == UnityAdsShowCompletionState.COMPLETED) RewardAdState = RewardAdState.Finish;
+        {
+            if (showCompletionState == UnityAdsShowCompletionState.COMPLETED) RewardAdState = RewardAdState.Finish;
             else RewardAdState = RewardAdState.Canceled;
-            LoadRewarded();
+            //LoadRewarded();
         }
         else LoadInterstitial();
     }

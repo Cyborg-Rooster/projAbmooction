@@ -71,6 +71,10 @@ class Strings
     public static string confirm = "Confirm";
     public static string cancel = "Cancel";
 
+    public static string restart = "Restart";
+    public static string seeAnAd = "See an ad and restore score";
+    public static string backToMain = "Back to main menu";
+
     public static string skin = "skin";
     public static string titleError = "Error";
 

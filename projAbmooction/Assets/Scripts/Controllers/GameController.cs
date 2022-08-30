@@ -18,6 +18,9 @@ public class GameController : MonoBehaviour
     [SerializeField] ButtonController PlayButton;
     [SerializeField] ButtonController ShopButton;
     [SerializeField] ButtonController PauseButton;
+    [SerializeField] ButtonController AdButton;
+    [SerializeField] GameObject RestartButton;
+    [SerializeField] GameObject MainMenuButton;
     [SerializeField] GameObject TxtCoins;
     [SerializeField] GameObject TxtMeter;
 
@@ -47,7 +50,12 @@ public class GameController : MonoBehaviour
     {
         Mechanics.RestartAttributes(rewarded);
         UIManager.SetText(TxtCoins, GameData.Coins);
+        UIManager.SetText(TxtMeter, $"{Mechanics.Meters}m");
+        UIManager.SetText(RestartButton, Strings.restart);
+        UIManager.SetText(AdButton.transform.GetChild(0).gameObject, Strings.seeAnAd);
+        UIManager.SetText(MainMenuButton, Strings.backToMain);
 
+        if (rewarded) AdButton.SetButtonState(false);
         rewarded = false;
 
         PlayableDirector = GetComponent<PlayableDirector>();
@@ -246,14 +254,16 @@ public class GameController : MonoBehaviour
         AdvertisementController.ShowRewarded();
         yield return new WaitUntil(() => AdvertisementController.RewardAdState != RewardAdState.Null);
 
-        if(AdvertisementController.RewardAdState != RewardAdState.Finish)
+        if(AdvertisementController.RewardAdState == RewardAdState.Finish)
         {
+            AdvertisementController.LoadRewarded();
             rewarded = true;
             restartMode = true;
             SceneManager.RestartScene();
         }
         else
         {
+            AdvertisementController.LoadRewarded();
             yield return Fade.StartFade(false);
         }
     }

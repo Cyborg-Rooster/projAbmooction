@@ -35,6 +35,6 @@ class Mechanics
         PauseLastRange = 1;
         SpeedRange = 1;
         BoxCatched = null;
-        if (rewarded) Meters = 0;
+        if (!rewarded) Meters = 0;
     }
 }
