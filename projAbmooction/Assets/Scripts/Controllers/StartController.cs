@@ -4,6 +4,9 @@ using UnityEngine;
 
 public class StartController : MonoBehaviour
 {
+    [SerializeField] AdvertisementInitializerController AdvertisementInitializerController;
+    [SerializeReference] AdvertisementController AdvertisementController;
+
     bool splashscreenEnded = false;
     bool loaded = false;
     // Start is called before the first frame update
@@ -25,9 +28,17 @@ public class StartController : MonoBehaviour
         Screen.sleepTimeout = SleepTimeout.NeverSleep;
 
         StartCoroutine(StartSplashscreen());
+
         FirebaseManager.Init();
         FirebaseManager.LoadBox();
+
+        AdvertisementInitializerController.Initialize();
+
         yield return ApiManager.GetCurrentTime("https://timeapi.io/api/Time/current/zone?timeZone=America/Sao_Paulo");
+
+        AdvertisementController.LoadRewarded();
+        AdvertisementController.LoadInterstitial();
+
         loaded = true;
         
         yield return new WaitUntil(() => splashscreenEnded);

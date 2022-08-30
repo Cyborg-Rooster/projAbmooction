@@ -24,6 +24,8 @@ class GameData
     public static Languages Language = Languages.Portuguese;
     private static bool Sound = true;
 
+    public static int InterstitialTime = 0;
+
     public static bool IsOnline = true;
     private static DateTime _dateTimeNow;
 

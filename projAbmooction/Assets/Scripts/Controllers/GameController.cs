@@ -24,6 +24,9 @@ public class GameController : MonoBehaviour
     [Header("Timelines")]
     [SerializeField] PlayableAsset TimelineEndGame;
 
+    [Header("Controllers")]
+    [SerializeField] AdvertisementController AdvertisementController;
+
     [SerializeField] float SpeedRate;
     [SerializeField] float MaximumSpeedRange;
     [SerializeField] float RepeatingTimeToIncreaseObstacleSpeed;
@@ -34,16 +37,18 @@ public class GameController : MonoBehaviour
 
     float NextRepeatingTime;
     float NextMeterUpTime;
-    float Meters;
     bool inEarth = true;
     bool waitingSky = false;
 
     static bool restartMode = false;
+    static bool rewarded = false;
 
     private void Start()
     {
-        Mechanics.RestartAttributes();
+        Mechanics.RestartAttributes(rewarded);
         UIManager.SetText(TxtCoins, GameData.Coins);
+
+        rewarded = false;
 
         PlayableDirector = GetComponent<PlayableDirector>();
 
@@ -73,9 +78,18 @@ public class GameController : MonoBehaviour
         StartCoroutine(RestartGame());
     }
 
+    public void OnButtonSeeAnAdClicked()
+    {
+        StartCoroutine(SeeAnAd());
+    }
+
     public void OnButtonFormClicked(bool shop)
     {
-        if (shop) FormsController.State = FormState.Store;
+        if (shop) 
+        { 
+            FormsController.State = FormState.Store;
+            GameData.InterstitialTime++;
+        }
         else FormsController.State = FormState.Options;
 
         StartCoroutine(GoToForms());
@@ -119,6 +133,13 @@ public class GameController : MonoBehaviour
     IEnumerator GoToForms()
     {
         yield return Fade.StartFade(true);
+
+        if(GameData.InterstitialTime == 3)
+        {
+            GameData.InterstitialTime = 0;
+            AdvertisementController.ShowInterstitial();
+        }
+
         SceneManager.LoadScene("sceForms");
     }
     #endregion
@@ -137,7 +158,7 @@ public class GameController : MonoBehaviour
             if (Mechanics.Phase == GamePhase.OnGame) AddMeters();
         }
 
-        if (Meters > 100 && inEarth) StartCoroutine(GetOutOfEarth());
+        if (Mechanics.Meters > 100 && inEarth) StartCoroutine(GetOutOfEarth());
     }
 
     /*void ShowTime()
@@ -190,8 +211,8 @@ public class GameController : MonoBehaviour
 
     private void AddMeters()
     {
-        Meters++;
-        UIManager.SetText(TxtMeter, $"{Meters}m");
+        Mechanics.Meters++;
+        UIManager.SetText(TxtMeter, $"{Mechanics.Meters}m");
     }
 
     IEnumerator StartGame()
@@ -217,6 +238,24 @@ public class GameController : MonoBehaviour
     {
         yield return Fade.StartFade(true);
         SceneManager.RestartScene();
+    }
+
+    IEnumerator SeeAnAd()
+    {
+        yield return Fade.StartFade(true);
+        AdvertisementController.ShowRewarded();
+        yield return new WaitUntil(() => AdvertisementController.RewardAdState != RewardAdState.Null);
+
+        if(AdvertisementController.RewardAdState != RewardAdState.Finish)
+        {
+            rewarded = true;
+            restartMode = true;
+            SceneManager.RestartScene();
+        }
+        else
+        {
+            yield return Fade.StartFade(false);
+        }
     }
 
     IEnumerator GetOutOfEarth()

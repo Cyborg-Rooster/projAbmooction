@@ -1212,9 +1212,9 @@ Camera:
     height: 1
   near clip plane: 0.3
   far clip plane: 1000
-  field of view: 32.323784
+  field of view: 106.8474
   orthographic: 1
-  orthographic size: 0.50195825
+  orthographic size: 2.3342247
   m_Depth: -1
   m_CullingMask:
     serializedVersion: 2
@@ -1418,6 +1418,54 @@ Canvas:
   m_SortingLayerID: 0
   m_SortingOrder: 0
   m_TargetDisplay: 0
+--- !u!1 &751254349
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 751254351}
+  - component: {fileID: 751254350}
+  m_Layer: 0
+  m_Name: Advertisement
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!114 &751254350
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 751254349}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: a5584cab10106a04486a5be391cfb667, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  AndroidInterstitialAdUnitId: Interstitial_Ad
+  IosInterstitialAdUnitId: 
+  AndroidRewardedAdUnitId: Rewarded_Ad
+  IosRewardedAdUnitId: 
+  RewardAdState: 0
+--- !u!4 &751254351
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 751254349}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children: []
+  m_Father: {fileID: 0}
+  m_RootOrder: 6
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &850684139
 GameObject:
   m_ObjectHideFlags: 0
@@ -3300,6 +3348,7 @@ MonoBehaviour:
   TxtCoins: {fileID: 1856959498}
   TxtMeter: {fileID: 235086181}
   TimelineEndGame: {fileID: 11400000, guid: 4717eafebec116a438e9484e694a8f4b, type: 2}
+  AdvertisementController: {fileID: 751254350}
   SpeedRate: 0.2
   MaximumSpeedRange: 6
   RepeatingTimeToIncreaseObstacleSpeed: 5
@@ -4564,7 +4613,7 @@ MonoBehaviour:
   defaultSprite: {fileID: 410769686757225529, guid: 56ed1ca3e88f10344b324d3f915a38c8, type: 3}
   clickedSprite: {fileID: 5528005862118168308, guid: 56ed1ca3e88f10344b324d3f915a38c8, type: 3}
   Clicked: 0
-  MultipleClicks: 0
+  MultipleClicks: 1
 --- !u!114 &1982881015
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -4612,6 +4661,18 @@ MonoBehaviour:
       - m_Target: {fileID: 1982881014}
         m_TargetAssemblyTypeName: ButtonController, Assembly-CSharp
         m_MethodName: OnClick
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
+      - m_Target: {fileID: 1453660696}
+        m_TargetAssemblyTypeName: GameController, Assembly-CSharp
+        m_MethodName: OnButtonSeeAnAdClicked
         m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}

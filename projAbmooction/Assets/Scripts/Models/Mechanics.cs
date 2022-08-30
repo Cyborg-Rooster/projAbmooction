@@ -18,6 +18,8 @@ class Mechanics
     public static bool OnPause;
     public static bool CanSpeedUp = true;
 
+    public static float Meters = 0;
+
     public static Box BoxCatched;
 
     public static bool CanSpawnBox()
@@ -26,12 +28,13 @@ class Mechanics
         else return true;
     }
 
-    public static void RestartAttributes()
+    public static void RestartAttributes(bool rewarded)
     {
         Phase = GamePhase.OnMain;
         SlowMotionLastRange = 1;
         PauseLastRange = 1;
         SpeedRange = 1;
         BoxCatched = null;
+        if (rewarded) Meters = 0;
     }
 }
