@@ -86,6 +86,8 @@ class Strings
     public static string contentError = "This operation could not be continued. :(";
 
     public static string selectScenarioError = "You don't have all the cards to use this scenario.";
+
+    public static string noMoneyEnough = "You don't have enough coins.";
     //public static string selectScenarioError = "Você ainda não possui todos os cartões para usar esse cenário.";
 
     public static string SelectScenario(string scenario)
@@ -125,6 +127,7 @@ class Strings
     public static string BuyRegularBox = "Would you like to buy a regular box for 5000 coins?";
     public static string OpenBox = "Do you want to open the box?";
     public static string SeeAnADAndDecreaseTime = "Do you want to see an ad and decrease 1 hour?";
+    public static string SeeAnADAndGetCoins = "Do you want to see an ad and earn 500 coins?";
 
 
     /*public static string[] skins = new string[22]

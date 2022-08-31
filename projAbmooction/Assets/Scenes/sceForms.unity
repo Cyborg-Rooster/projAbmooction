@@ -1676,6 +1676,7 @@ MonoBehaviour:
   Bought: 0
   ID: 0
   Builder: {fileID: 988634023}
+  AdvertisementController: {fileID: 1983174849}
 --- !u!114 &192055555
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -2614,6 +2615,7 @@ MonoBehaviour:
   Bought: 0
   ID: 0
   Builder: {fileID: 988634023}
+  AdvertisementController: {fileID: 1983174849}
 --- !u!114 &279747951
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -2963,6 +2965,7 @@ MonoBehaviour:
   - {fileID: 7853198681279739190, guid: 58288dcd027f1964a88b9f660c2e40b5, type: 3}
   Builder: {fileID: 988634023}
   RewardController: {fileID: 1684968806}
+  AdvertisementController: {fileID: 1983174849}
 --- !u!1 &316091093
 GameObject:
   m_ObjectHideFlags: 0
@@ -3742,7 +3745,7 @@ RectTransform:
   m_Children:
   - {fileID: 1667296076}
   m_Father: {fileID: 1548822494}
-  m_RootOrder: 1
+  m_RootOrder: 2
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 1, y: 0}
   m_AnchorMax: {x: 1, y: 0}
@@ -4451,9 +4454,9 @@ Camera:
     height: 1
   near clip plane: 0.3
   far clip plane: 1000
-  field of view: 106.80895
+  field of view: 106.8474
   orthographic: 1
-  orthographic size: 11.662947
+  orthographic size: 11.6711235
   m_Depth: -1
   m_CullingMask:
     serializedVersion: 2
@@ -5052,6 +5055,7 @@ MonoBehaviour:
   - {fileID: 7853198681279739190, guid: 58288dcd027f1964a88b9f660c2e40b5, type: 3}
   Builder: {fileID: 988634023}
   RewardController: {fileID: 1684968806}
+  AdvertisementController: {fileID: 1983174849}
 --- !u!1 &600025502
 GameObject:
   m_ObjectHideFlags: 0
@@ -6217,6 +6221,7 @@ MonoBehaviour:
   - {fileID: 7853198681279739190, guid: 58288dcd027f1964a88b9f660c2e40b5, type: 3}
   Builder: {fileID: 988634023}
   RewardController: {fileID: 1684968806}
+  AdvertisementController: {fileID: 1983174849}
 --- !u!1 &728491912
 GameObject:
   m_ObjectHideFlags: 0
@@ -7104,6 +7109,7 @@ MonoBehaviour:
   Bought: 0
   ID: 0
   Builder: {fileID: 988634023}
+  AdvertisementController: {fileID: 1983174849}
 --- !u!114 &798298113
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -7689,6 +7695,7 @@ MonoBehaviour:
   Bought: 0
   ID: 0
   Builder: {fileID: 988634023}
+  AdvertisementController: {fileID: 1983174849}
 --- !u!114 &820060666
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -8184,6 +8191,7 @@ MonoBehaviour:
   Bought: 0
   ID: 0
   Builder: {fileID: 988634023}
+  AdvertisementController: {fileID: 1983174849}
 --- !u!114 &879249661
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -8617,6 +8625,7 @@ MonoBehaviour:
   Bought: 0
   ID: 0
   Builder: {fileID: 988634023}
+  AdvertisementController: {fileID: 1983174849}
 --- !u!114 &961124939
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -8706,7 +8715,7 @@ Transform:
   - {fileID: 1192782208}
   - {fileID: 674245406}
   m_Father: {fileID: 1548822494}
-  m_RootOrder: 0
+  m_RootOrder: 1
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &963572621
 GameObject:
@@ -9023,7 +9032,7 @@ RectTransform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 1548822494}
-  m_RootOrder: 2
+  m_RootOrder: 3
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
@@ -9382,6 +9391,7 @@ MonoBehaviour:
   Bought: 0
   ID: 0
   Builder: {fileID: 988634023}
+  AdvertisementController: {fileID: 1983174849}
 --- !u!114 &1012949104
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -9536,6 +9546,7 @@ MonoBehaviour:
   Bought: 0
   ID: 0
   Builder: {fileID: 988634023}
+  AdvertisementController: {fileID: 1983174849}
 --- !u!114 &1013380863
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -9958,6 +9969,7 @@ MonoBehaviour:
   Bought: 0
   ID: 0
   Builder: {fileID: 988634023}
+  AdvertisementController: {fileID: 1983174849}
 --- !u!114 &1067312207
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -10309,6 +10321,7 @@ MonoBehaviour:
   label: {fileID: 634618448}
   ItemImage: {fileID: 913190017}
   Builder: {fileID: 988634023}
+  AdvertisementController: {fileID: 1983174849}
 --- !u!1 &1100493059
 GameObject:
   m_ObjectHideFlags: 0
@@ -11029,6 +11042,7 @@ MonoBehaviour:
   label: {fileID: 1046400314}
   ItemImage: {fileID: 1207777046}
   Builder: {fileID: 988634023}
+  AdvertisementController: {fileID: 1983174849}
 --- !u!1 &1169091421
 GameObject:
   m_ObjectHideFlags: 0
@@ -11603,6 +11617,7 @@ MonoBehaviour:
   Bought: 0
   ID: 0
   Builder: {fileID: 988634023}
+  AdvertisementController: {fileID: 1983174849}
 --- !u!114 &1219529895
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -11757,6 +11772,7 @@ MonoBehaviour:
   Bought: 0
   ID: 0
   Builder: {fileID: 988634023}
+  AdvertisementController: {fileID: 1983174849}
 --- !u!114 &1219665211
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -11911,6 +11927,7 @@ MonoBehaviour:
   Bought: 0
   ID: 0
   Builder: {fileID: 988634023}
+  AdvertisementController: {fileID: 1983174849}
 --- !u!114 &1231710422
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -12065,6 +12082,7 @@ MonoBehaviour:
   Bought: 0
   ID: 0
   Builder: {fileID: 988634023}
+  AdvertisementController: {fileID: 1983174849}
 --- !u!114 &1245441826
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -12489,6 +12507,7 @@ MonoBehaviour:
   Bought: 0
   ID: 0
   Builder: {fileID: 988634023}
+  AdvertisementController: {fileID: 1983174849}
 --- !u!114 &1268660419
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -13613,7 +13632,7 @@ RectTransform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 1548822494}
-  m_RootOrder: 4
+  m_RootOrder: 5
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
@@ -14377,6 +14396,7 @@ RectTransform:
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
+  - {fileID: 1983174850}
   - {fileID: 961637517}
   - {fileID: 401876188}
   - {fileID: 988634022}
@@ -14646,6 +14666,7 @@ MonoBehaviour:
   label: {fileID: 1852348023}
   ItemImage: {fileID: 1525218790}
   Builder: {fileID: 988634023}
+  AdvertisementController: {fileID: 1983174849}
 --- !u!1 &1579288021
 GameObject:
   m_ObjectHideFlags: 0
@@ -14744,6 +14765,7 @@ MonoBehaviour:
   Bought: 0
   ID: 0
   Builder: {fileID: 988634023}
+  AdvertisementController: {fileID: 1983174849}
 --- !u!114 &1579288026
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -14898,6 +14920,7 @@ MonoBehaviour:
   Bought: 0
   ID: 0
   Builder: {fileID: 988634023}
+  AdvertisementController: {fileID: 1983174849}
 --- !u!114 &1594553034
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -15115,6 +15138,7 @@ MonoBehaviour:
   - {fileID: 7853198681279739190, guid: 58288dcd027f1964a88b9f660c2e40b5, type: 3}
   Builder: {fileID: 988634023}
   RewardController: {fileID: 1684968806}
+  AdvertisementController: {fileID: 1983174849}
 --- !u!1 &1600749223
 GameObject:
   m_ObjectHideFlags: 0
@@ -15691,6 +15715,7 @@ MonoBehaviour:
   Bought: 0
   ID: 0
   Builder: {fileID: 988634023}
+  AdvertisementController: {fileID: 1983174849}
 --- !u!114 &1667346480
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -15924,6 +15949,7 @@ MonoBehaviour:
   Bought: 0
   ID: 0
   Builder: {fileID: 988634023}
+  AdvertisementController: {fileID: 1983174849}
 --- !u!114 &1677393908
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -16613,6 +16639,7 @@ MonoBehaviour:
   Bought: 0
   ID: 0
   Builder: {fileID: 988634023}
+  AdvertisementController: {fileID: 1983174849}
 --- !u!114 &1761823866
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -16988,6 +17015,7 @@ MonoBehaviour:
   label: {fileID: 465895282}
   ItemImage: {fileID: 528061404}
   Builder: {fileID: 988634023}
+  AdvertisementController: {fileID: 1983174849}
 --- !u!224 &1796338269
 RectTransform:
   m_ObjectHideFlags: 0
@@ -18355,6 +18383,7 @@ MonoBehaviour:
   Bought: 0
   ID: 0
   Builder: {fileID: 988634023}
+  AdvertisementController: {fileID: 1983174849}
 --- !u!114 &1948550153
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -18444,7 +18473,7 @@ RectTransform:
   m_Children:
   - {fileID: 487078202}
   m_Father: {fileID: 1548822494}
-  m_RootOrder: 3
+  m_RootOrder: 4
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
   m_AnchorMax: {x: 1, y: 1}
@@ -18931,6 +18960,54 @@ Canvas:
   m_SortingLayerID: 0
   m_SortingOrder: 0
   m_TargetDisplay: 0
+--- !u!1 &1983174848
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 1983174850}
+  - component: {fileID: 1983174849}
+  m_Layer: 0
+  m_Name: Advertisement
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!114 &1983174849
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1983174848}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: a5584cab10106a04486a5be391cfb667, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  AndroidInterstitialAdUnitId: Interstitial_Ad
+  IosInterstitialAdUnitId: 
+  AndroidRewardedAdUnitId: Rewarded_Ad
+  IosRewardedAdUnitId: 
+  RewardAdState: 0
+--- !u!4 &1983174850
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1983174848}
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children: []
+  m_Father: {fileID: 1548822494}
+  m_RootOrder: 0
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &1983740753
 GameObject:
   m_ObjectHideFlags: 0
@@ -19836,6 +19913,7 @@ MonoBehaviour:
   Bought: 0
   ID: 0
   Builder: {fileID: 988634023}
+  AdvertisementController: {fileID: 1983174849}
 --- !u!114 &2037003247
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -20170,6 +20248,7 @@ MonoBehaviour:
   Bought: 0
   ID: 0
   Builder: {fileID: 988634023}
+  AdvertisementController: {fileID: 1983174849}
 --- !u!114 &2061305158
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -20364,6 +20443,7 @@ MonoBehaviour:
   - {fileID: 7853198681279739190, guid: 58288dcd027f1964a88b9f660c2e40b5, type: 3}
   Builder: {fileID: 988634023}
   RewardController: {fileID: 1684968806}
+  AdvertisementController: {fileID: 1983174849}
 --- !u!1 &2096526764
 GameObject:
   m_ObjectHideFlags: 0

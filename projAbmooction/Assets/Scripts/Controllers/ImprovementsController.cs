@@ -11,6 +11,7 @@ class ImprovementsController : MonoBehaviour
     [SerializeField] GameObject label;
     [SerializeField] GameObject ItemImage; 
     [SerializeField] DialogBoxBuilderController Builder;
+    [SerializeField] AdvertisementController AdvertisementController;
 
     Item Item;
     StoreController Store;
@@ -105,6 +106,31 @@ class ImprovementsController : MonoBehaviour
                 Store.UpdateItens();
                 ChangeImprovements();
             }
+            else StartCoroutine(BuyFailed());
+        }
+    }
+
+    private IEnumerator BuyFailed()
+    {
+        yield return Builder.ShowTyped
+        (
+            Strings.lblSkins,
+            $"{Strings.noMoneyEnough} {Strings.SeeAnADAndGetCoins}",
+            true
+        );
+
+        if (Builder.LastButtonState == ButtonPressed.Yes)
+        {
+            AdvertisementController.ShowRewarded();
+            yield return new WaitUntil(() => AdvertisementController.RewardAdState != RewardAdState.Null);
+
+            if (AdvertisementController.RewardAdState == RewardAdState.Finish)
+            {
+                AdvertisementController.LoadRewarded();
+                GameData.Coins += 500;
+                SQLiteManager.RunQuery(CommonQuery.Update("GAME_DATA", $"COINS = {GameData.Coins}", "COINS = COINS"));
+            }
+            else AdvertisementController.LoadRewarded();
         }
     }
 
