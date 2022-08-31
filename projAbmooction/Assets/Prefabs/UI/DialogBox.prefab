@@ -109,7 +109,7 @@ RectTransform:
   m_LocalScale: {x: 0.020284671, y: 0.020186715, z: 1}
   m_Children: []
   m_Father: {fileID: 6518445577417118515}
-  m_RootOrder: 2
+  m_RootOrder: 3
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
@@ -187,7 +187,7 @@ RectTransform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 6518445577417118515}
-  m_RootOrder: 1
+  m_RootOrder: 2
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
@@ -641,7 +641,7 @@ RectTransform:
   m_Children:
   - {fileID: 6518445576216287208}
   m_Father: {fileID: 6518445577417118515}
-  m_RootOrder: 4
+  m_RootOrder: 5
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
   m_AnchorMax: {x: 1, y: 1}
@@ -814,15 +814,15 @@ RectTransform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 6518445576754306019}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: 90}
-  m_LocalScale: {x: 0.02, y: 0.02, z: 0.0125}
+  m_LocalPosition: {x: 0, y: 0, z: 7200}
+  m_LocalScale: {x: 0.020000003, y: 0.020000003, z: 1}
   m_Children: []
-  m_Father: {fileID: 6518445576779626222}
+  m_Father: {fileID: 6518445577417118515}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: 0.0655, y: 0.0324}
+  m_AnchoredPosition: {x: 0.0655, y: 0.9024001}
   m_SizeDelta: {x: 118.6318, y: 18.7642}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!222 &6518445576754306017
@@ -892,12 +892,11 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 6518445576779626217}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 0, y: 0.8700002, z: -7200}
+  m_LocalPosition: {x: 0, y: 0.8700002, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 80}
-  m_Children:
-  - {fileID: 6518445576754306022}
+  m_Children: []
   m_Father: {fileID: 6518445577417118515}
-  m_RootOrder: 0
+  m_RootOrder: 1
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!212 &6518445576779626223
 SpriteRenderer:
@@ -1062,7 +1061,7 @@ RectTransform:
   - {fileID: 6518445576203787860}
   - {fileID: 6518445577561733630}
   m_Father: {fileID: 6518445577417118515}
-  m_RootOrder: 3
+  m_RootOrder: 4
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
   m_AnchorMax: {x: 1, y: 1}
@@ -1143,6 +1142,7 @@ GameObject:
   - component: {fileID: 6518445577417118518}
   - component: {fileID: 6518445577417118513}
   - component: {fileID: 6518445577417118512}
+  - component: {fileID: -2415428557667891753}
   m_Layer: 5
   m_Name: DialogBox
   m_TagString: Untagged
@@ -1161,6 +1161,7 @@ RectTransform:
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 221.3, y: 221.3, z: 1}
   m_Children:
+  - {fileID: 6518445576754306022}
   - {fileID: 6518445576779626222}
   - {fileID: 6518445576183105347}
   - {fileID: 6518445575859392232}
@@ -1171,7 +1172,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: 0, y: 0}
+  m_AnchoredPosition: {x: 0, y: -1333}
   m_SizeDelta: {x: 270, y: 80}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!222 &6518445577417118519
@@ -1221,7 +1222,7 @@ SpriteRenderer:
   m_LightmapParameters: {fileID: 0}
   m_SortingLayerID: -1469944773
   m_SortingLayer: 2
-  m_SortingOrder: 5
+  m_SortingOrder: 4
   m_Sprite: {fileID: 21300000, guid: c87a0deb3d583454481a1feaa4183dd2, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
@@ -1274,6 +1275,27 @@ MonoBehaviour:
   YesNo: {fileID: 6518445577173951892}
   Ok: {fileID: 6518445576299317366}
   button: 0
+--- !u!114 &-2415428557667891753
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6518445577417118514}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 4bc1aa2351fa2ac4eb2ce590501bd80a, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  CustomInitialPosition: {x: 0, y: 0, z: 0}
+  UseCustomInitialPosition: 0
+  finalPosition: {x: 0, y: 0, z: 0}
+  isParallax: 0
+  isMoving: 1
+  keepX: 1
+  keepY: 0
+  isRect: 0
+  speed: 100
 --- !u!1 &6518445577561733625
 GameObject:
   m_ObjectHideFlags: 0
