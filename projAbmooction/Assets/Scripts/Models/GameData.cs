@@ -26,7 +26,7 @@ class GameData
 
     public static int InterstitialTime = 0;
 
-    public static bool IsOnline = true;
+    public static NetworkStates networkState = NetworkStates.Null;
     private static DateTime _dateTimeNow;
 
     public static DateTime DateTimeNow

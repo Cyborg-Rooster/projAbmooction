@@ -29,15 +29,7 @@ public class StartController : MonoBehaviour
 
         StartCoroutine(StartSplashscreen());
 
-        FirebaseManager.Init();
-        FirebaseManager.LoadBox();
-
-        AdvertisementInitializerController.Initialize();
-
-        yield return ApiManager.GetCurrentTime("https://timeapi.io/api/Time/current/zone?timeZone=America/Sao_Paulo");
-
-        AdvertisementController.LoadRewarded();
-        AdvertisementController.LoadInterstitial();
+        yield return NetworkManager.ConnectAndLoad(AdvertisementInitializerController, AdvertisementController);
 
         loaded = true;
         

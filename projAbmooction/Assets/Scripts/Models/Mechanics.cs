@@ -24,7 +24,7 @@ class Mechanics
 
     public static bool CanSpawnBox()
     {
-        if (BoxCatched != null || !GameData.IsOnline || GameData.GetFirstBoxesEmptySpace() == -1) return false;
+        if (BoxCatched != null || GameData.networkState != NetworkStates.Online || GameData.GetFirstBoxesEmptySpace() == -1) return false;
         else return true;
     }
 

@@ -12,6 +12,7 @@ class FirebaseManager
 {
     static FirebaseFirestore Database;
 
+    public static bool BoxLoaded = false;
     public static void Init()
     {
         Database = FirebaseFirestore.DefaultInstance;
@@ -36,6 +37,7 @@ class FirebaseManager
 
     public static void LoadBox()
     {
+        BoxLoaded = false;
         Query allBoxes = Database.Collection("Users_Boxes").Document(GameData.Guid).
             Collection("Boxes");
 
@@ -56,11 +58,19 @@ class FirebaseManager
                         Active = (bool)box["Active"],
                         EndTime = (Timestamp)box["EndTime"]
                     };
-                }catch(Exception e)
+
+                    int i = int.Parse(documentSnapshot.Id);
+
+                    if (GameData.Boxes[i] != null)
+                        Debug.Log($"ID:{GameData.Boxes[i].ID} Type:{GameData.Boxes[i].Type} " +
+                            $"Active:{GameData.Boxes[i].Active} EndTime:{GameData.Boxes[i].EndTime}");
+                }
+                catch(Exception e)
                 {
                     Debug.LogError(e);
                 }
             }
+            BoxLoaded = true;
         });
     }
 

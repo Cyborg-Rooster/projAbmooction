@@ -24,6 +24,11 @@ public class StoreController : MonoBehaviour
     [SerializeField] HighlightController SkinHighlightController;
     [SerializeField] HighlightController ScenarioHighlightController;
     [SerializeField] FadeController FadeAnimator;
+    [SerializeField] GameObject OfflineButton;
+
+    [Header("Network")]
+    [SerializeField] AdvertisementController AdvertisementController;
+    [SerializeField] AdvertisementInitializerController AdvertisementInitializerController;
 
     List<int> SkinsBought = new List<int>();
     List<int> ScenariosBought = new List<int>();
@@ -35,10 +40,9 @@ public class StoreController : MonoBehaviour
         UIManager.SetText(ScenarioConteinerLabel, Strings.lblScenarios);
         UIManager.SetText(ImprovementsConteinerLabel, Strings.lblImprovements);
         UIManager.SetText(BoxConteinerLabel, Strings.lblSlots);
-        
+
         //instance boxes
-        for (int i = 0; i < Boxes.Count; i++)
-            Boxes[i].SetBox(GameData.Boxes[i], i);
+        InstanceBoxes();
 
         FadeAnimator.StartCoroutine(FadeAnimator.StartFade(false));
 
@@ -68,6 +72,11 @@ public class StoreController : MonoBehaviour
         }
     }
 
+    public void TryReconnect()
+    {
+        StartCoroutine(Reconnect());
+    }
+
     void Update()
     {
         UIManager.SetText(MoneysLabel, GameData.Coins);
@@ -86,5 +95,31 @@ public class StoreController : MonoBehaviour
     private void OnApplicationQuit()
     {
         SQLiteManager.SetDatabaseActive(false); 
+    }
+
+    IEnumerator Reconnect()
+    {
+        yield return NetworkManager.ConnectAndLoad(AdvertisementInitializerController, AdvertisementController);
+        InstanceBoxes();
+    }
+
+    private void InstanceBoxes()
+    {
+        if (GameData.networkState == NetworkStates.Online)
+        {
+            for (int i = 0; i < Boxes.Count; i++)
+            {
+                Boxes[i].gameObject.SetActive(true);
+                Boxes[i].SetBox(GameData.Boxes[i], i);
+            }
+
+            OfflineButton.SetActive(false);
+        }
+        else
+        {
+            for (int i = 0; i < Boxes.Count; i++)
+                Boxes[i].gameObject.SetActive(false);
+            OfflineButton.SetActive(true);
+        }
     }
 }
