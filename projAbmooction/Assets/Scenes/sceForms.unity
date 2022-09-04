@@ -9133,6 +9133,7 @@ MonoBehaviour:
   DialogBox: {fileID: 6518445577417118514, guid: 6848fa80485bb2a489f773110ff3cd15, type: 3}
   DialogBoxImage: {fileID: 5213148798009561596, guid: e1acd800d80a2fa44bb846570c091e44, type: 3}
   DialogBoxSlider: {fileID: 4982500746130848699, guid: f9223a9049a26ae40a9844daebb63093, type: 3}
+  DialogBoxWaiting: {fileID: 6019725575857715068, guid: 3bf7586ab8f964d4db760048513c8c7e, type: 3}
   LastButtonState: 0
 --- !u!1 &998740941
 GameObject:
@@ -14552,6 +14553,7 @@ MonoBehaviour:
   ScenarioHighlightController: {fileID: 857676465}
   FadeAnimator: {fileID: 1515816166}
   OfflineButton: {fileID: 1804201823}
+  Builder: {fileID: 988634023}
   AdvertisementController: {fileID: 1983174849}
   AdvertisementInitializerController: {fileID: 1983174851}
 --- !u!114 &1548822496

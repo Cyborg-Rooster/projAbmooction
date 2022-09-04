@@ -6,6 +6,7 @@ public class DialogBoxBuilderController : MonoBehaviour
     [SerializeField] GameObject DialogBox;
     [SerializeField] GameObject DialogBoxImage;
     [SerializeField] GameObject DialogBoxSlider;
+    [SerializeField] GameObject DialogBoxWaiting;
 
     public ButtonPressed LastButtonState;
     // Start is called before the first frame update
@@ -47,6 +48,22 @@ public class DialogBoxBuilderController : MonoBehaviour
         yield return new WaitUntil(() => c.button != ButtonPressed.Null);
         Destroy(d);
         LastButtonState = c.button;
+    }
+
+    public IEnumerator ShowWaiting()
+    {
+        if (CheckIfExistAnotherDialogInstance()) Destroy(transform.GetChild(0).gameObject);
+        GameObject d = Instantiate(DialogBoxWaiting, transform);
+        DialogBoxWaitingController c = d.GetComponent<DialogBoxWaitingController>();
+        c.SetWaiting();
+
+        yield return new WaitUntil(() => FirebaseManager.BoxLoaded);
+        yield return new WaitUntil(() => GameData.networkState != NetworkStates.Null);
+
+        if (GameData.networkState == NetworkStates.Offline) 
+            yield return ShowTyped(Strings.titleError, Strings.contentError, false);
+
+        Destroy(d);
     }
 
     bool CheckIfExistAnotherDialogInstance()

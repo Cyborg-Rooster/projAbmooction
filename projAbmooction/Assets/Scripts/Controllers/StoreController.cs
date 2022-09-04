@@ -25,6 +25,7 @@ public class StoreController : MonoBehaviour
     [SerializeField] HighlightController ScenarioHighlightController;
     [SerializeField] FadeController FadeAnimator;
     [SerializeField] GameObject OfflineButton;
+    [SerializeField] DialogBoxBuilderController Builder;
 
     [Header("Network")]
     [SerializeField] AdvertisementController AdvertisementController;
@@ -99,6 +100,7 @@ public class StoreController : MonoBehaviour
 
     IEnumerator Reconnect()
     {
+        StartCoroutine(Builder.ShowWaiting());
         yield return NetworkManager.ConnectAndLoad(AdvertisementInitializerController, AdvertisementController);
         InstanceBoxes();
     }

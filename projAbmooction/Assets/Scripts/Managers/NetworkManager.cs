@@ -9,8 +9,9 @@ class NetworkManager
 {
     public static IEnumerator ConnectAndLoad(AdvertisementInitializerController initializer, AdvertisementController adController)
     {
-        Debug.Log(GameData.networkState);
         yield return ApiManager.GetCurrentTime("https://timeapi.io/api/Time/current/zone?timeZone=America/Sao_Paulo");
+
+        Debug.Log(GameData.networkState);
         if (GameData.networkState == NetworkStates.Online)
         {
             FirebaseManager.Init();
@@ -23,5 +24,6 @@ class NetworkManager
             adController.LoadRewarded();
             adController.LoadInterstitial();
         }
+        else FirebaseManager.BoxLoaded = true;
     }
 }

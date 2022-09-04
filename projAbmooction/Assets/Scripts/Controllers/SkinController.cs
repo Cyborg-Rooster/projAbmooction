@@ -66,6 +66,7 @@ public class SkinController : MonoBehaviour
         SQLiteManager.RunQuery(CommonQuery.Update("SKINS", $"SKIN_ID = '{lastBought}'", "SKIN_ID = SKIN_ID"));
         SQLiteManager.RunQuery(CommonQuery.Update("GAME_DATA", $"COINS = '{GameData.Coins}'", "COINS = COINS"));
         Bought = true;
+        UIManager.SetText(PriceLabel, Strings.lblBought);
         SetSkin();
     }
 

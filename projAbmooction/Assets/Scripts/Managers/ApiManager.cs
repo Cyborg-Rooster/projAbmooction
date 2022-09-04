@@ -23,7 +23,6 @@ class ApiManager
                     GameData.DateTimeNow = DateTime.Parse(api.dateTime);
                     GameData.networkState = NetworkStates.Online;
                     break;
-                case UnityWebRequest.Result.InProgress :
                 default:
                     Debug.LogError("API get an error: " + webRequest.error);
                     GameData.networkState = NetworkStates.Offline;

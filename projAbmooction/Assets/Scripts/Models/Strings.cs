@@ -6,10 +6,6 @@ using System.Threading.Tasks;
 
 class Strings
 {
-    /*public static string itemDouble = "2x Coins";
-    public static string itemShield = "Shield";
-    public static string itemMagnetic = "Magnet";
-    public static string itemSlowMotion = "Slow Motion";*/
     public static string[] items = new string[4]
     {
         "2x Coins",
@@ -128,6 +124,9 @@ class Strings
     public static string OpenBox = "Do you want to open the box?";
     public static string SeeAnADAndDecreaseTime = "Do you want to see an ad and decrease 1 hour?";
     public static string SeeAnADAndGetCoins = "Do you want to see an ad and earn 500 coins?";
+
+    public static string Reloading = "Reconnecting";
+    public static string Waiting = "Reconnecting, wait a moment...";
 
 
     /*public static string[] skins = new string[22]
