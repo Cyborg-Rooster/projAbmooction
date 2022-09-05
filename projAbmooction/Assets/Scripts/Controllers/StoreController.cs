@@ -107,7 +107,7 @@ public class StoreController : MonoBehaviour
 
     private void InstanceBoxes()
     {
-        if (GameData.networkState == NetworkStates.Online)
+        if (GameData.NetworkState == NetworkStates.Online)
         {
             for (int i = 0; i < Boxes.Count; i++)
             {

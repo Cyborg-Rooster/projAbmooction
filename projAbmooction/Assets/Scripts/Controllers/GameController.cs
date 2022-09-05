@@ -55,7 +55,7 @@ public class GameController : MonoBehaviour
         UIManager.SetText(AdButton.transform.GetChild(0).gameObject, Strings.seeAnAd);
         UIManager.SetText(MainMenuButton, Strings.backToMain);
 
-        if (rewarded) AdButton.SetButtonState(false);
+        if (rewarded || GameData.NetworkState == NetworkStates.Offline) AdButton.SetButtonState(false);
         rewarded = false;
 
         PlayableDirector = GetComponent<PlayableDirector>();

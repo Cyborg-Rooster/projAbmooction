@@ -58,9 +58,9 @@ public class DialogBoxBuilderController : MonoBehaviour
         c.SetWaiting();
 
         yield return new WaitUntil(() => FirebaseManager.BoxLoaded);
-        yield return new WaitUntil(() => GameData.networkState != NetworkStates.Null);
+        yield return new WaitUntil(() => GameData.NetworkState != NetworkStates.Null);
 
-        if (GameData.networkState == NetworkStates.Offline) 
+        if (GameData.NetworkState == NetworkStates.Offline) 
             yield return ShowTyped(Strings.titleError, Strings.contentError, false);
 
         Destroy(d);

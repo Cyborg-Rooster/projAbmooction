@@ -121,16 +121,21 @@ class ImprovementsController : MonoBehaviour
 
         if (Builder.LastButtonState == ButtonPressed.Yes)
         {
-            AdvertisementController.ShowRewarded();
-            yield return new WaitUntil(() => AdvertisementController.RewardAdState != RewardAdState.Null);
-
-            if (AdvertisementController.RewardAdState == RewardAdState.Finish)
+            if (GameData.NetworkState == NetworkStates.Offline)
+                yield return Builder.ShowTyped(Strings.titleError, Strings.contentError, false);
+            else
             {
-                AdvertisementController.LoadRewarded();
-                GameData.Coins += 500;
-                SQLiteManager.RunQuery(CommonQuery.Update("GAME_DATA", $"COINS = {GameData.Coins}", "COINS = COINS"));
+                AdvertisementController.ShowRewarded();
+                yield return new WaitUntil(() => AdvertisementController.RewardAdState != RewardAdState.Null);
+
+                if (AdvertisementController.RewardAdState == RewardAdState.Finish)
+                {
+                    AdvertisementController.LoadRewarded();
+                    GameData.Coins += 500;
+                    SQLiteManager.RunQuery(CommonQuery.Update("GAME_DATA", $"COINS = {GameData.Coins}", "COINS = COINS"));
+                }
+                else AdvertisementController.LoadRewarded();
             }
-            else AdvertisementController.LoadRewarded();
         }
     }
 

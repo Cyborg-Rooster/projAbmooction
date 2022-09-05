@@ -13,7 +13,7 @@ class ApiManager
         using (UnityWebRequest webRequest = UnityWebRequest.Get(uri))
         {
             //Debug.Log(GameData.networkState);
-            GameData.networkState = NetworkStates.Null;
+            GameData.NetworkState = NetworkStates.Null;
             yield return webRequest.SendWebRequest();
             switch (webRequest.result)
             {
@@ -21,11 +21,11 @@ class ApiManager
                     WorldTime api = JsonUtility.FromJson<WorldTime>(webRequest.downloadHandler.text);
 
                     GameData.DateTimeNow = DateTime.Parse(api.dateTime);
-                    GameData.networkState = NetworkStates.Online;
+                    GameData.NetworkState = NetworkStates.Online;
                     break;
                 default:
                     Debug.LogError("API get an error: " + webRequest.error);
-                    GameData.networkState = NetworkStates.Offline;
+                    GameData.NetworkState = NetworkStates.Offline;
                     break;
             }
         }

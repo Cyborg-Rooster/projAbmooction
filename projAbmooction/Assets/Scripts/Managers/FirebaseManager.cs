@@ -33,6 +33,14 @@ class FirebaseManager
         docRef.SetAsync(dictBox).ContinueWithOnMainThread(task => {
             Debug.Log("Added data successful.");
         });
+
+        /*docRef.GetSnapshotAsync().ContinueWithOnMainThread(task =>
+        {
+            DocumentSnapshot documentSnapshot = task.Result;
+
+            if (documentSnapshot.Metadata.HasPendingWrites) Debug.Log("HasPendingWrites is true");
+            else if (documentSnapshot.Metadata.IsFromCache) Debug.Log("HasPendingWrites is false but IsFromCache is true");
+        });*/
     }
 
     public static void LoadBox()
