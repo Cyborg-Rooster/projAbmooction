@@ -29,6 +29,7 @@ public class GameController : MonoBehaviour
 
     [Header("Controllers")]
     [SerializeField] AdvertisementController AdvertisementController;
+    [SerializeField] DialogBoxBuilderController Builder;
 
     [SerializeField] float SpeedRate;
     [SerializeField] float MaximumSpeedRange;
@@ -250,22 +251,31 @@ public class GameController : MonoBehaviour
 
     IEnumerator SeeAnAd()
     {
-        yield return Fade.StartFade(true);
-        AdvertisementController.ShowRewarded();
-        yield return new WaitUntil(() => AdvertisementController.RewardAdState != RewardAdState.Null);
+        if (AdvertisementController.RewardLoadState == RewardAdState.Finish)
+        {
+            yield return Fade.StartFade(true);
+            AdvertisementController.ShowRewarded();
+            yield return new WaitUntil(() => AdvertisementController.RewardAdState != RewardAdState.Null);
 
-        if(AdvertisementController.RewardAdState == RewardAdState.Finish)
-        {
-            AdvertisementController.LoadRewarded();
-            rewarded = true;
-            restartMode = true;
-            SceneManager.RestartScene();
+            if (AdvertisementController.RewardAdState == RewardAdState.Finish)
+            {
+                AdvertisementController.LoadRewarded();
+                rewarded = true;
+                restartMode = true;
+                SceneManager.RestartScene();
+            }
+            else
+            {
+                AdvertisementController.LoadRewarded();
+                yield return Fade.StartFade(false);
+            }
         }
-        else
+        else 
         {
-            AdvertisementController.LoadRewarded();
-            yield return Fade.StartFade(false);
+            //Debug.Log("Teste");
+            yield return Builder.ShowTyped(Strings.titleError, Strings.contentError, false); 
         }
+
     }
 
     IEnumerator GetOutOfEarth()

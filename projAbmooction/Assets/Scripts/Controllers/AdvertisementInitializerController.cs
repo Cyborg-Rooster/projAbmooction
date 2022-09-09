@@ -30,4 +30,9 @@ class AdvertisementInitializerController : MonoBehaviour, IUnityAdsInitializatio
     {
         Debug.Log($"Unity Ads Initialization Failed: {error.ToString()} - {message}");
     }
+
+    public bool ReturnIfAdsInitializes()
+    {
+        return Advertisement.isInitialized;
+    }
 }

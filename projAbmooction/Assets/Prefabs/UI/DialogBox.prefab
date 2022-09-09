@@ -1294,8 +1294,8 @@ MonoBehaviour:
   isMoving: 1
   keepX: 1
   keepY: 0
-  isRect: 0
-  speed: 100
+  isRect: 1
+  speed: 10000
 --- !u!1 &6518445577561733625
 GameObject:
   m_ObjectHideFlags: 0

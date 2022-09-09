@@ -16,6 +16,7 @@ class AdvertisementController : MonoBehaviour, IUnityAdsLoadListener, IUnityAdsS
     [SerializeField] string IosRewardedAdUnitId;
 
     public RewardAdState RewardAdState = RewardAdState.Null;
+    public RewardAdState RewardLoadState = RewardAdState.Null;
 
     #region "Load Ad"
 
@@ -30,7 +31,9 @@ class AdvertisementController : MonoBehaviour, IUnityAdsLoadListener, IUnityAdsS
 
     public void LoadRewarded()
     {
+        RewardLoadState = RewardAdState.Null;
         RewardAdState = RewardAdState.Null;
+
         string AdUnitIdToLoad = (Application.platform == RuntimePlatform.IPhonePlayer)
             ? IosRewardedAdUnitId
             : AndroidRewardedAdUnitId;
@@ -46,12 +49,17 @@ class AdvertisementController : MonoBehaviour, IUnityAdsLoadListener, IUnityAdsS
 
     public void OnUnityAdsAdLoaded(string placementId)
     {
-        Debug.Log(placementId + " loaded successful.");
+        if (placementId == IosRewardedAdUnitId || placementId == AndroidRewardedAdUnitId) RewardLoadState = RewardAdState.Finish;
+
+        Debug.Log(RewardLoadState);
+        Debug.Log(placementId + " loaded successful. ");
     }
 
     public void OnUnityAdsFailedToLoad(string placementId, UnityAdsLoadError error, string message)
     {
+        if (placementId == IosRewardedAdUnitId || placementId == AndroidRewardedAdUnitId) RewardLoadState = RewardAdState.Canceled;
         Debug.Log($"Error: {error} - {message}");
+        GameData.NetworkState = NetworkStates.Offline;
     }
     #endregion
 
@@ -106,5 +114,7 @@ class AdvertisementController : MonoBehaviour, IUnityAdsLoadListener, IUnityAdsS
     public void OnUnityAdsShowClick(string placementId) { }
 
     public void OnUnityAdsShowStart(string placementId) { }
+
+   
     #endregion
 }

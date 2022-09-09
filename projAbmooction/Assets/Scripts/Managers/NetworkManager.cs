@@ -21,6 +21,8 @@ class NetworkManager
 
             initializer.Initialize();
 
+            yield return new WaitUntil(() => initializer.ReturnIfAdsInitializes());
+
             adController.LoadRewarded();
             adController.LoadInterstitial();
         }
