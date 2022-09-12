@@ -10,9 +10,14 @@ public class StartController : MonoBehaviour
     bool splashscreenEnded = false;
     bool loaded = false;
     // Start is called before the first frame update
-    void Start()
+    void Awake()
     {
         StartCoroutine(Load());
+    }
+
+    private void Start()
+    {
+        StartCoroutine(StartSplashscreen());
     }
 
     IEnumerator StartSplashscreen()
@@ -26,8 +31,6 @@ public class StartController : MonoBehaviour
         SQLiteManager.SetDatabase();
         GameData.Load();
         Screen.sleepTimeout = SleepTimeout.NeverSleep;
-
-        StartCoroutine(StartSplashscreen());
 
         yield return NetworkManager.ConnectAndLoad(AdvertisementInitializerController, AdvertisementController);
 

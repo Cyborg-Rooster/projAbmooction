@@ -73,7 +73,7 @@ public class BoxController : MonoBehaviour
 
         if (Builder.LastButtonState == ButtonPressed.Yes)
         {
-            if (GameData.NetworkState == NetworkStates.Offline)
+            /*if (GameData.NetworkState == NetworkStates.Offline || AdvertisementController.RewardLoadState != RewardAdState.Finish)
                 yield return Builder.ShowTyped(Strings.titleError, Strings.contentError, false);
             else
             {
@@ -87,7 +87,7 @@ public class BoxController : MonoBehaviour
                     SQLiteManager.RunQuery(CommonQuery.Update("GAME_DATA", $"COINS = {GameData.Coins}", "COINS = COINS"));
                 }
                 else AdvertisementController.LoadRewarded();
-            }
+            }*/
         }
     }
 
@@ -101,7 +101,25 @@ public class BoxController : MonoBehaviour
         //Decrease 1 hour from box
         if (Builder.LastButtonState == ButtonPressed.Yes)
         {
-            if (GameData.NetworkState == NetworkStates.Offline)
+            AdvertisementController.LoadRewarded();
+            yield return new WaitUntil(() => AdvertisementController.RewardAdLoadState != AdState.Null);
+
+            if (GameData.NetworkState == NetworkStates.Offline || AdvertisementController.RewardAdLoadState != AdState.Yes)
+                yield return Builder.ShowTyped(Strings.titleError, Strings.contentError, false);
+            else
+            {
+                AdvertisementController.ShowRewarded();
+                yield return new WaitUntil(() => AdvertisementController.RewardAdShowState != AdState.Null);
+
+                if (AdvertisementController.RewardAdShowState == AdState.Yes)
+                {
+                    Box.EndTime = Timestamp.FromDateTime(Box.EndTime.ToDateTime() - new TimeSpan(1, 0, 0));
+                    FirebaseManager.SaveBox(Box);
+                    CancelInvoke();
+                    SetBox(Box, ID);
+                }
+            }
+            /*if (GameData.NetworkState == NetworkStates.Offline)
                 yield return Builder.ShowTyped(Strings.titleError, Strings.contentError, false);
             else
             {
@@ -117,7 +135,7 @@ public class BoxController : MonoBehaviour
                     SetBox(Box, ID);
                 }
                 else AdvertisementController.LoadRewarded();
-            }
+            }*/
         }
     }
 

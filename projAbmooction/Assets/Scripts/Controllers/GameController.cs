@@ -251,31 +251,49 @@ public class GameController : MonoBehaviour
 
     IEnumerator SeeAnAd()
     {
-        if (AdvertisementController.RewardLoadState == RewardAdState.Finish)
+        AdvertisementController.LoadRewarded();
+        yield return new WaitUntil(() => AdvertisementController.RewardAdLoadState != AdState.Null);
+
+        if (AdvertisementController.RewardAdLoadState == AdState.Yes)
         {
             yield return Fade.StartFade(true);
             AdvertisementController.ShowRewarded();
-            yield return new WaitUntil(() => AdvertisementController.RewardAdState != RewardAdState.Null);
+            yield return new WaitUntil(() => AdvertisementController.RewardAdShowState != AdState.Null);
 
-            if (AdvertisementController.RewardAdState == RewardAdState.Finish)
+            if (AdvertisementController.RewardAdShowState == AdState.Yes)
             {
-                AdvertisementController.LoadRewarded();
                 rewarded = true;
                 restartMode = true;
                 SceneManager.RestartScene();
             }
-            else
+            else yield return Fade.StartFade(false);
+            /*if (AdvertisementController.RewardLoadState == RewardAdState.Finish)
             {
-                AdvertisementController.LoadRewarded();
-                yield return Fade.StartFade(false);
-            }
-        }
-        else 
-        {
-            //Debug.Log("Teste");
-            yield return Builder.ShowTyped(Strings.titleError, Strings.contentError, false); 
-        }
+                yield return Fade.StartFade(true);
+                AdvertisementController.ShowRewarded();
+                yield return new WaitUntil(() => AdvertisementController.RewardAdState != RewardAdState.Null);
 
+                if (AdvertisementController.RewardAdState == RewardAdState.Finish)
+                {
+                    AdvertisementController.LoadRewarded();
+                    rewarded = true;
+                    restartMode = true;
+                    SceneManager.RestartScene();
+                }
+                else
+                {
+                    AdvertisementController.LoadRewarded();
+                    yield return Fade.StartFade(false);
+                }
+            }
+            else 
+            {
+                //Debug.Log("Teste");
+                yield return Builder.ShowTyped(Strings.titleError, Strings.contentError, false); 
+            }
+            */
+        }
+        else yield return Builder.ShowTyped(Strings.titleError, Strings.contentError, false);
     }
 
     IEnumerator GetOutOfEarth()

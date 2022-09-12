@@ -121,7 +121,23 @@ class ImprovementsController : MonoBehaviour
 
         if (Builder.LastButtonState == ButtonPressed.Yes)
         {
-            if (GameData.NetworkState == NetworkStates.Offline)
+            AdvertisementController.LoadRewarded();
+            yield return new WaitUntil(() => AdvertisementController.RewardAdLoadState != AdState.Null);
+
+            if (GameData.NetworkState == NetworkStates.Offline || AdvertisementController.RewardAdLoadState != AdState.Yes)
+                yield return Builder.ShowTyped(Strings.titleError, Strings.contentError, false);
+            else
+            {
+                AdvertisementController.ShowRewarded();
+                yield return new WaitUntil(() => AdvertisementController.RewardAdShowState != AdState.Null);
+
+                if (AdvertisementController.RewardAdShowState == AdState.Yes)
+                {
+                    GameData.Coins += 500;
+                    SQLiteManager.RunQuery(CommonQuery.Update("GAME_DATA", $"COINS = {GameData.Coins}", "COINS = COINS"));
+                }
+            }
+            /*if (GameData.NetworkState == NetworkStates.Offline || AdvertisementController.RewardLoadState != RewardAdState.Finish)
                 yield return Builder.ShowTyped(Strings.titleError, Strings.contentError, false);
             else
             {
@@ -135,7 +151,7 @@ class ImprovementsController : MonoBehaviour
                     SQLiteManager.RunQuery(CommonQuery.Update("GAME_DATA", $"COINS = {GameData.Coins}", "COINS = COINS"));
                 }
                 else AdvertisementController.LoadRewarded();
-            }
+            }*/
         }
     }
 

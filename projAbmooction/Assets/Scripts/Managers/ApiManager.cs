@@ -12,7 +12,6 @@ class ApiManager
     {
         using (UnityWebRequest webRequest = UnityWebRequest.Get(uri))
         {
-            Debug.Log(GameData.NetworkState);
             GameData.NetworkState = NetworkStates.Null;
             yield return webRequest.SendWebRequest();
             switch (webRequest.result)

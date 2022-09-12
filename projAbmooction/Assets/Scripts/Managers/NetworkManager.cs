@@ -11,7 +11,6 @@ class NetworkManager
     {
         yield return ApiManager.GetCurrentTime("https://timeapi.io/api/Time/current/zone?timeZone=America/Sao_Paulo");
 
-        Debug.Log(GameData.NetworkState);
         if (GameData.NetworkState == NetworkStates.Online)
         {
             FirebaseManager.Init();
@@ -22,9 +21,6 @@ class NetworkManager
             initializer.Initialize();
 
             yield return new WaitUntil(() => initializer.ReturnIfAdsInitializes());
-
-            adController.LoadRewarded();
-            adController.LoadInterstitial();
         }
         else FirebaseManager.BoxLoaded = true;
     }

@@ -16,6 +16,7 @@ class FirebaseManager
     public static void Init()
     {
         Database = FirebaseFirestore.DefaultInstance;
+        Debug.Log("Firebase initialization complete.");
     }
 
     public static void SaveBox(Box box)

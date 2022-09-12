@@ -15,13 +15,18 @@ class AdvertisementController : MonoBehaviour, IUnityAdsLoadListener, IUnityAdsS
     [SerializeField] string AndroidRewardedAdUnitId;
     [SerializeField] string IosRewardedAdUnitId;
 
-    public RewardAdState RewardAdState = RewardAdState.Null;
-    public RewardAdState RewardLoadState = RewardAdState.Null;
+    //Load
+    public static AdState RewardAdLoadState = AdState.Null;
+    public static AdState InterstitialAdLoadState = AdState.Null;
+    //Show
+    public static AdState RewardAdShowState = AdState.Null;
+    public static AdState InterstitialAdShowState = AdState.Null;
 
     #region "Load Ad"
 
     public void LoadInterstitial()
     {
+        InterstitialAdLoadState = AdState.Null;
         string AdUnitIdToLoad = (Application.platform == RuntimePlatform.IPhonePlayer)
             ? IosInterstitialAdUnitId
             : AndroidInterstitialAdUnitId;
@@ -31,9 +36,7 @@ class AdvertisementController : MonoBehaviour, IUnityAdsLoadListener, IUnityAdsS
 
     public void LoadRewarded()
     {
-        RewardLoadState = RewardAdState.Null;
-        RewardAdState = RewardAdState.Null;
-
+        RewardAdLoadState = AdState.Null;
         string AdUnitIdToLoad = (Application.platform == RuntimePlatform.IPhonePlayer)
             ? IosRewardedAdUnitId
             : AndroidRewardedAdUnitId;
@@ -49,15 +52,20 @@ class AdvertisementController : MonoBehaviour, IUnityAdsLoadListener, IUnityAdsS
 
     public void OnUnityAdsAdLoaded(string placementId)
     {
-        if (placementId == IosRewardedAdUnitId || placementId == AndroidRewardedAdUnitId) RewardLoadState = RewardAdState.Finish;
-
-        Debug.Log(RewardLoadState);
+        if (placementId == AndroidInterstitialAdUnitId || placementId == IosInterstitialAdUnitId)
+            InterstitialAdLoadState = AdState.Yes;
+        else
+            RewardAdLoadState = AdState.Yes;
         Debug.Log(placementId + " loaded successful. ");
+        GameData.NetworkState = NetworkStates.Online;
     }
 
     public void OnUnityAdsFailedToLoad(string placementId, UnityAdsLoadError error, string message)
     {
-        if (placementId == IosRewardedAdUnitId || placementId == AndroidRewardedAdUnitId) RewardLoadState = RewardAdState.Canceled;
+        if (placementId == AndroidInterstitialAdUnitId || placementId == IosInterstitialAdUnitId)
+            InterstitialAdLoadState = AdState.No;
+        else
+            RewardAdLoadState = AdState.No;
         Debug.Log($"Error: {error} - {message}");
         GameData.NetworkState = NetworkStates.Offline;
     }
@@ -90,31 +98,22 @@ class AdvertisementController : MonoBehaviour, IUnityAdsLoadListener, IUnityAdsS
 
     public void OnUnityAdsShowComplete(string placementId, UnityAdsShowCompletionState showCompletionState)
     {
-        if (placementId == AndroidRewardedAdUnitId || placementId == IosRewardedAdUnitId)
-        {
-            if (showCompletionState == UnityAdsShowCompletionState.COMPLETED) RewardAdState = RewardAdState.Finish;
-            else RewardAdState = RewardAdState.Canceled;
-            //LoadRewarded();
-        }
-        else LoadInterstitial();
+        if (placementId == AndroidInterstitialAdUnitId || placementId == IosInterstitialAdUnitId) InterstitialAdShowState = AdState.Yes;
+        else RewardAdShowState = AdState.Yes;
+
+        Debug.Log(placementId + " showed successful.");
     }
 
     public void OnUnityAdsShowFailure(string placementId, UnityAdsShowError error, string message)
     {
-        Debug.Log($"Error: {error} - {message}");
+        if (placementId == AndroidInterstitialAdUnitId || placementId == IosInterstitialAdUnitId) InterstitialAdShowState = AdState.No;
+        else RewardAdLoadState = AdState.No;
 
-        if (placementId == AndroidRewardedAdUnitId || placementId == IosRewardedAdUnitId)
-        {
-            RewardAdState = RewardAdState.Canceled;
-            LoadRewarded();
-        }
-        else LoadInterstitial();
+        Debug.Log($"an error occurred while displaying the ad - {error}: {message}");
     }
 
     public void OnUnityAdsShowClick(string placementId) { }
 
     public void OnUnityAdsShowStart(string placementId) { }
-
-   
     #endregion
 }
