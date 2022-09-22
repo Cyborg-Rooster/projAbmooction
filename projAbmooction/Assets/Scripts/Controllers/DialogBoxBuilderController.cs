@@ -50,20 +50,25 @@ public class DialogBoxBuilderController : MonoBehaviour
         LastButtonState = c.button;
     }
 
-    public IEnumerator ShowWaiting()
+    public GameObject ShowWaiting()
     {
         if (CheckIfExistAnotherDialogInstance()) Destroy(transform.GetChild(0).gameObject);
         GameObject d = Instantiate(DialogBoxWaiting, transform);
         DialogBoxWaitingController c = d.GetComponent<DialogBoxWaitingController>();
         c.SetWaiting();
 
-        yield return new WaitUntil(() => FirebaseManager.BoxLoaded);
-        yield return new WaitUntil(() => GameData.NetworkState != NetworkStates.Null);
+        //yield return new WaitUntil(() => FirebaseManager.BoxLoaded);
+        //yield return new WaitUntil(() => GameData.NetworkState != NetworkStates.Null);
 
-        if (GameData.NetworkState == NetworkStates.Offline) 
-            yield return ShowTyped(Strings.titleError, Strings.contentError, false);
+        //if (GameData.NetworkState == NetworkStates.Offline) 
+        //yield return ShowTyped(Strings.titleError, Strings.contentError, false);
 
-        Destroy(d);
+        return d;
+    }
+
+    public void CloseWaiting(GameObject waiting)
+    {
+        Destroy(waiting);
     }
 
     bool CheckIfExistAnotherDialogInstance()

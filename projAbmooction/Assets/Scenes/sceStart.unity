@@ -240,7 +240,6 @@ MonoBehaviour:
   IosInterstitialAdUnitId: 
   AndroidRewardedAdUnitId: Rewarded_Ad
   IosRewardedAdUnitId: 
-  RewardAdState: 0
 --- !u!114 &620634763
 MonoBehaviour:
   m_ObjectHideFlags: 0

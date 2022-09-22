@@ -15,6 +15,7 @@ public class SkinController : MonoBehaviour
 
     [SerializeField] DialogBoxBuilderController Builder;
     [SerializeField] AdvertisementController AdvertisementController;
+    [SerializeField] StoreController StoreController;
 
     public void SetNameAndPrice(string name, bool bought, int id)
     {
@@ -81,21 +82,58 @@ public class SkinController : MonoBehaviour
 
         if (Builder.LastButtonState == ButtonPressed.Yes)
         {
-            AdvertisementController.LoadRewarded();
-            yield return new WaitUntil(() => AdvertisementController.RewardAdLoadState != AdState.Null);
+            if (GameData.NetworkState == NetworkStates.Online)
+            {
+                AdvertisementController.LoadRewarded();
+                yield return new WaitUntil(() => AdvertisementController.RewardAdLoadState != AdState.Null);
 
-            if(GameData.NetworkState == NetworkStates.Offline || AdvertisementController.RewardAdLoadState != AdState.Yes)
-                yield return Builder.ShowTyped(Strings.titleError, Strings.contentError, false);
+                if (GameData.NetworkState != NetworkStates.Online || AdvertisementController.RewardAdLoadState != AdState.Yes)
+                {
+                    StoreController.InstanceNetworkItens();
+                    yield return Builder.ShowTyped(Strings.titleError, Strings.contentError, false);
+                }
+                else
+                {
+                    AdvertisementController.ShowRewarded();
+                    yield return new WaitUntil(() => AdvertisementController.RewardAdShowState != AdState.Null);
+
+                    if (AdvertisementController.RewardAdShowState == AdState.Yes)
+                    {
+                        GameData.Coins += 500;
+                        SQLiteManager.RunQuery(CommonQuery.Update("GAME_DATA", $"COINS = {GameData.Coins}", "COINS = COINS"));
+                    }
+                }
+            }
             else
             {
-                AdvertisementController.ShowRewarded();
-                yield return new WaitUntil(() => AdvertisementController.RewardAdShowState != AdState.Null);
+                StoreController.InstanceNetworkItens();
+                yield return Builder.ShowTyped(Strings.titleError, Strings.contentError, false);
+            }
 
-                if (AdvertisementController.RewardAdShowState == AdState.Yes)
+            /*
+            if (GameData.NetworkState != NetworkStates.Offline)
+            {
+                AdvertisementController.LoadRewarded();
+                yield return new WaitUntil(() => AdvertisementController.RewardAdLoadState != AdState.Null);
+
+                if (GameData.NetworkState == NetworkStates.Offline || AdvertisementController.RewardAdLoadState != AdState.Yes)
+                    yield return Builder.ShowTyped(Strings.titleError, Strings.contentError, false);
+                else
                 {
-                    GameData.Coins += 500;
-                    SQLiteManager.RunQuery(CommonQuery.Update("GAME_DATA", $"COINS = {GameData.Coins}", "COINS = COINS"));
+                    AdvertisementController.ShowRewarded();
+                    yield return new WaitUntil(() => AdvertisementController.RewardAdShowState != AdState.Null);
+
+                    if (AdvertisementController.RewardAdShowState == AdState.Yes)
+                    {
+                        GameData.Coins += 500;
+                        SQLiteManager.RunQuery(CommonQuery.Update("GAME_DATA", $"COINS = {GameData.Coins}", "COINS = COINS"));
+                    }
                 }
+            }
+            else 
+            {
+                StoreController.InstanceBoxes();
+                yield return Builder.ShowTyped(Strings.titleError, Strings.contentError, false); 
             }
             /*if (GameData.NetworkState == NetworkStates.Offline || AdvertisementController.RewardLoadState != RewardAdState.Finish)
                 yield return Builder.ShowTyped(Strings.titleError, Strings.contentError, false);

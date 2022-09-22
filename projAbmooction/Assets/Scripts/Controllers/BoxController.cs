@@ -14,6 +14,7 @@ public class BoxController : MonoBehaviour
     [SerializeField] DialogBoxBuilderController Builder;
     [SerializeField] BoxRewardController RewardController;
     [SerializeField] AdvertisementController AdvertisementController;
+    [SerializeField] StoreController StoreController;
 
     Box Box;
     int ID;
@@ -27,15 +28,27 @@ public class BoxController : MonoBehaviour
     #region "Button Methods"
     public void OnClick()
     {
-        if (Box == null) StartCoroutine(OnBoxIsNull());
+        StartCoroutine(OnClickBox());
+    }
+
+    private IEnumerator OnClickBox()
+    {
+        AdvertisementController.LoadRewarded();
+        yield return new WaitUntil(() => AdvertisementController.RewardAdLoadState != AdState.Null);
+
+        if (AdvertisementController.RewardAdLoadState == AdState.No) StoreController.InstanceNetworkItens();
         else
         {
-            if (Box.Active)
+            if (Box == null) StartCoroutine(OnBoxIsNull());
+            else
             {
-                if (Box.ActualTime.TotalSeconds > 1) StartCoroutine(OnBoxAreActive());
-                else RewardController.GetReward(Box, this);
+                if (Box.Active)
+                {
+                    if (Box.ActualTime.TotalSeconds > 1) StartCoroutine(OnBoxAreActive());
+                    else RewardController.GetReward(Box, this);
+                }
+                else StartCoroutine(OnBoxAreDisactive());
             }
-            else StartCoroutine(OnBoxAreDisactive());
         }
     }
 
@@ -73,21 +86,33 @@ public class BoxController : MonoBehaviour
 
         if (Builder.LastButtonState == ButtonPressed.Yes)
         {
-            /*if (GameData.NetworkState == NetworkStates.Offline || AdvertisementController.RewardLoadState != RewardAdState.Finish)
-                yield return Builder.ShowTyped(Strings.titleError, Strings.contentError, false);
+            if (GameData.NetworkState == NetworkStates.Online)
+            {
+                AdvertisementController.LoadRewarded();
+                yield return new WaitUntil(() => AdvertisementController.RewardAdLoadState != AdState.Null);
+
+                if (GameData.NetworkState != NetworkStates.Online || AdvertisementController.RewardAdLoadState != AdState.Yes)
+                {
+                    StoreController.InstanceNetworkItens();
+                    yield return Builder.ShowTyped(Strings.titleError, Strings.contentError, false);
+                }
+                else
+                {
+                    AdvertisementController.ShowRewarded();
+                    yield return new WaitUntil(() => AdvertisementController.RewardAdShowState != AdState.Null);
+
+                    if (AdvertisementController.RewardAdShowState == AdState.Yes)
+                    {
+                        GameData.Coins += 500;
+                        SQLiteManager.RunQuery(CommonQuery.Update("GAME_DATA", $"COINS = {GameData.Coins}", "COINS = COINS"));
+                    }
+                }
+            }
             else
             {
-                AdvertisementController.ShowRewarded();
-                yield return new WaitUntil(() => AdvertisementController.RewardAdState != RewardAdState.Null);
-
-                if (AdvertisementController.RewardAdState == RewardAdState.Finish)
-                {
-                    AdvertisementController.LoadRewarded();
-                    GameData.Coins += 500;
-                    SQLiteManager.RunQuery(CommonQuery.Update("GAME_DATA", $"COINS = {GameData.Coins}", "COINS = COINS"));
-                }
-                else AdvertisementController.LoadRewarded();
-            }*/
+                StoreController.InstanceNetworkItens();
+                yield return Builder.ShowTyped(Strings.titleError, Strings.contentError, false);
+            }
         }
     }
 
@@ -101,23 +126,64 @@ public class BoxController : MonoBehaviour
         //Decrease 1 hour from box
         if (Builder.LastButtonState == ButtonPressed.Yes)
         {
-            AdvertisementController.LoadRewarded();
-            yield return new WaitUntil(() => AdvertisementController.RewardAdLoadState != AdState.Null);
+            if (GameData.NetworkState == NetworkStates.Online)
+            {
+                AdvertisementController.LoadRewarded();
+                yield return new WaitUntil(() => AdvertisementController.RewardAdLoadState != AdState.Null);
 
-            if (GameData.NetworkState == NetworkStates.Offline || AdvertisementController.RewardAdLoadState != AdState.Yes)
-                yield return Builder.ShowTyped(Strings.titleError, Strings.contentError, false);
+                if (GameData.NetworkState != NetworkStates.Online || AdvertisementController.RewardAdLoadState != AdState.Yes)
+                {
+                    StoreController.InstanceNetworkItens();
+                    yield return Builder.ShowTyped(Strings.titleError, Strings.contentError, false);
+                }
+                else
+                {
+                    AdvertisementController.ShowRewarded();
+                    yield return new WaitUntil(() => AdvertisementController.RewardAdShowState != AdState.Null);
+
+                    if (AdvertisementController.RewardAdShowState == AdState.Yes)
+                    {
+                        Box.EndTime = Timestamp.FromDateTime(Box.EndTime.ToDateTime() - new TimeSpan(1, 0, 0));
+                        FirebaseManager.SaveBox(Box);
+                        CancelInvoke();
+                        SetBox(Box, ID);
+                    }
+                }
+            }
             else
             {
-                AdvertisementController.ShowRewarded();
-                yield return new WaitUntil(() => AdvertisementController.RewardAdShowState != AdState.Null);
+                StoreController.InstanceNetworkItens();
+                yield return Builder.ShowTyped(Strings.titleError, Strings.contentError, false);
+            }
+            /*
+            if (GameData.NetworkState != NetworkStates.Offline)
+            {
+                AdvertisementController.LoadRewarded();
+                yield return new WaitUntil(() => AdvertisementController.RewardAdLoadState != AdState.Null);
 
-                if (AdvertisementController.RewardAdShowState == AdState.Yes)
+                if (GameData.NetworkState != NetworkStates.Online || AdvertisementController.RewardAdLoadState != AdState.Yes)
                 {
-                    Box.EndTime = Timestamp.FromDateTime(Box.EndTime.ToDateTime() - new TimeSpan(1, 0, 0));
-                    FirebaseManager.SaveBox(Box);
-                    CancelInvoke();
-                    SetBox(Box, ID);
+                    StoreController.InstanceBoxes();
+                    yield return Builder.ShowTyped(Strings.titleError, Strings.contentError, false);
                 }
+                else
+                {
+                    AdvertisementController.ShowRewarded();
+                    yield return new WaitUntil(() => AdvertisementController.RewardAdShowState != AdState.Null);
+
+                    if (AdvertisementController.RewardAdShowState == AdState.Yes)
+                    {
+                        Box.EndTime = Timestamp.FromDateTime(Box.EndTime.ToDateTime() - new TimeSpan(1, 0, 0));
+                        FirebaseManager.SaveBox(Box);
+                        CancelInvoke();
+                        SetBox(Box, ID);
+                    }
+                }
+            }
+            else
+            {
+                StoreController.InstanceBoxes();
+                yield return Builder.ShowTyped(Strings.titleError, Strings.contentError, false);
             }
             /*if (GameData.NetworkState == NetworkStates.Offline)
                 yield return Builder.ShowTyped(Strings.titleError, Strings.contentError, false);

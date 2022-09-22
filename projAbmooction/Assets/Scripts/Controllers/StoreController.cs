@@ -13,18 +13,21 @@ public class StoreController : MonoBehaviour
     [SerializeField] GameObject ScenarioConteinerLabel;
     [SerializeField] GameObject ImprovementsConteinerLabel;
     [SerializeField] GameObject BoxConteinerLabel;
+    [SerializeField] GameObject ItemCaughtConteinerLabel;
 
     [Header("Contents")]
     [SerializeField] List<SkinController> Skins;
     [SerializeField] List<ScenarioController> Scenarios;
     [SerializeField] List<ImprovementsController> Improvements;
     [SerializeField] List<BoxController> Boxes;
+    [SerializeField] List<GetCoinController> GetCoins;
 
     [Header("Controllers")]
     [SerializeField] HighlightController SkinHighlightController;
     [SerializeField] HighlightController ScenarioHighlightController;
     [SerializeField] FadeController FadeAnimator;
-    [SerializeField] GameObject OfflineButton;
+    [SerializeField] GameObject OfflineBoxButton;
+    [SerializeField] GameObject OfflineGetCoinsButton;
     [SerializeField] DialogBoxBuilderController Builder;
 
     [Header("Network")]
@@ -41,9 +44,10 @@ public class StoreController : MonoBehaviour
         UIManager.SetText(ScenarioConteinerLabel, Strings.lblScenarios);
         UIManager.SetText(ImprovementsConteinerLabel, Strings.lblImprovements);
         UIManager.SetText(BoxConteinerLabel, Strings.lblSlots);
+        UIManager.SetText(ItemCaughtConteinerLabel, Strings.lblCoins);
 
-        //instance boxes
-        InstanceBoxes();
+        //instance network itens
+        InstanceNetworkItens();
 
         FadeAnimator.StartCoroutine(FadeAnimator.StartFade(false));
 
@@ -100,9 +104,19 @@ public class StoreController : MonoBehaviour
 
     IEnumerator Reconnect()
     {
-        StartCoroutine(Builder.ShowWaiting());
-        yield return NetworkManager.ConnectAndLoad(AdvertisementInitializerController, AdvertisementController);
+        GameObject obj = Builder.ShowWaiting();
+        yield return NetworkManager.ConnectAndLoad(AdvertisementInitializerController);
+
+        Builder.CloseWaiting(obj);
+
+        if (GameData.NetworkState == NetworkStates.Online) InstanceNetworkItens();
+        else yield return Builder.ShowTyped(Strings.titleError, Strings.contentError, false);
+    }
+
+    public void InstanceNetworkItens()
+    {
         InstanceBoxes();
+        InstanceGetCoins();
     }
 
     private void InstanceBoxes()
@@ -115,13 +129,33 @@ public class StoreController : MonoBehaviour
                 Boxes[i].SetBox(GameData.Boxes[i], i);
             }
 
-            OfflineButton.SetActive(false);
+            OfflineBoxButton.SetActive(false);
         }
         else
         {
             for (int i = 0; i < Boxes.Count; i++)
                 Boxes[i].gameObject.SetActive(false);
-            OfflineButton.SetActive(true);
+            OfflineBoxButton.SetActive(true);
+        }
+    }
+
+    private void InstanceGetCoins()
+    {
+        if (GameData.NetworkState == NetworkStates.Online)
+        {
+            for (int i = 0; i < GetCoins.Count; i++)
+            {
+                GetCoins[i].gameObject.SetActive(true);
+                GetCoins[i].SetGetCoin(i, this);
+            }
+
+            OfflineBoxButton.SetActive(false);
+        }
+        else
+        {
+            for (int i = 0; i < Boxes.Count; i++)
+                GetCoins[i].gameObject.SetActive(false);
+            OfflineGetCoinsButton.SetActive(true);
         }
     }
 }

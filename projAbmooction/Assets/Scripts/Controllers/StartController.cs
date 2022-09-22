@@ -32,7 +32,7 @@ public class StartController : MonoBehaviour
         GameData.Load();
         Screen.sleepTimeout = SleepTimeout.NeverSleep;
 
-        yield return NetworkManager.ConnectAndLoad(AdvertisementInitializerController, AdvertisementController);
+        yield return NetworkManager.ConnectAndLoad(AdvertisementInitializerController);
 
         loaded = true;
         

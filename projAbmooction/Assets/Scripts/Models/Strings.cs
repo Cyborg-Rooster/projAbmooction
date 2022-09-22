@@ -128,6 +128,20 @@ class Strings
     public static string Reloading = "Reconnecting";
     public static string Waiting = "Reconnecting, wait a moment...";
 
+    public static string[] getCoins = new string[4]
+    {
+        "See an Ad",
+        "Connect on Facebook",
+        "Like Our Page",
+        "Follow Our Page"
+    };
+
+    public static string LikePage = "Do you want to like the Cyborg Rooster page on Facebook and earn 1000 coins?";
+    public static string FollowPage = "Do you want to follow the Cyborg Rooster page on Instagram and earn 1000 coins?";
+
+    public static string AlreadyLiked = "You've already liked the Cyborg Rooster page.";
+    public static string AlreadyFollow = "You've already followed the Cyborg Rooster page.";
+
 
     /*public static string[] skins = new string[22]
     {

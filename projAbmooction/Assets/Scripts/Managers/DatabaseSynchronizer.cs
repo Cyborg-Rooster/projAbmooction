@@ -18,6 +18,7 @@ class DatabaseSynchronizer
         SQLiteManager.RunQuery(CommonQuery.Create("SKINS", "SKIN_ID VARCHAR(55)"));
         SQLiteManager.RunQuery(CommonQuery.Create("SCENARIOS", "SCENARIO_ID INTEGER, QUANTITY INTEGER"));
         SQLiteManager.RunQuery(CommonQuery.Create("ITEMS", "ITEM_ID INTEGER, LEVEL INTEGER, PRICE INTEGER, TIME INTEGER"));
+        SQLiteManager.RunQuery(CommonQuery.Create("GET_COINS", "GET_COINS_ID INTEGER, CAUGHT INTEGER"));
         #endregion
 
         #region "Add"
@@ -55,6 +56,9 @@ class DatabaseSynchronizer
         SQLiteManager.RunQuery(CommonQuery.Add("ITEMS", "ITEM_ID, LEVEL, PRICE, TIME", "2, 0, 500, 5"));
         SQLiteManager.RunQuery(CommonQuery.Add("ITEMS", "ITEM_ID, LEVEL, PRICE, TIME", "3, 0, 500, 5"));
 
+        SQLiteManager.RunQuery(CommonQuery.Add("GET_COINS", "GET_COINS_ID , CAUGHT", "1, 0"));
+        SQLiteManager.RunQuery(CommonQuery.Add("GET_COINS", "GET_COINS_ID , CAUGHT", "2, 0"));
+        SQLiteManager.RunQuery(CommonQuery.Add("GET_COINS", "GET_COINS_ID , CAUGHT", "3, 0"));
         #endregion
     }
 }
