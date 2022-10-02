@@ -142,6 +142,10 @@ class Strings
     public static string AlreadyLiked = "You've already liked the Cyborg Rooster page.";
     public static string AlreadyFollow = "You've already followed the Cyborg Rooster page.";
 
+    public static string Day = "Day ";
+    public static string Adquired = "Adquired";
+    public static string DailyReward = "Daily Reward";
+
 
     /*public static string[] skins = new string[22]
     {

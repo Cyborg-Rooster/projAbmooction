@@ -8,6 +8,8 @@ public class DialogBoxBuilderController : MonoBehaviour
     [SerializeField] GameObject DialogBoxSlider;
     [SerializeField] GameObject DialogBoxWaiting;
 
+    [SerializeField] CanvasGroup CanvasBelow;
+
     public ButtonPressed LastButtonState;
     // Start is called before the first frame update
 
@@ -15,6 +17,7 @@ public class DialogBoxBuilderController : MonoBehaviour
     {
         if (CheckIfExistAnotherDialogInstance()) Destroy(transform.GetChild(0).gameObject);
 
+        CanvasBelow.interactable = false;
         GameObject d = Instantiate(DialogBox, transform);
         DialogBoxController c = d.GetComponent<DialogBoxController>();
         c.SetType(label, content, type);
@@ -22,12 +25,15 @@ public class DialogBoxBuilderController : MonoBehaviour
         yield return new WaitUntil(() => c.button != ButtonPressed.Null);
         Destroy(d);
         LastButtonState = c.button;
+
+        CanvasBelow.interactable = true;
     }
 
     public IEnumerator ShowImage(string label, string content, string yes, string no, Sprite image, Vector3 scaleImage)
     {
         if (CheckIfExistAnotherDialogInstance()) Destroy(transform.GetChild(0).gameObject);
 
+        CanvasBelow.interactable = false;
         GameObject d = Instantiate(DialogBoxImage, transform);
         DialogBoxImageController c = d.GetComponent<DialogBoxImageController>();
         c.SetDialogBox(label, content, image, yes, no, scaleImage);
@@ -35,12 +41,15 @@ public class DialogBoxBuilderController : MonoBehaviour
         yield return new WaitUntil(() => c.button != ButtonPressed.Null);
         Destroy(d);
         LastButtonState = c.button;
+
+        CanvasBelow.interactable = true;
     }
 
     public IEnumerator ShowSlider(string label, string content, bool yesNo, Sprite image, float percent)
     {
         if (CheckIfExistAnotherDialogInstance()) Destroy(transform.GetChild(0).gameObject);
 
+        CanvasBelow.interactable = false;
         GameObject d = Instantiate(DialogBoxSlider, transform);
         DialogBoxSliderController c = d.GetComponent<DialogBoxSliderController>();
         c.SetDialogBox(label, content, image, yesNo, percent);
@@ -48,11 +57,15 @@ public class DialogBoxBuilderController : MonoBehaviour
         yield return new WaitUntil(() => c.button != ButtonPressed.Null);
         Destroy(d);
         LastButtonState = c.button;
+
+        CanvasBelow.interactable = true;
     }
 
     public GameObject ShowWaiting()
     {
         if (CheckIfExistAnotherDialogInstance()) Destroy(transform.GetChild(0).gameObject);
+
+        CanvasBelow.interactable = false;
         GameObject d = Instantiate(DialogBoxWaiting, transform);
         DialogBoxWaitingController c = d.GetComponent<DialogBoxWaitingController>();
         c.SetWaiting();
@@ -69,6 +82,7 @@ public class DialogBoxBuilderController : MonoBehaviour
     public void CloseWaiting(GameObject waiting)
     {
         Destroy(waiting);
+        CanvasBelow.interactable = true;
     }
 
     bool CheckIfExistAnotherDialogInstance()

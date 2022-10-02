@@ -19,6 +19,8 @@ class DatabaseSynchronizer
         SQLiteManager.RunQuery(CommonQuery.Create("SCENARIOS", "SCENARIO_ID INTEGER, QUANTITY INTEGER"));
         SQLiteManager.RunQuery(CommonQuery.Create("ITEMS", "ITEM_ID INTEGER, LEVEL INTEGER, PRICE INTEGER, TIME INTEGER"));
         SQLiteManager.RunQuery(CommonQuery.Create("GET_COINS", "GET_COINS_ID INTEGER, CAUGHT INTEGER"));
+
+        SQLiteManager.RunQuery(CommonQuery.Create("DAILY_REWARD", "LAST_DAY INTEGER, NEXT_DAY VARCHAR(10), CAN_BE_REWARDED INTEGER"));
         #endregion
 
         #region "Add"
@@ -59,6 +61,8 @@ class DatabaseSynchronizer
         SQLiteManager.RunQuery(CommonQuery.Add("GET_COINS", "GET_COINS_ID , CAUGHT", "1, 0"));
         SQLiteManager.RunQuery(CommonQuery.Add("GET_COINS", "GET_COINS_ID , CAUGHT", "2, 0"));
         SQLiteManager.RunQuery(CommonQuery.Add("GET_COINS", "GET_COINS_ID , CAUGHT", "3, 0"));
+
+        SQLiteManager.RunQuery(CommonQuery.Add("DAILY_REWARD", "LAST_DAY , NEXT_DAY, CAN_BE_REWARDED", "-1, '31/12/1969 00:00:00', 1"));
         #endregion
     }
 }

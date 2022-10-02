@@ -29,6 +29,11 @@ class UIManager
         output.GetComponent<Image>().sprite = sprite;
     }
 
+    public static void SetSprite(GameObject output, Sprite sprite)
+    {
+        output.GetComponent<SpriteRenderer>().sprite = sprite;
+    }
+
     public static Sprite GetImage(GameObject output)
     {
         return output.GetComponent<Image>().sprite;

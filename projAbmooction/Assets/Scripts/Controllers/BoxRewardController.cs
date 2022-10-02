@@ -27,8 +27,11 @@ public class BoxRewardController : MonoBehaviour
     [SerializeField] PlayableAsset GetRewardAsset;
     [SerializeField] PlayableAsset CloseRewardAsset;
 
+    [SerializeField] CanvasGroup CanvasBelow;
+
     public void GetReward(Box box, BoxController boxController)
     {
+        CanvasBelow.interactable = false;
         if (CheckIfChooseMoney())
         {
             int money = ReturnMoneyQuantity(box);
@@ -78,6 +81,8 @@ public class BoxRewardController : MonoBehaviour
     {
         Director.playableAsset = CloseRewardAsset;
         Director.Play();
+
+        CanvasBelow.interactable = true;
     }
 
     bool CheckIfChooseMoney()

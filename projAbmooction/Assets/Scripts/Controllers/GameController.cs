@@ -1,5 +1,6 @@
 using System.Collections;
 using System.Collections.Generic;
+using System;
 using UnityEngine;
 using UnityEngine.Playables;
 
@@ -25,12 +26,21 @@ public class GameController : MonoBehaviour
     [SerializeField] GameObject TxtMeter;
 
     [Header("Timelines")]
+    [SerializeField] PlayableAsset TimelineStartGame;
     [SerializeField] PlayableAsset TimelineEndGame;
+    [SerializeField] PlayableAsset TimelineCollectDailyRewards;
+    [SerializeField] PlayableAsset TimelineCloseDailyRewards;
 
     [Header("Controllers")]
     [SerializeField] AdvertisementController AdvertisementController;
     [SerializeField] DialogBoxBuilderController Builder;
 
+    [Header("Daily Reward")]
+    [SerializeField] List<CollectDailyRewardController> CollectDailyRewardControllers;
+    [SerializeField] GameObject TextDailyLabel;
+    [SerializeField] CanvasGroup CanvasBelow;
+
+    [Header("Variables")]
     [SerializeField] float SpeedRate;
     [SerializeField] float MaximumSpeedRange;
     [SerializeField] float RepeatingTimeToIncreaseObstacleSpeed;
@@ -49,6 +59,10 @@ public class GameController : MonoBehaviour
 
     private void Start()
     {
+        UIManager.SetText(TextDailyLabel, Strings.DailyReward);
+
+        SetDailyRewards();
+
         Mechanics.RestartAttributes(rewarded);
         UIManager.SetText(TxtCoins, GameData.Coins);
         UIManager.SetText(TxtMeter, $"{Mechanics.Meters}m");
@@ -61,12 +75,7 @@ public class GameController : MonoBehaviour
 
         PlayableDirector = GetComponent<PlayableDirector>();
 
-        //Fade.SetSpeed(0);
-        //Fade.StartCoroutine(Fade.StartFade(false));
-
         if (restartMode) OnButtonPlayClicked();
-
-        //InvokeRepeating("ShowTime", 1f, 1f);
     }
 
     #region "Buttons methods"
@@ -102,6 +111,21 @@ public class GameController : MonoBehaviour
         else FormsController.State = FormState.Options;
 
         StartCoroutine(GoToForms());
+    }
+
+    public void OnButtonCollectDailyRewardClicked()
+    { 
+        CanvasBelow.interactable = false;
+        PlayableDirector.playableAsset = TimelineCollectDailyRewards;
+        PlayableDirector.Play();
+    }
+
+    public void OnButtonCloseCollectDailyRewardClicked()
+    {
+        PlayableDirector.playableAsset = TimelineCloseDailyRewards;
+        PlayableDirector.Play();
+
+        CanvasBelow.interactable = true;
     }
 
     IEnumerator Pause()
@@ -170,11 +194,6 @@ public class GameController : MonoBehaviour
         if (Mechanics.Meters > 100 && inEarth) StartCoroutine(GetOutOfEarth());
     }
 
-    /*void ShowTime()
-    {
-        Debug.Log(GameData.DateTimeNow);
-    }*/
-
     private void OnApplicationQuit()
     {
         SQLiteManager.SetDatabaseActive(false);
@@ -208,7 +227,6 @@ public class GameController : MonoBehaviour
         if (waitingSky) Sky.SetIsMoving(false);
 
         PlayableDirector.playableAsset = TimelineEndGame;
-        //TimelineBindingController.SetGenericBinding(PlayableDirector, CowController.GetComponent<Animator>());
         PlayableDirector.Play();
     }
 
@@ -229,8 +247,7 @@ public class GameController : MonoBehaviour
         UIManager.SetButtonState(PlayButton.gameObject, false);
         UIManager.SetButtonState(ShopButton.gameObject, false);
 
-        //PlayableDirector.enabled = true;
-        //TimelineBindingController.SetGenericBinding(PlayableDirector, CowController.GetComponent<Animator>());
+        PlayableDirector.playableAsset = TimelineStartGame;
         PlayableDirector.Play();
 
         yield return new WaitForSeconds(4f);
@@ -267,31 +284,6 @@ public class GameController : MonoBehaviour
                 SceneManager.RestartScene();
             }
             else yield return Fade.StartFade(false);
-            /*if (AdvertisementController.RewardLoadState == RewardAdState.Finish)
-            {
-                yield return Fade.StartFade(true);
-                AdvertisementController.ShowRewarded();
-                yield return new WaitUntil(() => AdvertisementController.RewardAdState != RewardAdState.Null);
-
-                if (AdvertisementController.RewardAdState == RewardAdState.Finish)
-                {
-                    AdvertisementController.LoadRewarded();
-                    rewarded = true;
-                    restartMode = true;
-                    SceneManager.RestartScene();
-                }
-                else
-                {
-                    AdvertisementController.LoadRewarded();
-                    yield return Fade.StartFade(false);
-                }
-            }
-            else 
-            {
-                //Debug.Log("Teste");
-                yield return Builder.ShowTyped(Strings.titleError, Strings.contentError, false); 
-            }
-            */
         }
         else yield return Builder.ShowTyped(Strings.titleError, Strings.contentError, false);
     }
@@ -309,6 +301,31 @@ public class GameController : MonoBehaviour
 
         Planet.SetActive(true);
         VerticalParallax.TurnStars();
-        //VerticalParallax.SetActive(true);
+    }
+
+    void SetDailyRewards()
+    {
+        int lastRewardGetted = SQLiteManager.ReturnValueAsInt(CommonQuery.Select("LAST_DAY", "DAILY_REWARD"));
+
+        Debug.Log
+        (
+            $"saved: {DateTime.Parse(SQLiteManager.ReturnValueAsString(CommonQuery.Select("NEXT_DAY", "DAILY_REWARD")))}, " +
+            $"actual: {GameData.DateTimeNow.Date}, " +
+            $"bool: {DateTime.Parse(SQLiteManager.ReturnValueAsString(CommonQuery.Select("NEXT_DAY", "DAILY_REWARD"))) < GameData.DateTimeNow.Date}"
+        );
+
+        if(DateTime.Parse(SQLiteManager.ReturnValueAsString(CommonQuery.Select("NEXT_DAY", "DAILY_REWARD"))) < GameData.DateTimeNow.Date)
+                lastRewardGetted = -1;
+
+        for (int i = 0; i < CollectDailyRewardControllers.Count; i++)
+        {
+            int quantity;
+            if (i >= 0 && i <= 11) quantity = 200;
+            else if (i >= 12 && i <= 23) quantity = 500;
+            else if (i == 29) quantity = 5000;
+            else quantity = 1000;
+
+            CollectDailyRewardControllers[i].SetDailyReward(i + 1, quantity, i <= lastRewardGetted);
+        }
     }
 }
