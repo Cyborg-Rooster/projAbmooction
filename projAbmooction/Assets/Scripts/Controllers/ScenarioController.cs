@@ -19,9 +19,8 @@ class ScenarioController : MonoBehaviour
 
     int actualCards;
 
-    public void SetNameAndMaterial(string name, bool bought, int id)
+    public void SetNameAndMaterial(string name, int id)
     {
-        Bought = bought;
         ID = id;
 
         UIManager.SetText(NameLabel, name);

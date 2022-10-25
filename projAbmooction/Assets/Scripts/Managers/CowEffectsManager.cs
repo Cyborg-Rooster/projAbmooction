@@ -72,12 +72,12 @@ class CowEffectsManager : CowEffects
             }
             if (collision.IsTouching(DefaultCollider))
             {
-                if (collision.name == "BoxType1(Clone)")
+                /*if (collision.name == "BoxType1(Clone)")
                     Mechanics.BoxCatched = new Box
                     {
                         ID = GameData.GetFirstBoxesEmptySpace(),
                         Type = 1,
-                        EndTime = new Firebase.Firestore.Timestamp()
+                        EndTime = new TimeSpan()
                     };
                 else if (collision.name == "BoxType2(Clone)")
 
@@ -85,15 +85,31 @@ class CowEffectsManager : CowEffects
                     {
                         ID = GameData.GetFirstBoxesEmptySpace(),
                         Type = 2,
-                        EndTime = new Firebase.Firestore.Timestamp()
+                        EndTime = new TimeSpan()
                     };
                 else
                     Mechanics.BoxCatched = new Box
                     {
                         ID = GameData.GetFirstBoxesEmptySpace(),
                         Type = 3,
-                        EndTime = new Firebase.Firestore.Timestamp()
-                    };
+                        EndTime = new TimeSpan()
+                    };*/
+
+                Mechanics.BoxCatched = new Box
+                {
+                    ID = GameData.GetFirstBoxesEmptySpace(),
+                    EndTime = new DateTime()
+                };
+
+                Debug.Log(Mechanics.BoxCatched.EndTime.ToString());
+                Mechanics.BoxCatched.EndTimeStringFormat = Mechanics.BoxCatched.EndTime.ToString();
+
+                switch (collision.name)
+                {
+                    case "BoxType1(Clone)": Mechanics.BoxCatched.Type = 1; break;
+                    case "BoxType2(Clone)": Mechanics.BoxCatched.Type = 2; break;
+                    default: Mechanics.BoxCatched.Type = 3; break;
+                }
                 CowController.StartCoroutine(GetItem(collision.gameObject));
             }
         }

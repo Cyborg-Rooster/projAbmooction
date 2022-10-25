@@ -9,8 +9,8 @@ class DatabaseSynchronizer
     private static readonly int Version = 1;
     public static void Synch()
     {
-        #region "Crete"
-        SQLiteManager.RunQuery(CommonQuery.Create("DATABASE", "DATABASE_VERSION INTEGER, GUID VARCHAR(36)"));
+        #region "Create"
+        SQLiteManager.RunQuery(CommonQuery.Create("DATABASE", "DATABASE_VERSION INTEGER, GUID VARCHAR(36), ALREADY_LOGGED INTEGER"));
         SQLiteManager.RunQuery(CommonQuery.Create("GAME_DATA", "COINS INTEGER, SKIN INTEGER, SCENARIO INTEGER"));
         SQLiteManager.RunQuery(CommonQuery.Create("STATISTIC", "BEST_SCORE INTEGER, DEATHS INTEGER"));
         SQLiteManager.RunQuery(CommonQuery.Create("OPTIONS", "SOUND INTEGER, LANGUAGE INTEGER"));
@@ -27,7 +27,7 @@ class DatabaseSynchronizer
         GameData.Guid = Guid.NewGuid().ToString();
         SQLiteManager.RunQuery
         (
-            CommonQuery.Add("DATABASE", "DATABASE_VERSION, GUID", $"{Version}, '{GameData.Guid}'"
+            CommonQuery.Add("DATABASE", "DATABASE_VERSION, GUID, ALREADY_LOGGED", $"{Version}, '{GameData.Guid}', 0"
         ));
         SQLiteManager.RunQuery
         (

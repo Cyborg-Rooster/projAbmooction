@@ -65,14 +65,6 @@ class GameData
 
         SetSound(SQLiteManager.ReturnValueAsInt(CommonQuery.Select("SOUND", "OPTIONS")));
 
-        Doubled = new Item
-        (
-            0,
-            SQLiteManager.ReturnValueAsInt(CommonQuery.Select("LEVEL", "ITEMS", "ITEM_ID = 0")),
-            SQLiteManager.ReturnValueAsInt(CommonQuery.Select("PRICE", "ITEMS", "ITEM_ID = 0")),
-            SQLiteManager.ReturnValueAsInt(CommonQuery.Select("TIME", "ITEMS", "ITEM_ID = 0"))
-        );
-
         SetItems();
     }
 

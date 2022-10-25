@@ -13,11 +13,17 @@ public class StartController : MonoBehaviour
     void Awake()
     {
         StartCoroutine(Load());
+
     }
 
     private void Start()
     {
         StartCoroutine(StartSplashscreen());
+    }
+
+    private void OnApplicationQuit()
+    {
+        SQLiteManager.SetDatabaseActive(false);
     }
 
     IEnumerator StartSplashscreen()

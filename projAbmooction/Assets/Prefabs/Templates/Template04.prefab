@@ -13,7 +13,7 @@ GameObject:
   m_Layer: 0
   m_Name: ItemSpawner
   m_TagString: Untagged
-  m_Icon: {fileID: 1206586993520771344, guid: 0000000000000000d000000000000000, type: 0}
+  m_Icon: {fileID: -5397416234189338067, guid: 0000000000000000d000000000000000, type: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
   m_IsActive: 1
@@ -59,7 +59,7 @@ GameObject:
   m_Layer: 0
   m_Name: ItemSpawner
   m_TagString: Untagged
-  m_Icon: {fileID: 1206586993520771344, guid: 0000000000000000d000000000000000, type: 0}
+  m_Icon: {fileID: -5397416234189338067, guid: 0000000000000000d000000000000000, type: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
   m_IsActive: 1
@@ -137,12 +137,19 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   SpawnOnStart: 1
   Objects:
+  - {fileID: 4832312739002983474, guid: d41874604313fbd49b9565c6e3de8a91, type: 3}
   - {fileID: 5001821811654905925, guid: c3fae1bef98c0184fa31810b03aa4ccc, type: 3}
+  - {fileID: 4832312739002983474, guid: d41874604313fbd49b9565c6e3de8a91, type: 3}
   - {fileID: 2830832626148256319, guid: ad2af089cc4fee74dbfe8c5fc03d9f4e, type: 3}
+  - {fileID: 4832312739002983474, guid: d41874604313fbd49b9565c6e3de8a91, type: 3}
   - {fileID: 1708827755290481394, guid: cd4ccb840ca64864491c98ddb17cec90, type: 3}
-  - {fileID: 2830832626148256319, guid: ad2af089cc4fee74dbfe8c5fc03d9f4e, type: 3}
+  - {fileID: 4832312739002983474, guid: d41874604313fbd49b9565c6e3de8a91, type: 3}
+  - {fileID: 6914053731602108096, guid: ff0775af7cb2c9048be57b4c8095bb5f, type: 3}
+  - {fileID: 4832312739002983474, guid: d41874604313fbd49b9565c6e3de8a91, type: 3}
   - {fileID: 952181579725240900, guid: 1efbf63fab5b37642b1af3acda78b51a, type: 3}
+  - {fileID: 4832312739002983474, guid: d41874604313fbd49b9565c6e3de8a91, type: 3}
   - {fileID: 4557851541146600875, guid: 11024604d7f37af40a2f1732fe08f095, type: 3}
+  - {fileID: 4832312739002983474, guid: d41874604313fbd49b9565c6e3de8a91, type: 3}
   - {fileID: 6724665720073171961, guid: 51e2de71545901f4691f7ae682cb38db, type: 3}
 --- !u!1 &1507212873097604413
 GameObject:
@@ -208,7 +215,7 @@ GameObject:
   m_Layer: 0
   m_Name: ItemSpawner
   m_TagString: Untagged
-  m_Icon: {fileID: 1206586993520771344, guid: 0000000000000000d000000000000000, type: 0}
+  m_Icon: {fileID: -5397416234189338067, guid: 0000000000000000d000000000000000, type: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
   m_IsActive: 1
@@ -333,7 +340,7 @@ GameObject:
   m_Layer: 0
   m_Name: ItemSpawner
   m_TagString: Untagged
-  m_Icon: {fileID: 1206586993520771344, guid: 0000000000000000d000000000000000, type: 0}
+  m_Icon: {fileID: -5397416234189338067, guid: 0000000000000000d000000000000000, type: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
   m_IsActive: 1
@@ -583,7 +590,7 @@ GameObject:
   m_Layer: 0
   m_Name: ItemSpawner
   m_TagString: Untagged
-  m_Icon: {fileID: 1206586993520771344, guid: 0000000000000000d000000000000000, type: 0}
+  m_Icon: {fileID: -5397416234189338067, guid: 0000000000000000d000000000000000, type: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
   m_IsActive: 1

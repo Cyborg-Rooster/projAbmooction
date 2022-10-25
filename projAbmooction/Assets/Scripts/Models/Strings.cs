@@ -67,6 +67,9 @@ class Strings
     public static string confirm = "Confirm";
     public static string cancel = "Cancel";
 
+    public static string BestScore = "Best score:";
+    public static string New = "NEW";
+
     public static string restart = "Restart";
     public static string seeAnAd = "See an ad and restore score";
     public static string backToMain = "Back to main menu";
@@ -146,6 +149,20 @@ class Strings
     public static string Adquired = "Adquired";
     public static string DailyReward = "Daily Reward";
 
+    public static string lblConnect = "Log on Facebook";
+    public static string ConnectOnFacebook = "Do you want to link the game to your Facebook account? In addition to " +
+        "winning a prize of 1000 coins, you will be able to compete your score with other players!";
+
+    //Você quer vincular o jogo à sua conta do Facebook?   Além de ganhar um prêmio de 1000 moedas,
+    //você poderá competir sua pontuação com outros jogadores!
+
+    public static string AlreadyLogged = "You are logged on Facebook.";
+    public static string NotPossibleToLogin = "Unable to log in to Facebook.";
+
+    public static string UpdateScore = "Your local score is higher than the one saved on the server. Would you like " +
+        "to update your score or continue with the score saved on our server?";
+    //Sua pontuação local é maior que a está salva no servidor.Gostaria de atualizar sua pontuação
+    //ou continuar com a pontuação salva no nosso servidor? 
 
     /*public static string[] skins = new string[22]
     {

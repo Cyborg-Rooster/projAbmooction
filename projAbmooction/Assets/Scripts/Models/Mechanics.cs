@@ -18,7 +18,7 @@ class Mechanics
     public static bool OnPause;
     public static bool CanSpeedUp = true;
 
-    public static float Meters = 0;
+    public static int Meters = 0;
 
     public static Box BoxCatched;
 

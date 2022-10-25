@@ -35,7 +35,6 @@ public class StoreController : MonoBehaviour
     [SerializeField] AdvertisementInitializerController AdvertisementInitializerController;
 
     List<int> SkinsBought = new List<int>();
-    List<int> ScenariosBought = new List<int>();
 
     void Start()
     {
@@ -56,7 +55,7 @@ public class StoreController : MonoBehaviour
 
         //instance scenarios
         for (int i = 0; i < Scenarios.Count; i++)
-            Scenarios[i].SetNameAndMaterial(Strings.scenarios[i], ScenariosBought.Contains(i), i);
+            Scenarios[i].SetNameAndMaterial(Strings.scenarios[i],  i);
 
         //instance itens improvements
         UpdateItens();
@@ -94,7 +93,6 @@ public class StoreController : MonoBehaviour
 
         //for (int i = 0; i < skins.Length; i++) Debug.Log(skins[i]);
         SkinsBought = skins.Select(int.Parse).ToList();
-        ScenariosBought = scenarios.Select(int.Parse).ToList();
     }
 
     private void OnApplicationQuit()

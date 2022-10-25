@@ -75,9 +75,9 @@ public class GetCoinController : MonoBehaviour
             if (GameData.NetworkState == NetworkStates.Online)
             {
                 AdvertisementController.LoadRewarded();
-                yield return new WaitUntil(() => AdvertisementController.RewardAdLoadState != AdState.Null);
+                yield return new WaitUntil(() => AdvertisementController.RewardAdLoadState != DefaultState.Null);
 
-                if (GameData.NetworkState != NetworkStates.Online || AdvertisementController.RewardAdLoadState != AdState.Yes)
+                if (GameData.NetworkState != NetworkStates.Online || AdvertisementController.RewardAdLoadState != DefaultState.Yes)
                 {
                     StoreController.InstanceNetworkItens();
                     yield return Builder.ShowTyped(Strings.titleError, Strings.contentError, false);
@@ -85,9 +85,9 @@ public class GetCoinController : MonoBehaviour
                 else
                 {
                     AdvertisementController.ShowRewarded();
-                    yield return new WaitUntil(() => AdvertisementController.RewardAdShowState != AdState.Null);
+                    yield return new WaitUntil(() => AdvertisementController.RewardAdShowState != DefaultState.Null);
 
-                    if (AdvertisementController.RewardAdShowState == AdState.Yes)
+                    if (AdvertisementController.RewardAdShowState == DefaultState.Yes)
                     {
                         GameData.Coins += 500;
                         SQLiteManager.RunQuery(CommonQuery.Update("GAME_DATA", $"COINS = {GameData.Coins}", "COINS = COINS"));

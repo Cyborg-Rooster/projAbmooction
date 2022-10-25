@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using System;
+using System.Threading.Tasks;
 using UnityEngine;
 using UnityEngine.Playables;
 
@@ -24,6 +25,9 @@ public class GameController : MonoBehaviour
     [SerializeField] GameObject MainMenuButton;
     [SerializeField] GameObject TxtCoins;
     [SerializeField] GameObject TxtMeter;
+    [SerializeField] GameObject TxtBestScore;
+    [SerializeField] GameObject TxtNew;
+    [SerializeField] GameObject txtFinalBestScore;
 
     [Header("Timelines")]
     [SerializeField] PlayableAsset TimelineStartGame;
@@ -69,6 +73,8 @@ public class GameController : MonoBehaviour
         UIManager.SetText(RestartButton, Strings.restart);
         UIManager.SetText(AdButton.transform.GetChild(0).gameObject, Strings.seeAnAd);
         UIManager.SetText(MainMenuButton, Strings.backToMain);
+        UIManager.SetText(TxtBestScore, Strings.BestScore);
+        UIManager.SetText(TxtNew, Strings.New);
 
         if (rewarded || GameData.NetworkState == NetworkStates.Offline) AdButton.SetButtonState(false);
         rewarded = false;
@@ -128,14 +134,20 @@ public class GameController : MonoBehaviour
         CanvasBelow.interactable = true;
     }
 
+    public void OnButtonLogOnFacebookClicked()
+    {
+        StartCoroutine(LogOnFacebookManager.LogOnFacebook(Builder));
+    }
+
+
     IEnumerator Pause()
     {
         Time.timeScale = 1;
         yield return new WaitForSeconds(0.2f);
         if (Mechanics.OnPause)
         {
-            PauseButton.gameObject.SetActive(true);
             PlayButton.gameObject.SetActive(false);
+            PauseButton.gameObject.SetActive(true);
 
             Mechanics.SpeedRange = Mechanics.PauseLastRange;
 
@@ -212,6 +224,15 @@ public class GameController : MonoBehaviour
 
     public void Finish()
     {
+        if(Mechanics.Meters > GameData.BestScore)
+        {
+            TxtNew.SetActive(true);
+            GameData.BestScore = Mechanics.Meters;
+
+            if (FacebookManager.IsLogged) FirebaseManager.SaveData(OnlineData.ReturnOnlineData());
+        }
+
+        UIManager.SetText(txtFinalBestScore, $"{GameData.BestScore} m");
         GameData.Save();
         Mechanics.Phase = GamePhase.OnFinish;
 
@@ -269,15 +290,15 @@ public class GameController : MonoBehaviour
     IEnumerator SeeAnAd()
     {
         AdvertisementController.LoadRewarded();
-        yield return new WaitUntil(() => AdvertisementController.RewardAdLoadState != AdState.Null);
+        yield return new WaitUntil(() => AdvertisementController.RewardAdLoadState != DefaultState.Null);
 
-        if (AdvertisementController.RewardAdLoadState == AdState.Yes)
+        if (AdvertisementController.RewardAdLoadState == DefaultState.Yes)
         {
             yield return Fade.StartFade(true);
             AdvertisementController.ShowRewarded();
-            yield return new WaitUntil(() => AdvertisementController.RewardAdShowState != AdState.Null);
+            yield return new WaitUntil(() => AdvertisementController.RewardAdShowState != DefaultState.Null);
 
-            if (AdvertisementController.RewardAdShowState == AdState.Yes)
+            if (AdvertisementController.RewardAdShowState == DefaultState.Yes)
             {
                 rewarded = true;
                 restartMode = true;

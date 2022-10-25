@@ -3,7 +3,6 @@ using System.Collections;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
-using Firebase.Firestore;
 using UnityEngine;
 
 public class BoxController : MonoBehaviour
@@ -34,9 +33,9 @@ public class BoxController : MonoBehaviour
     private IEnumerator OnClickBox()
     {
         AdvertisementController.LoadRewarded();
-        yield return new WaitUntil(() => AdvertisementController.RewardAdLoadState != AdState.Null);
+        yield return new WaitUntil(() => AdvertisementController.RewardAdLoadState != DefaultState.Null);
 
-        if (AdvertisementController.RewardAdLoadState == AdState.No) StoreController.InstanceNetworkItens();
+        if (AdvertisementController.RewardAdLoadState == DefaultState.No) StoreController.InstanceNetworkItens();
         else
         {
             if (Box == null) StartCoroutine(OnBoxIsNull());
@@ -64,8 +63,10 @@ public class BoxController : MonoBehaviour
                 {
                     ID = this.ID,
                     Type = 1,
-                    EndTime = new Firebase.Firestore.Timestamp()
+                    EndTime = new DateTime()
                 };
+
+                box.EndTimeStringFormat = box.EndTime.ToString();
 
                 FirebaseManager.SaveBox(box);
                 SetBox(box, ID);
@@ -89,9 +90,9 @@ public class BoxController : MonoBehaviour
             if (GameData.NetworkState == NetworkStates.Online)
             {
                 AdvertisementController.LoadRewarded();
-                yield return new WaitUntil(() => AdvertisementController.RewardAdLoadState != AdState.Null);
+                yield return new WaitUntil(() => AdvertisementController.RewardAdLoadState != DefaultState.Null);
 
-                if (GameData.NetworkState != NetworkStates.Online || AdvertisementController.RewardAdLoadState != AdState.Yes)
+                if (GameData.NetworkState != NetworkStates.Online || AdvertisementController.RewardAdLoadState != DefaultState.Yes)
                 {
                     StoreController.InstanceNetworkItens();
                     yield return Builder.ShowTyped(Strings.titleError, Strings.contentError, false);
@@ -99,9 +100,9 @@ public class BoxController : MonoBehaviour
                 else
                 {
                     AdvertisementController.ShowRewarded();
-                    yield return new WaitUntil(() => AdvertisementController.RewardAdShowState != AdState.Null);
+                    yield return new WaitUntil(() => AdvertisementController.RewardAdShowState != DefaultState.Null);
 
-                    if (AdvertisementController.RewardAdShowState == AdState.Yes)
+                    if (AdvertisementController.RewardAdShowState == DefaultState.Yes)
                     {
                         GameData.Coins += 500;
                         SQLiteManager.RunQuery(CommonQuery.Update("GAME_DATA", $"COINS = {GameData.Coins}", "COINS = COINS"));
@@ -129,9 +130,9 @@ public class BoxController : MonoBehaviour
             if (GameData.NetworkState == NetworkStates.Online)
             {
                 AdvertisementController.LoadRewarded();
-                yield return new WaitUntil(() => AdvertisementController.RewardAdLoadState != AdState.Null);
+                yield return new WaitUntil(() => AdvertisementController.RewardAdLoadState != DefaultState.Null);
 
-                if (GameData.NetworkState != NetworkStates.Online || AdvertisementController.RewardAdLoadState != AdState.Yes)
+                if (GameData.NetworkState != NetworkStates.Online || AdvertisementController.RewardAdLoadState != DefaultState.Yes)
                 {
                     StoreController.InstanceNetworkItens();
                     yield return Builder.ShowTyped(Strings.titleError, Strings.contentError, false);
@@ -139,11 +140,12 @@ public class BoxController : MonoBehaviour
                 else
                 {
                     AdvertisementController.ShowRewarded();
-                    yield return new WaitUntil(() => AdvertisementController.RewardAdShowState != AdState.Null);
+                    yield return new WaitUntil(() => AdvertisementController.RewardAdShowState != DefaultState.Null);
 
-                    if (AdvertisementController.RewardAdShowState == AdState.Yes)
+                    if (AdvertisementController.RewardAdShowState == DefaultState.Yes)
                     {
-                        Box.EndTime = Timestamp.FromDateTime(Box.EndTime.ToDateTime() - new TimeSpan(1, 0, 0));
+                        Box.EndTime = Box.EndTime - new TimeSpan(1, 0, 0);
+                        Box.EndTimeStringFormat = Box.EndTime.ToString();
                         FirebaseManager.SaveBox(Box);
                         CancelInvoke();
                         SetBox(Box, ID);
@@ -215,7 +217,8 @@ public class BoxController : MonoBehaviour
         if(Builder.LastButtonState == ButtonPressed.Yes)
         {
             Box.Active = true;
-            Box.EndTime = Timestamp.FromDateTime(GameData.DateTimeNow + TimeSpan.FromHours(Box.Type));
+            Box.EndTime = GameData.DateTimeNow + TimeSpan.FromHours(Box.Type);
+            Box.EndTimeStringFormat = Box.EndTime.ToString();
             FirebaseManager.SaveBox(Box);
             SetBox(Box, ID);
         }
@@ -243,7 +246,7 @@ public class BoxController : MonoBehaviour
 
     private void CalculateTime()
     {
-        TimeSpan actualTime = (Box.EndTime.ToDateTime() - new TimeSpan(3, 0, 0)) - GameData.DateTimeNow;
+        TimeSpan actualTime = Box.EndTime - GameData.DateTimeNow;
         TimeSpan decreaseMilliseconds = TimeSpan.FromMilliseconds(actualTime.Milliseconds);
         Box.ActualTime = actualTime - decreaseMilliseconds;
     }

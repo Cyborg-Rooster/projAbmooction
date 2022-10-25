@@ -16,17 +16,17 @@ class AdvertisementController : MonoBehaviour, IUnityAdsLoadListener, IUnityAdsS
     [SerializeField] string IosRewardedAdUnitId;
 
     //Load
-    public static AdState RewardAdLoadState = AdState.Null;
-    public static AdState InterstitialAdLoadState = AdState.Null;
+    public static DefaultState RewardAdLoadState = DefaultState.Null;
+    public static DefaultState InterstitialAdLoadState = DefaultState.Null;
     //Show
-    public static AdState RewardAdShowState = AdState.Null;
-    public static AdState InterstitialAdShowState = AdState.Null;
+    public static DefaultState RewardAdShowState = DefaultState.Null;
+    public static DefaultState InterstitialAdShowState = DefaultState.Null;
 
     #region "Load Ad"
 
     public void LoadInterstitial()
     {
-        InterstitialAdLoadState = AdState.Null;
+        InterstitialAdLoadState = DefaultState.Null;
         string AdUnitIdToLoad = (Application.platform == RuntimePlatform.IPhonePlayer)
             ? IosInterstitialAdUnitId
             : AndroidInterstitialAdUnitId;
@@ -36,7 +36,7 @@ class AdvertisementController : MonoBehaviour, IUnityAdsLoadListener, IUnityAdsS
 
     public void LoadRewarded()
     {
-        RewardAdLoadState = AdState.Null;
+        RewardAdLoadState = DefaultState.Null;
         string AdUnitIdToLoad = (Application.platform == RuntimePlatform.IPhonePlayer)
             ? IosRewardedAdUnitId
             : AndroidRewardedAdUnitId;
@@ -53,9 +53,9 @@ class AdvertisementController : MonoBehaviour, IUnityAdsLoadListener, IUnityAdsS
     public void OnUnityAdsAdLoaded(string placementId)
     {
         if (placementId == AndroidInterstitialAdUnitId || placementId == IosInterstitialAdUnitId)
-            InterstitialAdLoadState = AdState.Yes;
+            InterstitialAdLoadState = DefaultState.Yes;
         else
-            RewardAdLoadState = AdState.Yes;
+            RewardAdLoadState = DefaultState.Yes;
         Debug.Log(placementId + " loaded successful. ");
         GameData.NetworkState = NetworkStates.Online;
     }
@@ -63,9 +63,9 @@ class AdvertisementController : MonoBehaviour, IUnityAdsLoadListener, IUnityAdsS
     public void OnUnityAdsFailedToLoad(string placementId, UnityAdsLoadError error, string message)
     {
         if (placementId == AndroidInterstitialAdUnitId || placementId == IosInterstitialAdUnitId)
-            InterstitialAdLoadState = AdState.No;
+            InterstitialAdLoadState = DefaultState.No;
         else
-            RewardAdLoadState = AdState.No;
+            RewardAdLoadState = DefaultState.No;
         Debug.Log($"Error: {error} - {message}");
         GameData.NetworkState = NetworkStates.Offline;
     }
@@ -98,16 +98,16 @@ class AdvertisementController : MonoBehaviour, IUnityAdsLoadListener, IUnityAdsS
 
     public void OnUnityAdsShowComplete(string placementId, UnityAdsShowCompletionState showCompletionState)
     {
-        if (placementId == AndroidInterstitialAdUnitId || placementId == IosInterstitialAdUnitId) InterstitialAdShowState = AdState.Yes;
-        else RewardAdShowState = AdState.Yes;
+        if (placementId == AndroidInterstitialAdUnitId || placementId == IosInterstitialAdUnitId) InterstitialAdShowState = DefaultState.Yes;
+        else RewardAdShowState = DefaultState.Yes;
 
         Debug.Log(placementId + " showed successful.");
     }
 
     public void OnUnityAdsShowFailure(string placementId, UnityAdsShowError error, string message)
     {
-        if (placementId == AndroidInterstitialAdUnitId || placementId == IosInterstitialAdUnitId) InterstitialAdShowState = AdState.No;
-        else RewardAdLoadState = AdState.No;
+        if (placementId == AndroidInterstitialAdUnitId || placementId == IosInterstitialAdUnitId) InterstitialAdShowState = DefaultState.No;
+        else RewardAdLoadState = DefaultState.No;
 
         Debug.Log($"an error occurred while displaying the ad - {error}: {message}");
     }

@@ -1,9 +1,9 @@
 {
   "project_info": {
     "project_number": "202965676482",
+    "firebase_url": "https://projabmooction-default-rtdb.firebaseio.com",
     "project_id": "projabmooction",
-    "storage_bucket": "projabmooction.appspot.com",
-    "databaseURL": "https://projabmooction.firebaseio.com"
+    "storage_bucket": "projabmooction.appspot.com"
   },
   "client": [
     {
