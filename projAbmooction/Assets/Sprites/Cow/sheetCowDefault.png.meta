@@ -69,7 +69,7 @@ TextureImporter:
       213: -4183633474997950827
     second: sheetCow_21
   externalObjects: {}
-  serializedVersion: 11
+  serializedVersion: 12
   mipmaps:
     mipMapMode: 0
     enableMipMap: 0
@@ -90,6 +90,7 @@ TextureImporter:
   streamingMipmaps: 0
   streamingMipmapsPriority: 0
   vTOnly: 0
+  ignoreMasterTextureLimit: 0
   grayScaleToAlpha: 0
   generateCubemap: 6
   cubemapConvolution: 0
@@ -128,6 +129,7 @@ TextureImporter:
   textureFormatSet: 0
   ignorePngGamma: 0
   applyGammaDecoding: 0
+  cookieLightType: 1
   platformSettings:
   - serializedVersion: 3
     buildTarget: DefaultTexturePlatform
@@ -155,6 +157,18 @@ TextureImporter:
     forceMaximumCompressionQuality_BC6H_BC7: 0
   - serializedVersion: 3
     buildTarget: Android
+    maxTextureSize: 2048
+    resizeAlgorithm: 0
+    textureFormat: -1
+    textureCompression: 0
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+    androidETC2FallbackOverride: 0
+    forceMaximumCompressionQuality_BC6H_BC7: 0
+  - serializedVersion: 3
+    buildTarget: Server
     maxTextureSize: 2048
     resizeAlgorithm: 0
     textureFormat: -1
@@ -640,6 +654,29 @@ TextureImporter:
     edges: []
     weights: []
     secondaryTextures: []
+    nameFileIdTable:
+      sheetCow_0: 536342789873785599
+      sheetCow_1: -3922326543418238562
+      sheetCow_10: 8402553983840491267
+      sheetCow_11: 4659125940662668941
+      sheetCow_12: -7947007805741480073
+      sheetCow_13: 3134064411443639782
+      sheetCow_14: 4144735469774208274
+      sheetCow_15: -3776993588012452880
+      sheetCow_16: 600280895610664522
+      sheetCow_17: 3376765877228652299
+      sheetCow_18: -1711980758237475115
+      sheetCow_19: -7048161292249526295
+      sheetCow_2: 1038403335707757006
+      sheetCow_20: -7443407921333298097
+      sheetCow_21: -4183633474997950827
+      sheetCow_3: 4374466831507296165
+      sheetCow_4: 3715053868706817930
+      sheetCow_5: 4790827894344161108
+      sheetCow_6: 7494284989576037246
+      sheetCow_7: -5727315183935942191
+      sheetCow_8: -5525993939700638851
+      sheetCow_9: -1407740722083875210
   spritePackingTag: 
   pSDRemoveMatte: 0
   pSDShowRemoveMatteOption: 0

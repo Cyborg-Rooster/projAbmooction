@@ -69,7 +69,7 @@ TextureImporter:
       213: -4166693209889898455
     second: sheetCowAyrshire_21
   externalObjects: {}
-  serializedVersion: 11
+  serializedVersion: 12
   mipmaps:
     mipMapMode: 0
     enableMipMap: 0
@@ -90,6 +90,7 @@ TextureImporter:
   streamingMipmaps: 0
   streamingMipmapsPriority: 0
   vTOnly: 0
+  ignoreMasterTextureLimit: 0
   grayScaleToAlpha: 0
   generateCubemap: 6
   cubemapConvolution: 0
@@ -128,6 +129,7 @@ TextureImporter:
   textureFormatSet: 0
   ignorePngGamma: 0
   applyGammaDecoding: 0
+  cookieLightType: 1
   platformSettings:
   - serializedVersion: 3
     buildTarget: DefaultTexturePlatform
@@ -167,6 +169,18 @@ TextureImporter:
     forceMaximumCompressionQuality_BC6H_BC7: 0
   - serializedVersion: 3
     buildTarget: Android
+    maxTextureSize: 2048
+    resizeAlgorithm: 0
+    textureFormat: -1
+    textureCompression: 0
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+    androidETC2FallbackOverride: 0
+    forceMaximumCompressionQuality_BC6H_BC7: 0
+  - serializedVersion: 3
+    buildTarget: Server
     maxTextureSize: 2048
     resizeAlgorithm: 0
     textureFormat: -1
@@ -652,6 +666,29 @@ TextureImporter:
     edges: []
     weights: []
     secondaryTextures: []
+    nameFileIdTable:
+      sheetCowAyrshire_0: 1718823086291534699
+      sheetCowAyrshire_1: 5308935111061911268
+      sheetCowAyrshire_10: -2544265800396896748
+      sheetCowAyrshire_11: 1248390979138482161
+      sheetCowAyrshire_12: 4967742011082523585
+      sheetCowAyrshire_13: 5429994192723760257
+      sheetCowAyrshire_14: 4298035122949936360
+      sheetCowAyrshire_15: 5261634217315703052
+      sheetCowAyrshire_16: 6326867131223435071
+      sheetCowAyrshire_17: -9199959485067028759
+      sheetCowAyrshire_18: -7857271259399209431
+      sheetCowAyrshire_19: 3713166355627943345
+      sheetCowAyrshire_2: -852853927149144366
+      sheetCowAyrshire_20: -4211832791830664999
+      sheetCowAyrshire_21: -4166693209889898455
+      sheetCowAyrshire_3: -5995267595302389666
+      sheetCowAyrshire_4: -8042270527692897559
+      sheetCowAyrshire_5: 9073221513552259453
+      sheetCowAyrshire_6: -6142946168470025741
+      sheetCowAyrshire_7: 4310690218867965117
+      sheetCowAyrshire_8: -3790523775733467613
+      sheetCowAyrshire_9: -3605278195374568871
   spritePackingTag: 
   pSDRemoveMatte: 0
   pSDShowRemoveMatteOption: 0

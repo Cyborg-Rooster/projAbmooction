@@ -68,7 +68,7 @@ public class BoxController : MonoBehaviour
 
                 box.EndTimeStringFormat = box.EndTime.ToString();
 
-                FirebaseManager.SaveBox(box);
+                //FirebaseManager.SaveBox(box);
                 SetBox(box, ID);
                 GameData.Save();
             }
@@ -146,7 +146,7 @@ public class BoxController : MonoBehaviour
                     {
                         Box.EndTime = Box.EndTime - new TimeSpan(1, 0, 0);
                         Box.EndTimeStringFormat = Box.EndTime.ToString();
-                        FirebaseManager.SaveBox(Box);
+                        //FirebaseManager.SaveBox(Box);
                         CancelInvoke();
                         SetBox(Box, ID);
                     }
@@ -219,7 +219,7 @@ public class BoxController : MonoBehaviour
             Box.Active = true;
             Box.EndTime = GameData.DateTimeNow + TimeSpan.FromHours(Box.Type);
             Box.EndTimeStringFormat = Box.EndTime.ToString();
-            FirebaseManager.SaveBox(Box);
+            //FirebaseManager.SaveBox(Box);
             SetBox(Box, ID);
         }
     }

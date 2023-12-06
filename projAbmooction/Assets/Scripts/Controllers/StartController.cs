@@ -5,7 +5,6 @@ using UnityEngine;
 public class StartController : MonoBehaviour
 {
     [SerializeField] AdvertisementInitializerController AdvertisementInitializerController;
-    [SerializeReference] AdvertisementController AdvertisementController;
 
     bool splashscreenEnded = false;
     bool loaded = false;
@@ -13,7 +12,6 @@ public class StartController : MonoBehaviour
     void Awake()
     {
         StartCoroutine(Load());
-
     }
 
     private void Start()

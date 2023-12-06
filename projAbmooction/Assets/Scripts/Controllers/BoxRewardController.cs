@@ -106,7 +106,7 @@ public class BoxRewardController : MonoBehaviour
 
     void SetComponets(string reward, Sprite itemType, RuntimeAnimatorController boxType, Box box, BoxController boxController)
     {
-        FirebaseManager.RemoveBox(box);
+        //FirebaseManager.RemoveBox(box);
         GameData.Boxes[box.ID] = null;
         boxController.SetBox(null, box.ID);
 

@@ -136,7 +136,7 @@ public class GameController : MonoBehaviour
 
     public void OnButtonLogOnFacebookClicked()
     {
-        StartCoroutine(LogOnFacebookManager.LogOnFacebook(Builder));
+        //StartCoroutine(LogOnFacebookManager.LogOnFacebook(Builder));
     }
 
 
@@ -229,7 +229,7 @@ public class GameController : MonoBehaviour
             TxtNew.SetActive(true);
             GameData.BestScore = Mechanics.Meters;
 
-            if (FacebookManager.IsLogged) FirebaseManager.SaveData(OnlineData.ReturnOnlineData());
+            //if (FacebookManager.IsLogged) FirebaseManager.SaveData(OnlineData.ReturnOnlineData());
         }
 
         UIManager.SetText(txtFinalBestScore, $"{GameData.BestScore} m");
@@ -239,7 +239,7 @@ public class GameController : MonoBehaviour
         if(Mechanics.BoxCatched != null)
         {
             GameData.Boxes[Mechanics.BoxCatched.ID] = Mechanics.BoxCatched;
-            FirebaseManager.SaveBox(Mechanics.BoxCatched);
+            //FirebaseManager.SaveBox(Mechanics.BoxCatched);
         }
 
         Planet.GetComponent<MovementController>().SetIsMoving(false);

@@ -141,7 +141,7 @@ TextureImporter:
       213: -5854200881424632505
     second: splashscreen_45
   externalObjects: {}
-  serializedVersion: 11
+  serializedVersion: 12
   mipmaps:
     mipMapMode: 0
     enableMipMap: 0
@@ -162,6 +162,7 @@ TextureImporter:
   streamingMipmaps: 0
   streamingMipmapsPriority: 0
   vTOnly: 0
+  ignoreMasterTextureLimit: 0
   grayScaleToAlpha: 0
   generateCubemap: 6
   cubemapConvolution: 0
@@ -200,6 +201,7 @@ TextureImporter:
   textureFormatSet: 0
   ignorePngGamma: 0
   applyGammaDecoding: 0
+  cookieLightType: 1
   platformSettings:
   - serializedVersion: 3
     buildTarget: DefaultTexturePlatform
@@ -239,6 +241,18 @@ TextureImporter:
     forceMaximumCompressionQuality_BC6H_BC7: 0
   - serializedVersion: 3
     buildTarget: Android
+    maxTextureSize: 2048
+    resizeAlgorithm: 0
+    textureFormat: -1
+    textureCompression: 0
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+    androidETC2FallbackOverride: 0
+    forceMaximumCompressionQuality_BC6H_BC7: 0
+  - serializedVersion: 3
+    buildTarget: Server
     maxTextureSize: 2048
     resizeAlgorithm: 0
     textureFormat: -1
@@ -1228,6 +1242,53 @@ TextureImporter:
     edges: []
     weights: []
     secondaryTextures: []
+    nameFileIdTable:
+      splashscreen_0: 7284042766073949338
+      splashscreen_1: -487542007057738362
+      splashscreen_10: 7840809767656213620
+      splashscreen_11: 6919078526597671243
+      splashscreen_12: -6811664693247618088
+      splashscreen_13: -3815487128634349523
+      splashscreen_14: 2268034094328498664
+      splashscreen_15: 7030427317694770612
+      splashscreen_16: 2031446747855123139
+      splashscreen_17: -5442269620294461782
+      splashscreen_18: 92840483836022928
+      splashscreen_19: 2506572546573006226
+      splashscreen_2: 6808996574024463031
+      splashscreen_20: 824242646436731671
+      splashscreen_21: -856154763324517553
+      splashscreen_22: 4192079367337409414
+      splashscreen_23: -4693109090318720823
+      splashscreen_24: -1611940974324377854
+      splashscreen_25: -5833677960941483661
+      splashscreen_26: -1609127185440522084
+      splashscreen_27: 1865402545372654204
+      splashscreen_28: -909949554908769281
+      splashscreen_29: 1722708080302062205
+      splashscreen_3: -761939336395716403
+      splashscreen_30: 5747028882079488097
+      splashscreen_31: -2541227900542602359
+      splashscreen_32: -7454342203539663543
+      splashscreen_33: 6763067982693726152
+      splashscreen_34: -4584268790791137391
+      splashscreen_35: -7452179469467769316
+      splashscreen_36: 3129553471128743304
+      splashscreen_37: -293947916670810969
+      splashscreen_38: -6909229449102432924
+      splashscreen_39: 6731920762508184282
+      splashscreen_4: -4450697211902905035
+      splashscreen_40: -55129116114925213
+      splashscreen_41: 2319878515869229424
+      splashscreen_42: -2286919104328395901
+      splashscreen_43: -5609235729335900991
+      splashscreen_44: -3109880978935599884
+      splashscreen_45: -5854200881424632505
+      splashscreen_5: -2754475634753607183
+      splashscreen_6: -2285831269547075154
+      splashscreen_7: -8076591900807836760
+      splashscreen_8: 2898759153753893423
+      splashscreen_9: 3332334358668575514
   spritePackingTag: 
   pSDRemoveMatte: 0
   pSDShowRemoveMatteOption: 0
